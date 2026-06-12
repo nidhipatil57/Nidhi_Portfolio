@@ -1,0 +1,55 @@
+.cursorDot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-primary);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+}
+
+.cursorFollower {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--accent-primary);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9998;
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Hovering over clickable items */
+.cursorDot.hovered {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-primary);
+}
+
+.cursorFollower.hovered {
+  width: 48px;
+  height: 48px;
+  border-color: var(--accent-primary);
+  background-color: rgba(99, 102, 241, 0.08);
+}
+
+/* Clicking trigger states */
+.cursorDot.clicked {
+  transform: translate(-50%, -50%) scale(0.7);
+}
+
+.cursorFollower.clicked {
+  transform: translate(-50%, -50%) scale(0.8);
+  background-color: rgba(99, 102, 241, 0.15);
+}
+
+/* Responsive query: disable cursor follower elements on mobile touch devices */
+@media (max-width: 768px) {
+  .cursorDot,
+  .cursorFollower {
+    display: none;
+  }
+}

@@ -1,0 +1,234 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  transition: all var(--transition-base);
+  padding: 0 var(--container-padding);
+}
+
+.scrolled {
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Light mode scrolled header adjustment */
+:global(body.light-mode) .scrolled {
+  background: rgba(248, 250, 252, 0.85);
+  box-shadow: 0 4px 30px rgba(15, 23, 42, 0.05);
+}
+
+.navContainer {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+}
+
+.logoAccent {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.08em;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.navLink {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+  position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  border-radius: 1px;
+  transition: width var(--transition-base);
+}
+
+.navLink:hover,
+.navLinkActive {
+  color: var(--text-primary);
+}
+
+.navLink:hover::after,
+.navLinkActive::after {
+  width: 100%;
+}
+
+/* Header Actions Container */
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  z-index: 10;
+}
+
+/* Theme Toggle Button styling */
+.themeToggle {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all var(--transition-base);
+  background: var(--glass-bg);
+}
+
+.themeToggle:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: var(--glass-bg-hover);
+  transform: scale(1.05);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 10;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburgerLine {
+  width: 24px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobileMenu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: rgba(12, 12, 20, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: calc(var(--nav-height) + var(--space-xl)) var(--space-xl) var(--space-xl);
+    gap: var(--space-md);
+    border-left: 1px solid var(--glass-border);
+    z-index: 5;
+    transform: translateX(100%);
+    transition: transform var(--transition-slow);
+  }
+
+  /* Light mode mobile menu override */
+  :global(body.light-mode) .mobileMenu {
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  .mobileMenuOpen {
+    transform: translateX(0);
+  }
+
+  .mobileNavLink {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: var(--space-md) 0;
+    width: 100%;
+    border-bottom: 1px solid var(--glass-border);
+    transition: color var(--transition-fast);
+    cursor: pointer;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: var(--font-body);
+    text-align: left;
+  }
+
+  .mobileNavLink:hover,
+  .mobileNavLinkActive {
+    color: var(--accent-primary);
+  }
+
+  .mobileOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 4;
+  }
+}

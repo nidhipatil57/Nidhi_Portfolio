@@ -47,7 +47,7 @@ The platform features a premium dark-themed UI with glassmorphic cards, smooth a
     github: 'https://github.com/nidhipatil57/Nexora',
     demo: 'https://nexora-phi-umber.vercel.app',
     image: nexoraImg,
-    featured: true,
+    featured: false,
     date: '2026',
     accentColor: '#8B5CF6',
   },

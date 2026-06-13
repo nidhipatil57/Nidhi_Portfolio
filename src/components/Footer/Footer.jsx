@@ -9,6 +9,7 @@ export default function Footer() {
       <div className={styles.footerGradient} />
 
       <div className={`container ${styles.footerContent}`}>
+        <p className={styles.footerQuote}>"Building today for a better tomorrow"</p>
         <div className={styles.footerLogo}>
           Nidhi <span className={styles.footerLogoAccent}>Patil</span>
         </div>

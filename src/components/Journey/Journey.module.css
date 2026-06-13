@@ -2,136 +2,234 @@
   position: relative;
 }
 
-.timeline {
+.timelineContainer {
   position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: var(--space-lg) 0;
+  width: 100%;
+  padding: 0;
+  margin-top: var(--space-2xl);
+  overflow: visible;
 }
 
-/* Central progress line representing time and status */
+/* Horizontal track line for desktop */
 .timelineLine {
   position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
+  top: 31px; /* aligns exactly with the center of the dots (12px date + 8px gap + 11px half-dot) */
+  left: 16.6%;
+  right: 16.6%;
+  height: 2px;
   background: linear-gradient(
-    to bottom,
+    to right,
     var(--accent-primary) 0%,
-    var(--accent-primary) 60%,
+    var(--accent-primary) 50%,
     #10b981 85%,
-    rgba(16, 185, 129, 0) 100%
+    rgba(16, 185, 129, 0.1) 100%
   );
-  margin-left: -1px;
+  z-index: 1;
 }
 
-/* Milestone */
-.milestone {
+/* Horizontal grid for milestones */
+.milestonesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
   position: relative;
+  z-index: 2;
+}
+
+.milestone {
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 90px;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+/* Date and Dot Wrapper */
+.dotContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-xs); /* 8px gap */
+  margin-bottom: var(--space-xl);
+  position: relative;
   width: 100%;
 }
 
-.milestone:last-child {
+.milestoneDate {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--text-tertiary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   margin-bottom: 0;
+  transition: color var(--transition-base);
+  line-height: 1;
 }
 
-/* Alternating layout */
-.milestoneLeft {
-  flex-direction: row;
+.dateActive {
+  color: #10b981 !important;
 }
 
-.milestoneRight {
-  flex-direction: row-reverse;
-}
-
-/* ScrollReveal Wrapper to replace old grid wrap */
-.scrollRevealWrapper {
-  width: calc(50% - 30px);
-  display: block;
+/* Dot situated on the timeline track */
+.milestoneDot {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
   z-index: 5;
+  transition: all var(--transition-base);
 }
 
-/* Content card base */
+.milestoneActive .milestoneDot {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.stableDot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.5);
+}
+
+.pulseDot {
+  width: 10px;
+  height: 10px;
+  background-color: #10b981;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.pulseDot::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid #10b981;
+  animation: pulseGlow 1.6s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Card Content Wrapper */
+.scrollRevealWrapper {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .milestoneContent {
   width: 100%;
+  height: 100%;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   transition: all var(--transition-spring);
   position: relative;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Completed Card Style */
+/* Arrow pointer pointing UP towards the timeline dot */
+.milestoneContent::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--glass-border);
+  transition: border-color var(--transition-base);
+}
+
 .cardCompleted {
-  border-left: 3px solid var(--accent-primary);
+  border-top: 3px solid var(--accent-primary);
 }
 
 .cardCompleted:hover {
   background: var(--glass-bg-hover);
   border-color: var(--glass-border-hover);
-  border-left-color: var(--accent-primary);
+  border-top-color: var(--accent-primary);
   box-shadow: 0 10px 30px rgba(99, 102, 241, 0.08);
-  transform: translateY(-4px);
+  transform: translateY(-5px);
 }
 
-/* Active/Currently Here Card Style */
 .cardActive {
   border: 1px solid rgba(16, 185, 129, 0.2);
-  border-left: 4px solid #10b981;
+  border-top: 4px solid #10b981;
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(17, 24, 39, 0.65) 100%);
   box-shadow: 0 0 25px rgba(16, 185, 129, 0.05);
 }
 
 .cardActive:hover {
   border-color: rgba(16, 185, 129, 0.45);
-  border-left-color: #10b981;
+  border-top-color: #10b981;
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(17, 24, 39, 0.75) 100%);
   box-shadow: 0 12px 35px rgba(16, 185, 129, 0.15);
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 }
 
 /* Light mode overrides for active card */
-body.light-mode .cardActive {
+:global(body.light-mode) .cardActive {
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(255, 255, 255, 0.9) 100%);
   border-color: rgba(16, 185, 129, 0.2);
   box-shadow: 0 10px 25px rgba(16, 185, 129, 0.04);
 }
 
-body.light-mode .cardActive:hover {
+:global(body.light-mode) .cardActive:hover {
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(255, 255, 255, 0.95) 100%);
   border-color: rgba(16, 185, 129, 0.35);
   box-shadow: 0 12px 30px rgba(16, 185, 129, 0.1);
 }
 
+.cardActive::after {
+  border-bottom-color: rgba(16, 185, 129, 0.2);
+}
+
+.cardActive:hover::after {
+  border-bottom-color: rgba(16, 185, 129, 0.45);
+}
+
+.cardCompleted:hover::after {
+  border-bottom-color: var(--glass-border-hover);
+}
+
 /* Card Header */
 .cardHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   flex-wrap: wrap;
   gap: var(--space-sm);
 }
-
-.milestoneDate {
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  color: var(--text-tertiary);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.cardActive .milestoneDate {
-  color: #10b981;
-  font-weight: 700;
-}
-
-
 
 .badgeActive {
   display: inline-flex;
@@ -143,7 +241,7 @@ body.light-mode .cardActive:hover {
   color: #10b981;
   background: rgba(16, 185, 129, 0.08);
   padding: 4px 10px;
-  border-radius: 20px;
+  border-radius: var(--radius-full);
   letter-spacing: 0.05em;
   border: 1px solid rgba(16, 185, 129, 0.2);
   box-shadow: 0 0 10px rgba(16, 185, 129, 0.05);
@@ -153,7 +251,7 @@ body.light-mode .cardActive:hover {
   width: 6px;
   height: 6px;
   background-color: #10b981;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   display: inline-block;
   position: relative;
 }
@@ -165,7 +263,7 @@ body.light-mode .cardActive:hover {
   left: 0;
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background-color: #10b981;
   animation: dotPulse 1.6s infinite ease-in-out;
 }
@@ -181,7 +279,7 @@ body.light-mode .cardActive:hover {
   }
 }
 
-/* Title wrapper and icons */
+/* Title Wrapper & Icons */
 .titleWrapper {
   display: flex;
   align-items: center;
@@ -195,7 +293,7 @@ body.light-mode .cardActive:hover {
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: var(--bg-tertiary);
   border: 1px solid var(--glass-border);
   color: var(--accent-primary);
@@ -214,7 +312,7 @@ body.light-mode .cardActive:hover {
 }
 
 .milestoneTitle {
-  font-size: var(--fs-h3);
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
@@ -225,148 +323,130 @@ body.light-mode .cardActive:hover {
   font-size: var(--fs-small);
   color: var(--text-secondary);
   line-height: 1.6;
+  flex-grow: 1;
 }
 
-/* Center dot */
-.milestoneDot {
-  position: absolute;
-  left: 50%;
-  top: 22px;
-  margin-left: -8px;
-  width: 16px;
-  height: 16px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  background: transparent;
-  border: none;
-  transition: all var(--transition-base);
+.milestoneGrades {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  margin-top: var(--space-xs);
+  font-weight: 500;
 }
 
-.milestoneDotStable {
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.stableDot {
-  position: relative;
-  width: 12px;
-  height: 12px;
-  background-color: var(--accent-primary);
-  border-radius: 50%;
-  z-index: 10;
-  box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
-}
-
-.milestoneDotCurrent {
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.pulseDot {
-  position: relative;
-  width: 14px;
-  height: 14px;
-  background-color: #10b981;
-  border-radius: 50%;
-  z-index: 10;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
-}
-
-.pulseDot::after {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border-radius: 50%;
-  border: 2px solid #10b981;
-  animation: pulseGlow 1.8s infinite ease-in-out;
-}
-
-@keyframes pulseGlow {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2.4);
-    opacity: 0;
+/* ==========================================================================
+   RESPONSIVE DESIGN - Vertical stacked timeline on tablet & mobile
+   ========================================================================== */
+@media (max-width: 991px) {
+  .timelineLine {
+    left: 10%;
+    right: 10%;
   }
 }
 
-/* Arrow pointers */
-.milestoneLeft .milestoneContent::after {
-  content: '';
-  position: absolute;
-  right: -8px;
-  top: 20px;
-  width: 0;
-  height: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 8px solid var(--glass-border);
-}
-
-.milestoneRight .milestoneContent::after {
-  content: '';
-  position: absolute;
-  left: -8px;
-  top: 20px;
-  width: 0;
-  height: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 8px solid var(--glass-border);
-}
-
-/* Override arrows for active card */
-.milestoneLeft .cardActive::after {
-  border-left-color: rgba(16, 185, 129, 0.2);
-}
-
-.milestoneRight .cardActive::after {
-  border-right-color: rgba(16, 185, 129, 0.2);
-}
-
-/* Responsive — single column */
 @media (max-width: 768px) {
+  .timelineContainer {
+    padding: var(--space-lg) 0;
+  }
+
+  /* Transition line to vertical */
   .timelineLine {
     left: 22px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    height: 100%;
     margin-left: -1px;
-    transform: none;
+    background: linear-gradient(
+      to bottom,
+      var(--accent-primary) 0%,
+      var(--accent-primary) 60%,
+      #10b981 85%,
+      rgba(16, 185, 129, 0) 100%
+    );
+  }
+
+  .milestonesGrid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
   }
 
   .milestone {
-    flex-direction: row !important;
+    flex-direction: row;
+    align-items: flex-start;
     padding-left: 60px;
-    margin-bottom: 60px;
+    width: 100%;
   }
 
-  .scrollRevealWrapper {
-    width: 100% !important;
+  .dotContainer {
+    position: absolute;
+    left: 22px;
+    top: 22px;
+    margin-left: -11px;
+    width: auto;
+    height: auto;
+    margin-bottom: 0;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .milestoneLeft .milestoneContent::after,
-  .milestoneRight .milestoneContent::after {
-    left: -8px;
-    right: auto;
-    border-left: none !important;
-    border-right: 8px solid var(--glass-border) !important;
-  }
-
-  .milestoneLeft .cardActive::after,
-  .milestoneRight .cardActive::after {
-    border-left-color: transparent !important;
-    border-right-color: rgba(16, 185, 129, 0.2) !important;
+  /* Date is moved inside or floating */
+  .milestoneDate {
+    position: absolute;
+    top: -24px;
+    left: 12px;
+    white-space: nowrap;
   }
 
   .milestoneDot {
-    left: 22px;
-    top: 22px;
-    margin-left: -8px;
+    margin-top: 0;
+  }
+
+  /* Left-pointing arrow for stacked vertical timeline card */
+  .milestoneContent::after {
+    top: 20px;
+    left: -8px;
+    transform: none;
+    border-left: none !important;
+    border-right: 8px solid var(--glass-border) !important;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+  }
+
+  .cardCompleted {
+    border-top: 1px solid var(--glass-border);
+    border-left: 3px solid var(--accent-primary);
+  }
+
+  .cardCompleted:hover {
+    border-top-color: var(--glass-border-hover);
+    border-left-color: var(--accent-primary);
+    transform: translateY(-3px);
+  }
+
+  .cardActive {
+    border-top: 1px solid rgba(16, 185, 129, 0.2);
+    border-left: 4px solid #10b981;
+  }
+
+  .cardActive:hover {
+    border-top-color: rgba(16, 185, 129, 0.45);
+    border-left-color: #10b981;
+    transform: translateY(-4px);
+  }
+
+  .cardActive::after {
+    border-bottom-color: transparent !important;
+    border-right-color: rgba(16, 185, 129, 0.2) !important;
+  }
+
+  .cardActive:hover::after {
+    border-bottom-color: transparent !important;
+    border-right-color: rgba(16, 185, 129, 0.45) !important;
+  }
+
+  .cardCompleted:hover::after {
+    border-bottom-color: transparent !important;
+    border-right-color: var(--glass-border-hover) !important;
   }
 }

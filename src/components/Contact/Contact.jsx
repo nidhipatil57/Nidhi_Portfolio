@@ -36,22 +36,34 @@ export default function Contact() {
     setStatus('sending');
 
     try {
-      const body = encodeURIComponent(
-        `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-      );
-      /* 
-         NOTE FOR NIDHI: 
-         Your email is configured below as 'nidhipatil57@gmail.com'. 
-         If you need to change your inquiry email, edit the address in the line below!
-      */
-      window.location.href = `mailto:nidhipatil57@gmail.com?subject=Portfolio%20Inquiry&body=${body}`;
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'db7f9630-007d-4951-a83a-780d07b38529',
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          subject: `New Message from ${form.name} (via Portfolio)`,
+          from_name: form.name,
+          replyto: form.email,
+        }),
+      });
 
-      setTimeout(() => {
+      const result = await response.json();
+
+      if (result.success) {
         setStatus('success');
         setForm({ name: '', email: '', message: '' });
         setTimeout(() => setStatus(null), 5000);
-      }, 1000);
-    } catch {
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (err) {
+      console.error('Contact form error:', err);
       setStatus('error');
       setTimeout(() => setStatus(null), 5000);
     }
@@ -186,7 +198,7 @@ export default function Contact() {
 
                 {status === 'success' && (
                   <div className={styles.successMessage}>
-                    ✅ Message sent! Your email client should have opened. I'll get back to you soon!
+                    ✅ Message sent successfully! I will get back to you soon.
                   </div>
                 )}
 

@@ -20,7 +20,7 @@ function CertificationCard({ cert, index, onClick }) {
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         <div className={styles.cardGlow} />
-        
+
         {/* Certificate Mini-preview / Decor */}
         <div className={styles.cardHeader}>
           <div className={styles.cardImageContainer}>
@@ -41,18 +41,6 @@ function CertificationCard({ cert, index, onClick }) {
           <span className={styles.cardDate}>{cert.date}</span>
           <h3 className={styles.cardTitle}>{cert.title}</h3>
           <p className={styles.cardIssuer}>{cert.issuer}</p>
-          
-          {/* Skill Pills preview */}
-          <div className={styles.skillPills}>
-            {cert.skills.slice(0, 3).map((skill) => (
-              <span key={skill} className={styles.skillPill}>
-                {skill}
-              </span>
-            ))}
-            {cert.skills.length > 3 && (
-              <span className={styles.skillPillMore}>+{cert.skills.length - 3}</span>
-            )}
-          </div>
         </div>
       </motion.div>
     </ScrollReveal>
@@ -61,34 +49,7 @@ function CertificationCard({ cert, index, onClick }) {
 
 // Holo image container for the modal
 function HoloCertificateImage({ src, title }) {
-  const cardRef = useRef(null);
-  const [coords, setCoords] = useState({ x: 50, y: 50 });
-  const [rotate, setRotate] = useState({ x: 0, y: 0 });
   const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current || isFullscreen) return;
-
-    const card = cardRef.current;
-    const box = card.getBoundingClientRect();
-    const x = e.clientX - box.left;
-    const y = e.clientY - box.top;
-    
-    // Convert to percentage
-    const percentX = (x / box.width) * 100;
-    const percentY = (y / box.height) * 100;
-    setCoords({ x: percentX, y: percentY });
-
-    // 3D rotation calculation
-    const rotX = -((y - box.height / 2) / (box.height / 2)) * 10; // max 10deg
-    const rotY = ((x - box.width / 2) / (box.width / 2)) * 10; // max 10deg
-    setRotate({ x: rotX, y: rotY });
-  };
-
-  const handleMouseLeave = () => {
-    setCoords({ x: 50, y: 50 });
-    setRotate({ x: 0, y: 0 });
-  };
 
   return (
     <>
@@ -97,30 +58,8 @@ function HoloCertificateImage({ src, title }) {
         onClick={() => setIsFullscreen(true)}
         title="Click to view full screen"
       >
-        <motion.div
-          ref={cardRef}
-          className={styles.holoCard}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          animate={{
-            rotateX: rotate.x,
-            rotateY: rotate.y,
-          }}
-          transition={{ type: 'tween', ease: 'linear', duration: 0.1 }}
-          style={{
-            transformStyle: 'preserve-3d',
-            perspective: '1000px',
-          }}
-        >
+        <div className={styles.holoCard}>
           <img src={src} alt={title} className={styles.holoImage} />
-          
-          {/* Shine effect layer */}
-          <div 
-            className={styles.holoShine} 
-            style={{
-              background: `radial-gradient(circle at ${coords.x}% ${coords.y}%, rgba(255, 255, 255, 0.45) 0%, transparent 60%)`,
-            }}
-          />
           
           {/* Border highlight layer */}
           <div className={styles.holoBorderHighlight} />
@@ -128,7 +67,7 @@ function HoloCertificateImage({ src, title }) {
           <div className={styles.zoomIndicator}>
             <FaSearchPlus /> Click to expand
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Fullscreen Overlay */}
@@ -215,7 +154,7 @@ function CertificationModal({ cert, onClose }) {
             </div>
 
             <h3 className={styles.modalTitle}>{cert.title}</h3>
-            
+
             {cert.credentialId && (
               <div className={styles.credentialBadge}>
                 <span className={styles.credentialLabel}>Credential ID:</span>
@@ -253,10 +192,10 @@ function CertificationModal({ cert, onClose }) {
                 <h5 className={styles.sectionHeader}>Skills Mastered</h5>
                 <div className={styles.skillsContainer}>
                   {cert.skills.map((skill) => (
-                    <span 
-                      key={skill} 
+                    <span
+                      key={skill}
                       className={styles.modalSkillPill}
-                      style={{ 
+                      style={{
                         borderColor: `${cert.accentColor}25`,
                         color: cert.accentColor,
                         backgroundColor: `${cert.accentColor}06`
@@ -272,10 +211,10 @@ function CertificationModal({ cert, onClose }) {
             {/* Modal Actions */}
             {cert.verifyLink && (
               <div className={styles.modalActions}>
-                <a 
-                  href={cert.verifyLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href={cert.verifyLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn btn-primary"
                   style={{
                     background: `linear-gradient(135deg, ${cert.accentColor} 0%, ${cert.accentColor}dd 100%)`,
@@ -313,7 +252,7 @@ export default function Certifications() {
       <div className="container">
         <SectionTitle
           title="Certifications"
-          subtitle="Professional milestones, awards, and credentials validating my continuous learning journey"
+          subtitle="Certifications and Achievements in my journey till date"
         />
 
         {/* Certifications Grid */}

@@ -1,16 +1,21 @@
 .skills {
   position: relative;
+  overflow: hidden;
 }
 
 .skillsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-lg);
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
 }
 
+/* ---------------------------------------------
+   HOLOGRAPHIC GLASS CATEGORY CARD
+   --------------------------------------------- */
 .categoryCard {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: rgba(13, 18, 30, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   transition: all var(--transition-slow), border-color var(--transition-base);
@@ -19,10 +24,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 240px;
+  min-height: 250px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Base glow aura */
+/* Card Glow Aura */
 .categoryCard::after {
   content: '';
   position: absolute;
@@ -30,6 +38,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  background: radial-gradient(circle at top right, var(--card-accent-glow), transparent 55%);
   opacity: 0;
   transition: opacity var(--transition-slow);
   z-index: 0;
@@ -38,102 +47,140 @@
 
 .categoryCard:hover {
   transform: translateY(-6px);
-  background: var(--glass-bg-hover);
-  box-shadow: var(--shadow-xl);
+  background: rgba(13, 18, 30, 0.65);
+  border-color: var(--card-accent-hover-border);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px var(--card-accent-hover-glow);
 }
 
 .categoryCard:hover::after {
   opacity: 1;
 }
 
-/* Card-specific borders and glows */
-.card0:hover {
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: var(--shadow-xl), 0 10px 30px rgba(99, 102, 241, 0.12);
-}
-.card0::after {
-  background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.08), transparent 55%);
-}
-
-.card1:hover {
-  border-color: rgba(97, 218, 251, 0.4);
-  box-shadow: var(--shadow-xl), 0 10px 30px rgba(97, 218, 251, 0.12);
-}
-.card1::after {
-  background: radial-gradient(circle at top right, rgba(97, 218, 251, 0.08), transparent 55%);
-}
-
-.card2:hover {
-  border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: var(--shadow-xl), 0 10px 30px rgba(245, 158, 11, 0.12);
-}
-.card2::after {
-  background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.08), transparent 55%);
+/* Grid Overlay on Hover */
+.cardGridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 18px 18px;
+  background-position: center;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  transition: all var(--transition-slow);
 }
 
-.card3:hover {
-  border-color: rgba(236, 72, 153, 0.4);
-  box-shadow: var(--shadow-xl), 0 10px 30px rgba(236, 72, 153, 0.12);
-}
-.card3::after {
-  background: radial-gradient(circle at top right, rgba(236, 72, 153, 0.08), transparent 55%);
+.categoryCard:hover .cardGridOverlay {
+  opacity: 0.35;
+  background-image: 
+    linear-gradient(var(--card-accent-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--card-accent-grid) 1px, transparent 1px);
 }
 
+/* Sci-fi index number styling */
+.cardIndex {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-lg);
+  font-family: monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  opacity: 0.25;
+  letter-spacing: 0.15em;
+  transition: all var(--transition-base);
+  z-index: 2;
+}
+
+.categoryCard:hover .cardIndex {
+  opacity: 0.85;
+  color: var(--card-accent);
+  text-shadow: 0 0 8px var(--card-accent);
+}
+
+/* ---------------------------------------------
+   CATEGORY CARD HEADER
+   --------------------------------------------- */
 .categoryHeader {
   display: flex;
   align-items: flex-start;
   gap: var(--space-md);
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-lg);
   z-index: 1;
 }
 
+/* Holographic Orb Container for Emojis */
 .categoryEmoji {
-  font-size: 1.6rem;
-  width: 48px;
-  height: 48px;
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
-  transition: transform var(--transition-base);
+  background: var(--card-accent-orb);
+  border: 1px solid var(--card-accent-orb-border);
+  transition: all var(--transition-base);
   flex-shrink: 0;
+  position: relative;
+  box-shadow: inset 0 0 10px var(--card-accent-orb-inner);
+}
+
+/* Glowing ring behind the orb */
+.categoryEmoji::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  transition: all var(--transition-base);
+  pointer-events: none;
 }
 
 .categoryCard:hover .categoryEmoji {
-  transform: scale(1.08) rotate(3deg);
+  transform: scale(1.08) translateY(-2px);
+  border-color: var(--card-accent-orb-hover-border);
+  box-shadow: 0 4px 15px var(--card-accent-orb-glow), inset 0 0 15px var(--card-accent-orb-hover-inner);
 }
 
-/* Card-specific emoji icons */
-.card0 .categoryEmoji {
-  background: rgba(99, 102, 241, 0.08);
-  border: 1px solid rgba(99, 102, 241, 0.15);
-}
-.card1 .categoryEmoji {
-  background: rgba(97, 218, 251, 0.08);
-  border: 1px solid rgba(97, 218, 251, 0.15);
-}
-.card2 .categoryEmoji {
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.15);
-}
-.card3 .categoryEmoji {
-  background: rgba(236, 72, 153, 0.08);
-  border: 1px solid rgba(236, 72, 153, 0.15);
+.categoryCard:hover .categoryEmoji::before {
+  inset: -4px;
+  border-color: var(--card-accent-orb-hover-outer);
+  animation: orbRotate 3s linear infinite;
 }
 
-.categoryInfo h3 {
+@keyframes orbRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.03); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.categoryTitleWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.categoryTitleWrapper h3 {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.01em;
 }
 
 .categoryInfo p {
   font-size: var(--fs-small);
   color: var(--text-secondary);
   line-height: 1.5;
+  margin: 0;
 }
 
+/* ---------------------------------------------
+   SKILL CHIPS LIST
+   --------------------------------------------- */
 .skillsList {
   display: flex;
   flex-wrap: wrap;
@@ -145,35 +192,82 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: 10px 18px;
+  padding: 10px 16px;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-sm);
   font-size: var(--fs-small);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-secondary);
   transition: all var(--transition-base);
   cursor: default;
 }
 
 .skillChip:hover {
-  transform: translateY(-3px) scale(1.02);
-  border-color: var(--currentColor, var(--accent-primary));
-  box-shadow: 0 8px 20px var(--currentColor, rgba(99, 102, 241, 0.15));
+  transform: translateY(-4px) scale(1.03);
+  border-color: var(--skill-accent, var(--accent-primary));
+  box-shadow: 0 8px 20px var(--skill-accent-glow), 0 0 10px var(--skill-accent-inner-glow);
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .skillIcon {
   font-size: 1.15rem;
   display: flex;
   align-items: center;
+  transition: transform var(--transition-base);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+.skillChip:hover .skillIcon {
+  transform: scale(1.1);
+}
+
+/* ---------------------------------------------
+   SKILLS HOVER MICRO-ANIMATIONS
+   --------------------------------------------- */
+
+/* Spin React Logo */
+.skillChip:hover svg[class*="FaReact"] {
+  animation: spinLogo 4s linear infinite;
+}
+
+@keyframes spinLogo {
+  100% { transform: rotate(360deg); }
+}
+
+/* Wiggle Python/Java logos */
+.skillChip:hover svg[class*="FaPython"],
+.skillChip:hover svg[class*="FaJava"] {
+  animation: wiggleLogo 0.5s ease-in-out;
+}
+
+@keyframes wiggleLogo {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* Pulse for ML (Brain), Cloud, Fullstack icon */
+.skillChip:hover svg[class*="TbBrain"],
+.skillChip:hover svg[class*="FaCloud"],
+.skillChip:hover svg[class*="FaLaptopCode"] {
+  animation: pulseLogo 1.2s infinite ease-in-out;
+}
+
+@keyframes pulseLogo {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 1px var(--skill-accent)); }
+  50% { transform: scale(1.15); filter: drop-shadow(0 0 5px var(--skill-accent)); }
+}
+
+/* ---------------------------------------------
+   RESPONSIVE DESIGN
+   --------------------------------------------- */
+@media (max-width: 850px) {
   .skillsGrid {
     grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

@@ -17,7 +17,7 @@ import ScrollReveal from '../common/ScrollReveal';
 import styles from './Stats.module.css';
 
 const GITHUB_USERNAME = 'nidhipatil57';
-const LEETCODE_USERNAME = 'nidhipatil57';
+const LEETCODE_USERNAME = 'Nidhi_57';
 
 const GITHUB_LANG_COLORS = {
   Python: '#3572A5',
@@ -122,48 +122,33 @@ export default function Stats() {
     setLeetcodeLoading(true);
     setLeetcodeError(false);
     try {
-      const [userRes, solvedRes] = await Promise.all([
-        fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}`),
-        fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/solved`),
-      ]);
+      const res = await fetch(`https://leetcode-api-faisal.vercel.app/${LEETCODE_USERNAME}`);
+      if (!res.ok) throw new Error('API Error');
 
-      if (!userRes.ok || !solvedRes.ok) throw new Error('API Error');
-
-      const userData = await userRes.json();
-      const solvedData = await solvedRes.json();
-
-      if (userData.errors || solvedData.errors || !userData.ranking) {
+      const data = await res.json();
+      if (data.errors || !data.ranking) {
         throw new Error('User not found or API returned error');
       }
 
       // Extract details
-      const totalSolved = solvedData.solvedProblem || 0;
-      const easySolved = solvedData.easySolved || 0;
-      const mediumSolved = solvedData.mediumSolved || 0;
-      const hardSolved = solvedData.hardSolved || 0;
+      const totalSolved = data.totalSolved || 0;
+      const easySolved = data.easySolved || 0;
+      const mediumSolved = data.mediumSolved || 0;
+      const hardSolved = data.hardSolved || 0;
 
-      // Find total question counts from submission data or use standard totals
-      let totalQuestions = 3250;
-      let totalEasy = 820;
-      let totalMedium = 1650;
-      let totalHard = 780;
+      const totalQuestions = data.totalQuestions || 3250;
+      const totalEasy = data.totalEasy || 820;
+      const totalMedium = data.totalMedium || 1650;
+      const totalHard = data.totalHard || 780;
 
-      if (solvedData.totalSubmissionNum && solvedData.totalSubmissionNum.length > 0) {
-        const allStats = solvedData.totalSubmissionNum.find((t) => t.difficulty === 'All');
-        const easyStats = solvedData.totalSubmissionNum.find((t) => t.difficulty === 'Easy');
-        const mediumStats = solvedData.totalSubmissionNum.find((t) => t.difficulty === 'Medium');
-        const hardStats = solvedData.totalSubmissionNum.find((t) => t.difficulty === 'Hard');
-
-        if (allStats) totalQuestions = allStats.count || 3250;
-        if (easyStats) totalEasy = easyStats.count || 820;
-        if (mediumStats) totalMedium = mediumStats.count || 1650;
-        if (hardStats) totalHard = hardStats.count || 780;
+      // Calculate acceptance rate
+      let accRate = 52.4;
+      if (data.totalSubmissions && data.totalSubmissions.length > 0) {
+        const allSubs = data.totalSubmissions.find((t) => t.difficulty === 'All');
+        if (allSubs && allSubs.submissions > 0) {
+          accRate = ((totalSolved / allSubs.submissions) * 100).toFixed(1);
+        }
       }
-
-      // Calculate simple acceptance rate or use from user data
-      const accRate = solvedData.totalSubmissionNum && solvedData.totalSubmissionNum[0] 
-        ? ((solvedData.solvedProblem / solvedData.totalSubmissionNum[0].submissions) * 100).toFixed(1)
-        : 52.4;
 
       setLeetcodeData({
         totalSolved,
@@ -175,9 +160,9 @@ export default function Stats() {
         hardSolved,
         totalHard,
         acceptanceRate: accRate,
-        ranking: userData.ranking || 0,
-        contributionPoints: userData.reputation || 0,
-        reputation: userData.postViewCount || 0, // Profile views or posts
+        ranking: data.ranking || 0,
+        contributionPoints: data.contributionPoint || 0,
+        reputation: data.reputation || 0,
       });
     } catch (err) {
       console.warn('LeetCode API failed, using fallback data:', err);
@@ -389,7 +374,7 @@ export default function Stats() {
                           </div>
                         </div>
 
-                        <div className={styles.statsCard}>
+                        <div className={`${styles.statsCard} ${styles.streakCard}`}>
                           <img
                             src={`https://github-readme-streak-stats.herokuapp.com/?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=6366f1&fire=f59e0b&currStreakLabel=f3f4f6&sideLabels=9ca3af&dates=6b7280&background=00000000&stroke=1f2937`}
                             alt="GitHub Streak"

@@ -80,7 +80,7 @@
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
   width: 100%;
-  max-width: 900px;
+  max-width: 1100px;
   max-height: 85vh;
   overflow-y: auto;
   position: relative;
@@ -231,8 +231,9 @@
 
 .statsCards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1.45fr 1fr;
   gap: var(--space-md);
+  width: 100%;
 }
 
 .statsCard {
@@ -242,6 +243,14 @@
   padding: var(--space-md);
   overflow: hidden;
   transition: all var(--transition-base);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.streakCard {
+  max-width: 495px;
+  width: 100%;
+  align-self: center;
 }
 
 .statsCard:hover {
@@ -253,6 +262,10 @@
   height: auto;
   border-radius: var(--radius-sm);
   display: block;
+}
+
+.reposSection {
+  width: 100%;
 }
 
 .reposSection h3 {

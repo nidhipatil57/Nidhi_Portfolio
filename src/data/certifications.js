@@ -27,25 +27,6 @@ const certifications = [
     ]
   },
   {
-    id: 'unimerge-ui-ux',
-    title: 'Best UI/UX in UniMerge 1.0',
-    issuer: 'UniMerge 1.0 / parth.builds community',
-    issuerIcon: FaFigma,
-    date: 'April 11-12, 2026',
-    credentialId: 'Solo Hackathon Title Winner',
-    image: unimergeImg,
-    accentColor: '#3b82f6', // Premium blue accent
-    verifyLink: null,
-    description: 'Awarded the Certificate of Appreciation for securing the title of "Best UI/UX" in UniMerge 1.0, a community-based Solo Online Hackathon. Recognized for outstanding layout, styling, and design implementation.',
-    skills: ['UI/UX Design', 'Figma', 'Visual Aesthetics', 'Prototyping'],
-    modules: [
-      'User Interface Design',
-      'User Experience Planning',
-      'Responsive Layout Engineering',
-      'Interactive Prototyping'
-    ]
-  },
-  {
     id: 'ibm-ml',
     title: 'Machine Learning Introduction for Everyone',
     issuer: 'IBM / Coursera',
@@ -62,6 +43,25 @@ const certifications = [
       'Supervised vs Unsupervised Learning Algorithms',
       'Model Evaluation and Metrics',
       'Applications of ML in Real-World Scenarios'
+    ]
+  },
+  {
+    id: 'unimerge-ui-ux',
+    title: 'Best UI/UX in UniMerge 1.0',
+    issuer: 'UniMerge 1.0 / parth.builds community',
+    issuerIcon: FaFigma,
+    date: 'April 11-12, 2026',
+    credentialId: 'Solo Hackathon Title Winner',
+    image: unimergeImg,
+    accentColor: '#3b82f6', // Premium blue accent
+    verifyLink: null,
+    description: 'Awarded the Certificate of Appreciation for securing the title of "Best UI/UX" in UniMerge 1.0, a community-based Solo Online Hackathon. Recognized for outstanding layout, styling, and design implementation.',
+    skills: ['UI/UX Design', 'Figma', 'Visual Aesthetics', 'Prototyping'],
+    modules: [
+      'User Interface Design',
+      'User Experience Planning',
+      'Responsive Layout Engineering',
+      'Interactive Prototyping'
     ]
   }
 ];

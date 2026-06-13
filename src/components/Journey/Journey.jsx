@@ -14,72 +14,77 @@ export default function Journey() {
         <SectionTitle
           label={null}
           title="My Journey"
-          subtitle="Key moments and experiences 
-          shaping my growth as a student and developer."
+          subtitle="Key moments and experiences shaping my growth as a student and developer."
         />
 
-        <div className={styles.timeline} ref={timelineRef}>
-          {/* Background line */}
+        <div className={styles.timelineContainer} ref={timelineRef}>
+          {/* Background timeline line */}
           <div className={styles.timelineLine} />
 
-          {journey.map((item, index) => {
-            const isLeft = index % 2 === 0;
-            const IconComponent = item.icon;
+          <div className={styles.milestonesGrid}>
+            {journey.map((item, index) => {
+              const IconComponent = item.icon;
 
-            return (
-              <div
-                key={item.id}
-                className={`${styles.milestone} ${isLeft ? styles.milestoneLeft : styles.milestoneRight
-                  } ${item.isCurrent ? styles.milestoneActive : styles.milestoneCompleted}`}
-              >
-                <ScrollReveal
-                  variant={isLeft ? 'slideLeft' : 'slideRight'}
-                  delay={index * 0.08}
-                  className={styles.scrollRevealWrapper}
+              return (
+                <div
+                  key={item.id}
+                  className={`${styles.milestone} ${
+                    item.isCurrent ? styles.milestoneActive : styles.milestoneCompleted
+                  }`}
                 >
-                  <div
-                    className={`${styles.milestoneContent} ${item.isCurrent ? styles.cardActive : styles.cardCompleted
-                      }`}
-                  >
-                    <div className={styles.cardHeader}>
-                      <span className={styles.milestoneDate}>{item.date}</span>
-                      {item.isCurrent && (
-                        <span className={styles.badgeActive}>
-                          <span className={styles.badgeActiveDot} />
-                          Currently Here
-                        </span>
+                  {/* Date and Dot wrapper */}
+                  <div className={styles.dotContainer}>
+                    <span className={`${styles.milestoneDate} ${item.isCurrent ? styles.dateActive : ''}`}>
+                      {item.date}
+                    </span>
+                    
+                    <motion.div
+                      className={styles.milestoneDot}
+                      whileInView={{ scale: [0.8, 1.15, 1] }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.08 }}
+                    >
+                      {item.isCurrent ? (
+                        <div className={styles.pulseDot} title="I'm here" />
+                      ) : (
+                        <div className={styles.stableDot} />
                       )}
-                    </div>
-
-                    <div className={styles.titleWrapper}>
-                      {IconComponent && (
-                        <div className={styles.iconContainer}>
-                          <IconComponent className={styles.itemIcon} />
-                        </div>
-                      )}
-                      <h3 className={styles.milestoneTitle}>{item.title}</h3>
-                    </div>
-
-                    <p className={styles.milestoneDesc}>{item.description}</p>
+                    </motion.div>
                   </div>
-                </ScrollReveal>
 
-                <motion.div
-                  className={`${styles.milestoneDot} ${item.isCurrent ? styles.milestoneDotCurrent : styles.milestoneDotStable
-                    }`}
-                  whileInView={{ scale: [0.8, 1.15, 1] }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
-                >
-                  {item.isCurrent ? (
-                    <div className={styles.pulseDot} title="I'm here" />
-                  ) : (
-                    <div className={styles.stableDot} />
-                  )}
-                </motion.div>
-              </div>
-            );
-          })}
+                  {/* Card Content wrapper */}
+                  <ScrollReveal
+                    variant="fadeUp"
+                    delay={index * 0.08}
+                    className={styles.scrollRevealWrapper}
+                  >
+                    <div
+                      className={`${styles.milestoneContent} ${
+                        item.isCurrent ? styles.cardActive : styles.cardCompleted
+                      }`}
+                    >
+                      <div className={styles.cardHeader}>
+                      </div>
+
+                      <div className={styles.titleWrapper}>
+                        {IconComponent && (
+                          <div className={styles.iconContainer}>
+                            <IconComponent className={styles.itemIcon} />
+                          </div>
+                        )}
+                        <h3 className={styles.milestoneTitle}>{item.title}</h3>
+                      </div>
+
+                      <p className={styles.milestoneDesc}>{item.description}</p>
+                      {item.grades && (
+                        <p className={styles.milestoneGrades}>{item.grades}</p>
+                      )}
+                    </div>
+                  </ScrollReveal>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

@@ -74,6 +74,47 @@ const LeetCodeIcon = ({ className }) => (
   </svg>
 );
 
+// Generate 53-week submission calendar data (ending today)
+function generateCalendarData(submissionCalendar) {
+  const days = [];
+  const today = new Date();
+  const totalDays = 371; // 53 weeks * 7 days
+  const startDate = new Date();
+  startDate.setDate(today.getDate() - totalDays + 1);
+
+  // Align start to the beginning of the week (Sunday)
+  const startDayOfWeek = startDate.getDay();
+  startDate.setDate(startDate.getDate() - startDayOfWeek);
+
+  const currentDate = new Date(startDate);
+  while (currentDate <= today) {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    const dateVal = currentDate.getDate();
+
+    // Calculate UTC midnight timestamp (since the API returns UTC midnight timestamps)
+    const utcTimestampSec = (Date.UTC(year, month, dateVal) / 1000).toString();
+    const count = (submissionCalendar && submissionCalendar[utcTimestampSec]) || 0;
+
+    days.push({
+      date: new Date(currentDate),
+      count,
+    });
+
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+  return days;
+}
+
+// Map submission count to theme-aware contribution calendar CSS variables
+function getLevelColor(count) {
+  if (count === 0) return 'var(--calendar-level-0)';
+  if (count <= 2) return 'var(--calendar-level-1)';
+  if (count <= 5) return 'var(--calendar-level-2)';
+  if (count <= 9) return 'var(--calendar-level-3)';
+  return 'var(--calendar-level-4)';
+}
+
 export default function Stats() {
   // Modal states
   const [githubOpen, setGithubOpen] = useState(false);
@@ -141,9 +182,15 @@ export default function Stats() {
       const totalMedium = data.totalMedium || 1650;
       const totalHard = data.totalHard || 780;
 
-      // Calculate acceptance rate
+      // Calculate acceptance rate using acSubmissionNum vs totalSubmissionNum for highest accuracy
       let accRate = 52.4;
-      if (data.totalSubmissions && data.totalSubmissions.length > 0) {
+      if (data.matchedUserStats && data.matchedUserStats.acSubmissionNum && data.matchedUserStats.totalSubmissionNum) {
+        const acAll = data.matchedUserStats.acSubmissionNum.find((t) => t.difficulty === 'All');
+        const totalAll = data.matchedUserStats.totalSubmissionNum.find((t) => t.difficulty === 'All');
+        if (acAll && totalAll && totalAll.submissions > 0) {
+          accRate = ((acAll.submissions / totalAll.submissions) * 100).toFixed(1);
+        }
+      } else if (data.totalSubmissions && data.totalSubmissions.length > 0) {
         const allSubs = data.totalSubmissions.find((t) => t.difficulty === 'All');
         if (allSubs && allSubs.submissions > 0) {
           accRate = ((totalSolved / allSubs.submissions) * 100).toFixed(1);
@@ -163,6 +210,7 @@ export default function Stats() {
         ranking: data.ranking || 0,
         contributionPoints: data.contributionPoint || 0,
         reputation: data.reputation || 0,
+        submissionCalendar: data.submissionCalendar || {},
       });
     } catch (err) {
       console.warn('LeetCode API failed, using fallback data:', err);
@@ -380,6 +428,17 @@ export default function Stats() {
                             alt="GitHub Streak"
                             loading="lazy"
                           />
+                        </div>
+
+                        <div className={styles.contributionCard}>
+                          <h3>📅 Contribution Graph</h3>
+                          <div className={styles.githubCalendarWrapper}>
+                            <img
+                              src={`https://ghchart.rshah.org/10b981/${GITHUB_USERNAME}`}
+                              alt="GitHub Contribution Calendar"
+                              loading="lazy"
+                            />
+                          </div>
                         </div>
 
                         {githubRepos.length > 0 && (
@@ -617,6 +676,32 @@ export default function Stats() {
                             {leetcodeData?.contributionPoints ? leetcodeData.contributionPoints.toLocaleString() : 0}
                           </div>
                           <div className={styles.leetcodeStatCardLabel}>Contribution Points</div>
+                        </div>
+                      </div>
+
+                      {/* Submission Calendar */}
+                      <div className={`${styles.leetcodeStatCard} ${styles.calendarCard}`}>
+                        <h3>📅 Submission Calendar</h3>
+                        <div className={styles.calendarScroll}>
+                          <div className={styles.calendarGrid}>
+                            {generateCalendarData(leetcodeData?.submissionCalendar).map((day, idx) => (
+                              <div
+                                key={idx}
+                                className={styles.calendarDay}
+                                style={{ backgroundColor: getLevelColor(day.count) }}
+                                title={`${day.count} submissions on ${day.date.toLocaleDateString()}`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        <div className={styles.calendarLegend}>
+                          <span>Less</span>
+                          <div className={styles.legendBox} style={{ backgroundColor: '#161b22' }} />
+                          <div className={styles.legendBox} style={{ backgroundColor: '#0e4429' }} />
+                          <div className={styles.legendBox} style={{ backgroundColor: '#006d32' }} />
+                          <div className={styles.legendBox} style={{ backgroundColor: '#26a641' }} />
+                          <div className={styles.legendBox} style={{ backgroundColor: '#39d353' }} />
+                          <span>More</span>
                         </div>
                       </div>
 

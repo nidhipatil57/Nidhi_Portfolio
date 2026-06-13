@@ -113,7 +113,7 @@ export default function Contact() {
                     <FaGithub />
                   </a>
                   <a
-                    href="https://linkedin.com/in/nidhi-patil"
+                    href="https://www.linkedin.com/in/nidhi-patil-b726a4376/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.socialBox}

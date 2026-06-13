@@ -31,6 +31,13 @@
   --glass-border: rgba(255, 255, 255, 0.05);
   --glass-border-hover: rgba(255, 255, 255, 0.1);
 
+  /* Calendar Grids */
+  --calendar-level-0: #161b22;
+  --calendar-level-1: #0e4429;
+  --calendar-level-2: #006d32;
+  --calendar-level-3: #26a641;
+  --calendar-level-4: #39d353;
+
   /* Glow Effects */
   --glow-purple: rgba(99, 102, 241, 0.05);
   --glow-teal: rgba(245, 158, 11, 0.05);
@@ -111,6 +118,13 @@ body.light-mode {
   --glass-bg-hover: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(15, 23, 42, 0.08);
   --glass-border-hover: rgba(15, 23, 42, 0.15);
+
+  /* Calendar Grids */
+  --calendar-level-0: #ebedf0;
+  --calendar-level-1: #9be9a8;
+  --calendar-level-2: #40c463;
+  --calendar-level-3: #30a14e;
+  --calendar-level-4: #216e39;
 
   --glow-purple: rgba(99, 102, 241, 0.04);
   --glow-teal: rgba(245, 158, 11, 0.04);

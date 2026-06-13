@@ -8,7 +8,7 @@ const socialLinks = [
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com/in/nidhi-patil',
+    url: 'https://www.linkedin.com/in/nidhi-patil-b726a4376/',
     icon: FaLinkedin,
   },
   {

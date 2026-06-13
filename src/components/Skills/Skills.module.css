@@ -14,8 +14,8 @@
    HOLOGRAPHIC GLASS CATEGORY CARD
    --------------------------------------------- */
 .categoryCard {
-  background: rgba(13, 18, 30, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   transition: all var(--transition-slow), border-color var(--transition-base);
@@ -47,7 +47,7 @@
 
 .categoryCard:hover {
   transform: translateY(-6px);
-  background: rgba(13, 18, 30, 0.65);
+  background: var(--glass-bg-hover);
   border-color: var(--card-accent-hover-border);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px var(--card-accent-hover-glow);
 }
@@ -193,8 +193,8 @@
   align-items: center;
   gap: var(--space-sm);
   padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
   font-size: var(--fs-small);
   font-weight: 600;
@@ -208,7 +208,7 @@
   border-color: var(--skill-accent, var(--accent-primary));
   box-shadow: 0 8px 20px var(--skill-accent-glow), 0 0 10px var(--skill-accent-inner-glow);
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--bg-elevated);
 }
 
 .skillIcon {

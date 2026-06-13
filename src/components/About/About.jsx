@@ -83,6 +83,7 @@ export default function About() {
               </p>
 
               <div className={styles.educationBadge}>
+                <div className={styles.badgeGlow} />
                 <span className={styles.badgeIcon}>🎓</span>
                 <span className={styles.badgeText}>VESIT, Mumbai</span>
               </div>

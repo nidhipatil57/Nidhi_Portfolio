@@ -66,8 +66,8 @@ export default function Contact() {
             <div className={styles.leftColumn}>
               <span className={styles.sectionLabel}>CONTACT</span>
               <h2 className={styles.mainTitle}>
-                GET IN <br />
-                <span className={styles.titleAccent}>TOUCH.</span>
+                STAY <br />
+                <span className={styles.titleAccent}>CONNECTED</span>
               </h2>
 
               <p className={styles.infoSubtitle}>

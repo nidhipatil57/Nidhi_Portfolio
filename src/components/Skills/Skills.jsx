@@ -11,7 +11,7 @@ export default function Skills() {
         <SectionTitle
           label={null}
           title="My Skills"
-          subtitle="Languages, tools, and libraries I've been learning and exploring"
+          subtitle="Languages, Tools and Libraries I've been learning and exploring"
         />
 
         <div className={styles.skillsGrid}>

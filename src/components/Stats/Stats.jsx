@@ -138,7 +138,7 @@ export default function Stats() {
     try {
       const [userRes, reposRes] = await Promise.all([
         fetch(`https://api.github.com/users/${GITHUB_USERNAME}`),
-        fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`),
+        fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=30`),
       ]);
 
       if (!userRes.ok || !reposRes.ok) throw new Error('API Error');
@@ -350,143 +350,147 @@ export default function Stats() {
                       </div>
                     )}
 
-                    <div className={styles.githubGrid}>
-                      {/* Left Column Profile Card */}
-                      <div className={styles.profileCard}>
-                        <div className={styles.avatar}>
-                          {githubUser?.avatar_url ? (
-                            <img src={githubUser.avatar_url} alt="GitHub Avatar" loading="lazy" />
-                          ) : (
-                            <div
-                              style={{
-                                width: '100%',
-                                height: '100%',
-                                background: 'var(--accent-gradient)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontSize: '2.2rem',
-                                color: '#fff',
-                                fontFamily: 'var(--font-heading)',
-                                fontWeight: 700,
-                              }}
-                            >
-                              N
+                    <div className={styles.githubDashboard}>
+                      <div className={styles.githubGrid}>
+                        {/* Left Column Profile Card */}
+                        <div className={styles.profileCard}>
+                          <div className={styles.avatar}>
+                            {githubUser?.avatar_url ? (
+                              <img src={githubUser.avatar_url} alt="GitHub Avatar" loading="lazy" />
+                            ) : (
+                              <div
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  background: 'var(--accent-gradient)',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  fontSize: '2.2rem',
+                                  color: '#fff',
+                                  fontFamily: 'var(--font-heading)',
+                                  fontWeight: 700,
+                                }}
+                              >
+                                N
+                              </div>
+                            )}
+                          </div>
+                          <h3 className={styles.profileName}>{githubUser?.name || GITHUB_USERNAME}</h3>
+                          <p className={styles.profileBio}>{githubUser?.bio || FALLBACK_GITHUB_USER.bio}</p>
+
+                          <div className={styles.profileStats}>
+                            <div className={styles.profileStat}>
+                              <div className={styles.profileStatNumber}>{githubUser?.public_repos || 0}</div>
+                              <div className={styles.profileStatLabel}>Repos</div>
                             </div>
-                          )}
-                        </div>
-                        <h3 className={styles.profileName}>{githubUser?.name || GITHUB_USERNAME}</h3>
-                        <p className={styles.profileBio}>{githubUser?.bio || FALLBACK_GITHUB_USER.bio}</p>
+                            <div className={styles.profileStat}>
+                              <div className={styles.profileStatNumber}>{githubUser?.followers || 0}</div>
+                              <div className={styles.profileStatLabel}>Followers</div>
+                            </div>
+                            <div className={styles.profileStat}>
+                              <div className={styles.profileStatNumber}>{githubUser?.following || 0}</div>
+                              <div className={styles.profileStatLabel}>Following</div>
+                            </div>
+                          </div>
 
-                        <div className={styles.profileStats}>
-                          <div className={styles.profileStat}>
-                            <div className={styles.profileStatNumber}>{githubUser?.public_repos || 0}</div>
-                            <div className={styles.profileStatLabel}>Repos</div>
-                          </div>
-                          <div className={styles.profileStat}>
-                            <div className={styles.profileStatNumber}>{githubUser?.followers || 0}</div>
-                            <div className={styles.profileStatLabel}>Followers</div>
-                          </div>
-                          <div className={styles.profileStat}>
-                            <div className={styles.profileStatNumber}>{githubUser?.following || 0}</div>
-                            <div className={styles.profileStatLabel}>Following</div>
-                          </div>
+                          <a
+                            href={githubUser?.html_url || FALLBACK_GITHUB_USER.html_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.githubLink}
+                          >
+                            <FaGithub /> View Profile <FaExternalLinkAlt size={10} />
+                          </a>
                         </div>
 
-                        <a
-                          href={githubUser?.html_url || FALLBACK_GITHUB_USER.html_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.githubLink}
-                        >
-                          <FaGithub /> View Profile <FaExternalLinkAlt size={10} />
-                        </a>
+                        {/* Right Column Stats */}
+                        <div className={styles.githubContent}>
+                          <div className={styles.statsCards}>
+                            <div className={styles.statsCard}>
+                              <img
+                                src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&hide_border=true&title_color=6366f1&text_color=9ca3af&icon_color=f59e0b&bg_color=00000000`}
+                                alt="GitHub Stats"
+                                loading="lazy"
+                              />
+                            </div>
+                            <div className={styles.statsCard}>
+                              <img
+                                src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&hide_border=true&title_color=6366f1&text_color=9ca3af&bg_color=00000000`}
+                                alt="Top Languages"
+                                loading="lazy"
+                              />
+                            </div>
+                          </div>
+
+                          <div className={`${styles.statsCard} ${styles.streakCard}`}>
+                            <img
+                              src={`https://github-readme-streak-stats.herokuapp.com/?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=6366f1&fire=f59e0b&currStreakLabel=f3f4f6&sideLabels=9ca3af&dates=6b7280&background=00000000&stroke=1f2937`}
+                              alt="GitHub Streak"
+                              loading="lazy"
+                            />
+                          </div>
+                        </div>
                       </div>
 
-                      {/* Right Column Stats & Repos */}
-                      <div className={styles.githubContent}>
-                        <div className={styles.statsCards}>
-                          <div className={styles.statsCard}>
-                            <img
-                              src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&hide_border=true&title_color=6366f1&text_color=9ca3af&icon_color=f59e0b&bg_color=00000000`}
-                              alt="GitHub Stats"
-                              loading="lazy"
-                            />
-                          </div>
-                          <div className={styles.statsCard}>
-                            <img
-                              src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&hide_border=true&title_color=6366f1&text_color=9ca3af&bg_color=00000000`}
-                              alt="Top Languages"
-                              loading="lazy"
-                            />
-                          </div>
-                        </div>
-
-                        <div className={`${styles.statsCard} ${styles.streakCard}`}>
+                      {/* Contribution Graph - Moved to full width */}
+                      <div className={styles.contributionCard}>
+                        <h3>📅 Contribution Graph</h3>
+                        <div className={styles.githubCalendarWrapper}>
                           <img
-                            src={`https://github-readme-streak-stats.herokuapp.com/?user=${GITHUB_USERNAME}&theme=transparent&hide_border=true&ring=6366f1&fire=f59e0b&currStreakLabel=f3f4f6&sideLabels=9ca3af&dates=6b7280&background=00000000&stroke=1f2937`}
-                            alt="GitHub Streak"
+                            src={`https://ghchart.rshah.org/10b981/${GITHUB_USERNAME}`}
+                            alt="GitHub Contribution Calendar"
                             loading="lazy"
                           />
                         </div>
+                      </div>
 
-                        <div className={styles.contributionCard}>
-                          <h3>📅 Contribution Graph</h3>
-                          <div className={styles.githubCalendarWrapper}>
-                            <img
-                              src={`https://ghchart.rshah.org/10b981/${GITHUB_USERNAME}`}
-                              alt="GitHub Contribution Calendar"
-                              loading="lazy"
-                            />
+                      {/* Repositories - Moved to full width */}
+                      {githubRepos.length > 0 && (
+                        <div className={styles.reposSection}>
+                          <h3>📁 My Repositories</h3>
+                          <div className={styles.reposGrid}>
+                            {githubRepos.map((repo) => (
+                              <a
+                                key={repo.id}
+                                href={repo.html_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.repoCard}
+                              >
+                                <div className={styles.repoName}>
+                                  <FaBook size={13} />
+                                  {repo.name}
+                                </div>
+                                <p className={styles.repoDesc}>
+                                  {repo.description || 'No description provided'}
+                                </p>
+                                <div className={styles.repoMeta}>
+                                  {repo.language && (
+                                    <span className={styles.repoLang}>
+                                      <span
+                                        className={styles.langDot}
+                                        style={{
+                                          background:
+                                            GITHUB_LANG_COLORS[repo.language] ||
+                                            GITHUB_LANG_COLORS.default,
+                                        }}
+                                      />
+                                      {repo.language}
+                                    </span>
+                                  )}
+                                  <span>
+                                    <FaStar size={11} /> {repo.stargazers_count}
+                                  </span>
+                                  <span>
+                                    <FaCodeBranch size={11} /> {repo.forks_count}
+                                  </span>
+                                </div>
+                              </a>
+                            ))}
                           </div>
                         </div>
-
-                        {githubRepos.length > 0 && (
-                          <div className={styles.reposSection}>
-                            <h3>📁 Recent Repositories</h3>
-                            <div className={styles.reposGrid}>
-                              {githubRepos.slice(0, 4).map((repo) => (
-                                <a
-                                  key={repo.id}
-                                  href={repo.html_url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className={styles.repoCard}
-                                >
-                                  <div className={styles.repoName}>
-                                    <FaBook size={13} />
-                                    {repo.name}
-                                  </div>
-                                  <p className={styles.repoDesc}>
-                                    {repo.description || 'No description provided'}
-                                  </p>
-                                  <div className={styles.repoMeta}>
-                                    {repo.language && (
-                                      <span className={styles.repoLang}>
-                                        <span
-                                          className={styles.langDot}
-                                          style={{
-                                            background:
-                                              GITHUB_LANG_COLORS[repo.language] ||
-                                              GITHUB_LANG_COLORS.default,
-                                          }}
-                                        />
-                                        {repo.language}
-                                      </span>
-                                    )}
-                                    <span>
-                                      <FaStar size={11} /> {repo.stargazers_count}
-                                    </span>
-                                    <span>
-                                      <FaCodeBranch size={11} /> {repo.forks_count}
-                                    </span>
-                                  </div>
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
+                      )}
                     </div>
                   </>
                 )}
@@ -696,11 +700,11 @@ export default function Stats() {
                         </div>
                         <div className={styles.calendarLegend}>
                           <span>Less</span>
-                          <div className={styles.legendBox} style={{ backgroundColor: '#161b22' }} />
-                          <div className={styles.legendBox} style={{ backgroundColor: '#0e4429' }} />
-                          <div className={styles.legendBox} style={{ backgroundColor: '#006d32' }} />
-                          <div className={styles.legendBox} style={{ backgroundColor: '#26a641' }} />
-                          <div className={styles.legendBox} style={{ backgroundColor: '#39d353' }} />
+                          <div className={styles.legendBox} style={{ backgroundColor: 'var(--calendar-level-0)' }} />
+                          <div className={styles.legendBox} style={{ backgroundColor: 'var(--calendar-level-1)' }} />
+                          <div className={styles.legendBox} style={{ backgroundColor: 'var(--calendar-level-2)' }} />
+                          <div className={styles.legendBox} style={{ backgroundColor: 'var(--calendar-level-3)' }} />
+                          <div className={styles.legendBox} style={{ backgroundColor: 'var(--calendar-level-4)' }} />
                           <span>More</span>
                         </div>
                       </div>

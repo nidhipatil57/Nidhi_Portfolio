@@ -1,0 +1,687 @@
+/* =============================================
+   CERTIFICATIONS SECTION STYLE SHEET
+   ============================================= */
+
+.certifications {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grid layout */
+.certGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+/* ---------------------------------------------
+   CARD COMPONENT
+   --------------------------------------------- */
+.certCard {
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.certCard:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--cert-accent);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 15px calc(var(--cert-accent) + '22');
+}
+
+/* Glowing background highlight on hover */
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, var(--cert-accent) 0%, transparent 60%);
+  opacity: 0.03;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+  z-index: 1;
+}
+
+.certCard:hover .cardGlow {
+  opacity: 0.08;
+}
+
+.cardHeader {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  background: #0d1220;
+  overflow: hidden;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.cardImageContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.cardImageMini {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.5s ease;
+  filter: brightness(0.85);
+}
+
+.certCard:hover .cardImageMini {
+  transform: scale(1.05);
+  filter: brightness(0.95);
+}
+
+.cardImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(11, 15, 25, 0.1), rgba(11, 15, 25, 0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  backdrop-filter: blur(1px);
+}
+
+.certCard:hover .cardImageOverlay {
+  opacity: 1;
+}
+
+.viewBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--bg-primary);
+  border: 1px solid var(--cert-accent);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logoBadge {
+  position: absolute;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  z-index: 2;
+  box-shadow: var(--shadow-sm);
+}
+
+.logoIcon {
+  font-size: 20px;
+}
+
+/* Card Body */
+.cardBody {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  z-index: 2;
+}
+
+.cardDate {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.cardTitle {
+  font-size: 1.15rem;
+  line-height: 1.4;
+  margin-bottom: var(--space-xs);
+  font-weight: 600;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color var(--transition-fast);
+}
+
+.certCard:hover .cardTitle {
+  color: var(--cert-accent);
+}
+
+.cardIssuer {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  font-weight: 500;
+}
+
+.skillPills {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.skillPill {
+  font-size: var(--fs-xs);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  border: 1px solid var(--glass-border);
+}
+
+.skillPillMore {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  font-weight: 500;
+  align-self: center;
+}
+
+/* ---------------------------------------------
+   DETAIL MODAL VIEWER
+   --------------------------------------------- */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(7, 10, 18, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+}
+
+.modalContent {
+  position: relative;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-xl), 0 0 40px rgba(0, 0, 0, 0.6);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 1050px;
+  height: 90vh;
+  max-height: 620px;
+  overflow: hidden;
+  display: flex;
+  z-index: 10;
+  animation: modalGlow 8s infinite alternate;
+}
+
+@keyframes modalGlow {
+  0% {
+    box-shadow: var(--shadow-xl), 0 0 30px rgba(0, 0, 0, 0.6), 0 0 10px calc(var(--cert-accent) + '05');
+  }
+  100% {
+    box-shadow: var(--shadow-xl), 0 0 40px rgba(0, 0, 0, 0.6), 0 0 25px calc(var(--cert-accent) + '15');
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all var(--transition-fast);
+  z-index: 20;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  transform: rotate(90deg);
+  border-color: var(--cert-accent);
+}
+
+.modalLayout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* Modal Left Side (Certificate Image + Holo) */
+.modalLeft {
+  flex: 1.1;
+  background: #090c15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl);
+  border-right: 1px solid var(--glass-border);
+  position: relative;
+}
+
+/* Modal Right Side (Description + Text) */
+.modalRight {
+  flex: 0.9;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2xl);
+  overflow: hidden;
+  height: 100%;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.modalIssuerBadge {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+}
+
+.modalIssuerIcon {
+  font-size: 24px;
+}
+
+.modalIssuerName {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.modalDate {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.credentialBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--bg-primary);
+  border: 1px solid var(--glass-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-lg);
+  align-self: flex-start;
+}
+
+.credentialLabel {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.credentialCode {
+  font-size: var(--fs-xs);
+  color: var(--text-primary);
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--glass-border) 70%, transparent);
+  margin-bottom: var(--space-lg);
+  flex-shrink: 0;
+}
+
+/* Scroll Area for details */
+.modalScrollArea {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+/* Custom Scrollbar for Modal details */
+.modalScrollArea::-webkit-scrollbar {
+  width: 5px;
+}
+
+.modalScrollArea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modalScrollArea::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 10px;
+}
+
+.modalScrollArea::-webkit-scrollbar-thumb:hover {
+  background: var(--cert-accent);
+}
+
+.modalSection {
+  margin-bottom: var(--space-xl);
+}
+
+.modalSection:last-child {
+  margin-bottom: 0;
+}
+
+.sectionHeader {
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 600;
+}
+
+.sectionIcon {
+  font-size: 14px;
+}
+
+.modalDesc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.modulesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: var(--space-sm);
+}
+
+.moduleItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  margin-top: 9px;
+  flex-shrink: 0;
+}
+
+.moduleText {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.skillsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.modalSkillPill {
+  font-size: var(--fs-xs);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  border: 1px solid;
+  letter-spacing: 0.02em;
+}
+
+.modalActions {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------
+   HOLOGRAPHIC SHINE CARD (modal left side)
+   --------------------------------------------- */
+.holoContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 440px;
+  aspect-ratio: 1.414; /* standard certificate aspect ratio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in;
+}
+
+.holoCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.holoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: #0b0f19;
+}
+
+/* Shine overlay */
+.holoShine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+  z-index: 5;
+}
+
+/* Interactive border glow */
+.holoBorderHighlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  z-index: 6;
+  transition: border-color var(--transition-base);
+}
+
+.holoContainer:hover .holoBorderHighlight {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.zoomIndicator {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(11, 15, 25, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-base);
+  z-index: 7;
+  backdrop-filter: blur(4px);
+}
+
+.holoContainer:hover .zoomIndicator {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------------------------------------------
+   FULLSCREEN IMAGE VIEWER
+   --------------------------------------------- */
+.fullscreenOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 7, 12, 0.95);
+  z-index: calc(var(--z-modal) + 10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl);
+  cursor: zoom-out;
+}
+
+.fullscreenClose {
+  position: absolute;
+  top: var(--space-xl);
+  right: var(--space-xl);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  transition: all var(--transition-fast);
+}
+
+.fullscreenClose:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  transform: scale(1.05);
+}
+
+.fullscreenImage {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ---------------------------------------------
+   RESPONSIVE LAYOUTS
+   --------------------------------------------- */
+@media (max-width: 991px) {
+  .modalContent {
+    height: 95vh;
+    max-height: none;
+    max-width: 680px;
+  }
+  
+  .modalLayout {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  
+  .modalLeft {
+    padding: var(--space-xl);
+    border-right: none;
+    border-bottom: 1px solid var(--glass-border);
+  }
+  
+  .modalRight {
+    overflow: visible;
+    height: auto;
+    padding: var(--space-xl);
+  }
+  
+  .holoContainer {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .certGrid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .modalContent {
+    border-radius: var(--radius-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .modalLeft {
+    padding: var(--space-lg);
+  }
+  
+  .modalRight {
+    padding: var(--space-lg);
+  }
+  
+  .modalTitle {
+    font-size: 1.25rem;
+  }
+  
+  .credentialBadge {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 6px 12px;
+  }
+}

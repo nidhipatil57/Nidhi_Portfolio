@@ -11,7 +11,8 @@ import Skills from './components/Skills/Skills';
 import Projects from './components/Projects/Projects';
 import Journey from './components/Journey/Journey';
 import Achievements from './components/Achievements/Achievements';
-import GitHub from './components/GitHub/GitHub';
+import Certifications from './components/Certifications/Certifications';
+import Stats from './components/Stats/Stats';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 
@@ -45,10 +46,11 @@ export default function App() {
         <Hero />
         <About />
         <Skills />
-        <Projects />
         <Journey />
+        <Projects />
         <Achievements />
-        <GitHub />
+        <Certifications />
+        <Stats />
         <Contact />
       </main>
       <Footer />

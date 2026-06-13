@@ -61,7 +61,7 @@ export default function About() {
           {/* Content */}
           <ScrollReveal variant="slideRight">
             <div className={styles.aboutContent}>
-              <h3>I'm a curious student who fell in with coding.</h3>
+              <h3>I'm a curious student who fell in love with coding!</h3>
 
               <p className={styles.aboutText}>
                 Hey! I'm Nidhi — a First Year B.Tech student studying{' '}

@@ -13,8 +13,9 @@ export default function Journey() {
       <div className="container">
         <SectionTitle
           label={null}
-          title="My Progress"
-          subtitle="Key milestones that mark my journey as a student and developer"
+          title="My Journey"
+          subtitle="Key moments and experiences 
+          shaping my growth as a student and developer."
         />
 
         <div className={styles.timeline} ref={timelineRef}>
@@ -28,9 +29,8 @@ export default function Journey() {
             return (
               <div
                 key={item.id}
-                className={`${styles.milestone} ${
-                  isLeft ? styles.milestoneLeft : styles.milestoneRight
-                } ${item.isCurrent ? styles.milestoneActive : styles.milestoneCompleted}`}
+                className={`${styles.milestone} ${isLeft ? styles.milestoneLeft : styles.milestoneRight
+                  } ${item.isCurrent ? styles.milestoneActive : styles.milestoneCompleted}`}
               >
                 <ScrollReveal
                   variant={isLeft ? 'slideLeft' : 'slideRight'}
@@ -38,9 +38,8 @@ export default function Journey() {
                   className={styles.scrollRevealWrapper}
                 >
                   <div
-                    className={`${styles.milestoneContent} ${
-                      item.isCurrent ? styles.cardActive : styles.cardCompleted
-                    }`}
+                    className={`${styles.milestoneContent} ${item.isCurrent ? styles.cardActive : styles.cardCompleted
+                      }`}
                   >
                     <div className={styles.cardHeader}>
                       <span className={styles.milestoneDate}>{item.date}</span>
@@ -66,9 +65,8 @@ export default function Journey() {
                 </ScrollReveal>
 
                 <motion.div
-                  className={`${styles.milestoneDot} ${
-                    item.isCurrent ? styles.milestoneDotCurrent : styles.milestoneDotStable
-                  }`}
+                  className={`${styles.milestoneDot} ${item.isCurrent ? styles.milestoneDotCurrent : styles.milestoneDotStable
+                    }`}
                   whileInView={{ scale: [0.8, 1.15, 1] }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.08 }}

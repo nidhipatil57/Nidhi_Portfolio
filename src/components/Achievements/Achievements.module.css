@@ -1,98 +1,215 @@
+/* =============================================
+   MILESTONES — Horizontal Timeline
+   ============================================= */
+
 .achievements {
   position: relative;
 }
 
-.achievementsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: var(--space-lg);
+/* Timeline wrapper */
+.timeline {
+  position: relative;
+  padding: var(--space-2xl) 0;
+  margin-top: var(--space-xl);
 }
 
-.achievementCard {
+/* Horizontal line — positioned to pass through dot centers */
+.timelineLine {
+  position: absolute;
+  /* dot is 18px, yearLabel ~18px + 16px margin = ~34px from top of milestonesRow.
+     So center of dot ≈ 34px + 9px = 43px from top of row.
+     We position relative to the timeline wrapper. */
+  top: calc(var(--space-2xl) + 34px + 9px);
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(99, 102, 241, 0.2) 10%,
+    rgba(99, 102, 241, 0.3) 50%,
+    rgba(99, 102, 241, 0.2) 90%,
+    transparent 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Row of milestone nodes */
+.milestonesRow {
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 6vw, 5rem);
+  position: relative;
+  z-index: 1;
+}
+
+/* Each milestone node (vertical column: year → dot → card) */
+.milestoneNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* Force all nodes to equal width */
+  flex: 0 0 260px;
+  max-width: 260px;
+}
+
+/* Connector (unused — we use the full-width timelineLine) */
+.connector {
+  display: none;
+}
+
+/* Year label */
+.yearLabel {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+  height: 18px; /* fixed height so dots are perfectly aligned */
+  display: flex;
+  align-items: center;
+}
+
+/* Glowing dot on the timeline */
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  margin-bottom: var(--space-lg);
+  flex-shrink: 0;
+}
+
+.dotPulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid;
+  opacity: 0.5;
+}
+
+/* Milestone Card — equal sizing */
+.milestoneCard {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-xl);
+  padding: var(--space-lg) var(--space-xl);
+  text-align: center;
+  cursor: default;
   transition: all var(--transition-base);
+  /* Force equal card dimensions */
+  width: 260px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
 }
 
-.achievementCard::before {
+/* Subtle top-accent bar on hover */
+.milestoneCard::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 3px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  background: var(--accent-gradient);
+  background: var(--card-accent, var(--accent-primary));
   opacity: 0;
   transition: opacity var(--transition-base);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
-.achievementCard:hover {
-  background: var(--glass-bg-hover);
-  border-color: var(--glass-border-hover);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-
-.achievementCard:hover::before {
+.milestoneCard:hover::before {
   opacity: 1;
 }
 
-.cardHeader {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: var(--space-md);
+.cardEmoji {
+  font-size: 1.8rem;
+  margin-bottom: var(--space-sm);
+  line-height: 1;
 }
 
-.iconContainer {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-}
-
-.categoryBadge {
-  font-size: var(--fs-xs);
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  background: rgba(99, 102, 241, 0.08);
-  color: var(--accent-primary);
-  border: 1px solid rgba(99, 102, 241, 0.12);
+/* Value — made a bit bigger */
+.cardValue {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
 }
 
 .cardTitle {
-  font-size: var(--fs-h3);
+  font-size: var(--fs-small);
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: var(--space-sm);
+  margin-bottom: 4px;
 }
 
-.cardDesc {
-  font-size: var(--fs-small);
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: var(--space-md);
-}
-
-.cardDate {
+.cardSubtitle {
   font-size: var(--fs-xs);
   color: var(--text-tertiary);
-  font-weight: 500;
+  line-height: 1.5;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .achievementsGrid {
-    grid-template-columns: 1fr;
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .milestonesRow {
+    gap: var(--space-lg);
+  }
+
+  .milestoneNode {
+    flex: 0 0 200px;
+    max-width: 200px;
+  }
+
+  .milestoneCard {
+    width: 200px;
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 700px) {
+  .milestonesRow {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .timelineLine {
+    /* Convert to vertical */
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: auto;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(99, 102, 241, 0.2) 15%,
+      rgba(99, 102, 241, 0.2) 85%,
+      transparent 100%
+    );
+  }
+
+  .milestoneNode {
+    flex: none;
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .milestoneCard {
+    width: 100%;
+    max-width: 260px;
   }
 }

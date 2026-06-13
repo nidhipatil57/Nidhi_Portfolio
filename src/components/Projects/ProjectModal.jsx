@@ -28,7 +28,11 @@ export default function ProjectModal({ project, onClose }) {
           </button>
 
           <div className={styles.modalImage}>
-            <ProjectPreview projectId={project.id} />
+            <ProjectPreview
+              image={project.image}
+              title={project.title}
+              accentColor={project.accentColor}
+            />
           </div>
 
           <div className={styles.modalBody}>
@@ -40,9 +44,15 @@ export default function ProjectModal({ project, onClose }) {
             <p className={styles.modalDesc}>{project.fullDescription}</p>
 
             <div className={styles.techTags}>
-              {project.techStack.map((tech) => (
-                <span key={tech} className={styles.techTag}>{tech}</span>
-              ))}
+              {project.techStack.map((tech) => {
+                const Icon = tech.icon;
+                return (
+                  <span key={tech.name} className={styles.techTag}>
+                    <Icon className={styles.techIcon} />
+                    {tech.name}
+                  </span>
+                );
+              })}
             </div>
 
             {project.features && (

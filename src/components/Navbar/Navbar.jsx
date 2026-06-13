@@ -8,9 +8,10 @@ const navItems = [
   { label: 'Home', href: 'hero' },
   { label: 'About', href: 'about' },
   { label: 'Skills', href: 'skills' },
-  { label: 'Projects', href: 'projects' },
   { label: 'Journey', href: 'journey' },
-  { label: 'Achievements', href: 'achievements' },
+  { label: 'Projects', href: 'projects' },
+  { label: 'Milestones', href: 'achievements' },
+  { label: 'Certifications', href: 'certifications' },
   { label: 'Contact', href: 'contact' },
 ];
 

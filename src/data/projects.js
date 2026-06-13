@@ -1,154 +1,122 @@
+import {
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiPostgresql,
+  SiVercel,
+  SiPrisma,
+  SiPython,
+  SiReact,
+  SiFirebase,
+  SiFramer,
+} from 'react-icons/si';
+import { FaRobot, FaServer, FaShieldAlt, FaCss3Alt } from 'react-icons/fa';
+
+import nexoraImg from '../assets/projects/nexora.png';
+import tatkalImg from '../assets/projects/smart-tatkal-guardian.png';
+import notenestImg from '../assets/projects/notenest.png';
+
 const projects = [
+  {
+    id: 'nexora',
+    title: 'Nexora',
+    tagline: 'AI-powered career guidance platform',
+    shortDescription:
+      'A full-stack Next.js platform that analyzes aptitude, personality, and aspirations to deliver personalized career recommendations, skill-gap analysis, and AI mentorship.',
+    fullDescription: `Nexora is an AI-powered career intelligence platform I designed and built end-to-end. It provides cognitive profiling through adaptive assessments, generates personalized 1–5–10 year career roadmaps, and offers a 24/7 AI mentor chat for resume reviews and interview prep.
+
+The platform features a premium dark-themed UI with glassmorphic cards, smooth animations, and a cinematic onboarding flow. Under the hood, it uses Next.js App Router with server components, Neon PostgreSQL for persistent storage, and Prisma ORM for type-safe queries.`,
+    features: [
+      'Adaptive AI career assessment & cognitive profiling',
+      'Personalized career recommendations with match scores',
+      'Interactive 1, 3, 5, 10-year career roadmap visualizer',
+      'Skill gap radar with prioritized improvement plans',
+      'AI mentor chat for resume, interviews & career decisions',
+      'Gamified growth system with XP, streaks & milestones',
+      'ATS-optimized resume & portfolio builder',
+      'Real-time market intelligence & salary forecasts',
+    ],
+    techStack: [
+      { name: 'Next.js', icon: SiNextdotjs },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Tailwind CSS', icon: SiTailwindcss },
+      { name: 'PostgreSQL', icon: SiPostgresql },
+      { name: 'Prisma', icon: SiPrisma },
+      { name: 'Vercel', icon: SiVercel },
+    ],
+    github: 'https://github.com/nidhipatil57/Nexora',
+    demo: 'https://nexora-phi-umber.vercel.app',
+    image: nexoraImg,
+    featured: true,
+    date: '2026',
+    accentColor: '#8B5CF6',
+  },
+  {
+    id: 'smart-tatkal-guardian',
+    title: 'Smart Tatkal Guardian',
+    tagline: 'Multi-agent bot detection system for IRCTC',
+    shortDescription:
+      'An autonomous multi-agent system built at FAR AWAY 2026 Hackathon that detects bot-driven Tatkal ticket hoarding in real-time using a honeypot strategy, achieving a 94% genuine user success rate.',
+    fullDescription: `Smart Tatkal Guardian is a hackathon project I built with Team AlgoMinds at FAR AWAY 2026. It tackles the massive problem of bots hoarding IRCTC Tatkal tickets — where 60 billion bot requests were blocked in just 6 months.
+
+Instead of simply blocking bots (which tips them off), we designed a deception-based honeypot approach. Every booking request is scored 0–100 for bot probability, high-score requests are routed to fake ticket slots, and after 3 confirmations, the bot is permanently blacklisted. Genuine users are fast-tracked to real slots.
+
+The system uses 5 autonomous agents working in concert: a Booking Behavior Agent, Bot Probability Scorer, Honeypot Agent, Blacklist Manager, and a Decision Orchestrator — all communicating via WebSocket for real-time updates.`,
+    features: [
+      'Real-time bot probability scoring (0–100) per request',
+      'Honeypot deception: fake ticket slots to trap bots',
+      '5 autonomous agents working in concert',
+      '94% genuine user success rate vs 23% baseline',
+      'Live monitoring dashboard with WebSocket streams',
+      'Handles 1,000+ requests/second at scale',
+      'Permanent blacklisting after 3 honeypot confirmations',
+      'Simulator generating 80% bot / 20% human traffic',
+    ],
+    techStack: [
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Python', icon: SiPython },
+      { name: 'React', icon: SiReact },
+      { name: 'WebSocket', icon: FaServer },
+      { name: 'AI/ML', icon: FaRobot },
+      { name: 'Security', icon: FaShieldAlt },
+    ],
+    github: 'https://github.com/nidhipatil57/Smart-Tatkal-Guardian',
+    demo: null,
+    image: tatkalImg,
+    featured: false,
+    date: '2026',
+    accentColor: '#22c55e',
+  },
   {
     id: 'notenest',
     title: 'NoteNest',
-    tagline: 'A clean space to capture thoughts, code snippets, and study notes',
-    shortDescription: 'A note-taking web app I built using React and Firebase to keep my study notes and quick ideas synced.',
-    fullDescription: `NoteNest is a note-taking application I built to help students (like me!) and developers keep their thoughts organized. I wanted a clean space for markdown-style notes without any clutter.
+    tagline: 'A modern note-taking app for developers',
+    shortDescription:
+      'A clean, organized note-taking web application built with React and Firebase for real-time syncing, tag-based organization, and instant search across all notes.',
+    fullDescription: `NoteNest is a note-taking application I built to help students and developers keep their thoughts organized. I wanted a clean, distraction-free space for study notes, code snippets, and quick ideas — all synced in real-time.
 
-Built with React for the frontend and Firebase for live database sync and authentication, this project helped me understand how client-side state maps to cloud databases and how to manage user sessions securely.`,
+Built with React for the frontend and Firebase for live database sync and authentication, this project taught me how client-side state maps to cloud databases and how to manage user sessions securely. The interface features a split-pane layout with a searchable sidebar, tag-based filtering, and a rich text editor.`,
     features: [
       'User authentication with Firebase Auth',
       'Real-time note syncing with Firestore',
-      'Clean interface with markdown-like spacing',
-      'Tag-based organization and filtering',
+      'Tag-based organization and color-coded filtering',
       'Instant search bar across all notes',
+      'Rich text editing with formatting toolbar',
       'Responsive design for mobile and desktop',
     ],
-    techStack: ['React', 'Firebase', 'CSS Modules', 'React Router'],
-    challenges: [
-      'Managing real-time synchronization states without creating lag',
-      'Learning the Firebase Firestore data structure and query logic',
-    ],
-    learnings: [
-      'Structuring database models in Firestore',
-      'Handling asynchronous auth state changes in React lifecycle',
-      'Designing custom CSS modules to prevent styling conflicts',
+    techStack: [
+      { name: 'React', icon: SiReact },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Firebase', icon: SiFirebase },
+      { name: 'Framer Motion', icon: SiFramer },
+      { name: 'CSS Modules', icon: FaCss3Alt },
     ],
     github: 'https://github.com/nidhipatil57/NoteNest',
-    demo: '#',
-    featured: true,
-    date: '2025',
-  },
-  {
-    id: 'weather-dashboard',
-    title: 'Weather Dashboard',
-    tagline: 'An interactive dashboard showing current weather and forecasts',
-    shortDescription: 'One of my first JavaScript projects! It fetches weather data from an external API with dynamic visual themes.',
-    fullDescription: `The Weather Dashboard is one of my first real web applications. I built this to practice fetching data from external REST APIs (OpenWeather API) and managing asynchronous state in JavaScript. 
-
-Users can search for any city globally to get real-time temperatures, wind speed, humidity, and a 5-day forecast. The UI changes dynamically based on the current weather condition to match the atmosphere.`,
-    features: [
-      'City search with autocomplete suggestions',
-      'Current weather conditions display',
-      '5-day weather forecast preview',
-      'Dynamic backgrounds based on weather status',
-      'Recent searches saved in history',
-    ],
-    techStack: ['HTML', 'CSS', 'JavaScript', 'OpenWeather API'],
-    challenges: [
-      'Handling API errors gracefully (like when a city is not found)',
-      'Working with asynchronous fetch calls and promises in vanilla JS',
-    ],
-    learnings: [
-      'Working with REST APIs and JSON data structures',
-      'Asynchronous JavaScript (fetch, async/await)',
-      'DOM manipulation and local storage persistence',
-    ],
-    github: 'https://github.com/nidhipatil57/weather-dashboard',
-    demo: '#',
-    featured: false,
-    date: '2025',
-  },
-  {
-    id: 'student-grade-analyzer',
-    title: 'Student Grade Analyzer',
-    tagline: 'A command-line Python tool that analyzes class grade files',
-    shortDescription: 'A Python script that reads CSV files to calculate averages, trends, and generate visual grade distribution charts.',
-    fullDescription: `This tool is a Python command-line utility I created to help analyze student grades. It reads student data from CSV files and outputs summaries of class performance (including average, median, range, etc.) and exports distribution graphs.
-
-This was my first project using popular data science libraries like Pandas and Matplotlib, and it sparked my interest in data analysis.`,
-    features: [
-      'CSV file import and parsing',
-      'Statistical calculations (mean, median, mode, range)',
-      'Grade distribution visualization with Matplotlib charts',
-      'Subject-wise performance comparisons',
-      'Export reports as visual PDF summaries',
-    ],
-    techStack: ['Python', 'Pandas', 'Matplotlib', 'NumPy'],
-    challenges: [
-      'Formatting terminal outputs to be readable and clean',
-      'Handling missing or malformed grade entries in raw CSV files',
-    ],
-    learnings: [
-      'Data cleaning and parsing using Pandas',
-      'Data visualization principles with Matplotlib',
-      'Building command-line interfaces in Python',
-    ],
-    github: 'https://github.com/nidhipatil57/grade-analyzer',
     demo: null,
+    image: notenestImg,
     featured: false,
     date: '2025',
-  },
-  {
-    id: 'quiz-app',
-    title: 'Quiz App',
-    tagline: 'A fun general knowledge quiz game built with vanilla JS',
-    shortDescription: 'An interactive quiz with a countdown timer, category selection, and a local high-score board.',
-    fullDescription: `Quiz App is a web game I built using pure HTML, CSS, and JavaScript. It features trivia questions across different subjects, scoring calculation, a dynamic timer, and stores high scores locally in the browser.
-
-I built this project to challenge myself on complex state logic without relying on frontend frameworks.`,
-    features: [
-      'Multiple quiz categories (Science, Tech, History)',
-      'Countdown timer for each question',
-      'Instant answer feedback with short explanations',
-      'Score tracking and progress bar',
-      'Local storage leaderboard',
-    ],
-    techStack: ['HTML', 'CSS', 'JavaScript'],
-    challenges: [
-      'Managing quiz states (timer, question index, score) cleanly using vanilla JS',
-      'Creating smooth transition animations between questions',
-    ],
-    learnings: [
-      'State management patterns in pure JavaScript',
-      'Advanced DOM events and timing controls',
-      'Using CSS transitions for clean UI states',
-    ],
-    github: 'https://github.com/nidhipatil57/quiz-app',
-    demo: '#',
-    featured: false,
-    date: '2025',
-  },
-  {
-    id: 'portfolio-website',
-    title: 'Portfolio Website',
-    tagline: 'A custom portfolio showcasing my projects, skills, and progress',
-    shortDescription: 'The website you are browsing right now! Built from scratch with React and Framer Motion to host my projects.',
-    fullDescription: `I designed and built this portfolio to document my coding journey, projects, and what I am learning in my B.Tech studies. 
-
-It uses React for structure, CSS Modules for modular styling, and Framer Motion for scroll reveals and interactive modals. The GitHub stats are fetched live using the GitHub API.`,
-    features: [
-      'Custom design system built with CSS variables',
-      'Smooth scroll reveals and interactive cards',
-      'Project detail modals showing challenges and learnings',
-      'Live API integration for GitHub metrics',
-      'Fully responsive layout for mobile and desktop',
-    ],
-    techStack: ['React', 'Framer Motion', 'CSS Modules', 'Vite'],
-    challenges: [
-      'Avoiding templated designs in favor of a clean, custom layout',
-      'Handling API rate limits gracefully for the GitHub integration',
-    ],
-    learnings: [
-      'Modular CSS architecture and styling variables',
-      'Declarative animations with Framer Motion',
-      'Creating custom React hooks for scroll tracking',
-    ],
-    github: 'https://github.com/nidhipatil57/Nidhi_Portfolio',
-    demo: '#',
-    featured: false,
-    date: '2025',
+    accentColor: '#6366f1',
   },
 ];
 

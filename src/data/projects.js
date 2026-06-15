@@ -13,6 +13,7 @@ import {
 import { FaRobot, FaServer, FaShieldAlt, FaCss3Alt } from 'react-icons/fa';
 
 import nexoraImg from '../assets/projects/nexora.png';
+import nutribloomImg from '../assets/projects/nutribloom.png';
 import tatkalImg from '../assets/projects/smart-tatkal-guardian.png';
 import notenestImg from '../assets/projects/notenest.png';
 
@@ -52,6 +53,71 @@ The platform features a premium dark-themed UI with glassmorphic cards, smooth a
     accentColor: '#8B5CF6',
   },
   {
+    id: 'nutribloom',
+    title: 'NutriBloom',
+    tagline: 'A closed-loop nutrition intelligence platform',
+    shortDescription:
+      'A full-stack nutrition tracking and planning platform built with Next.js 16, Prisma, and NextAuth v5 that helps users discover recipes, log intake, and receive AI insights in a dark UI.',
+    fullDescription: `NutriBloom is a full-stack nutrition intelligence platform that goes far beyond simple calorie counting. It provides a closed-loop system where users can discover healthy recipes, plan their weekly meals day-by-day, log their daily food intake, and get smart AI-powered insights about their nutritional trends.
+
+The platform is designed around the "NutriBloom Loop" concept: Search & Discover → Plan & Organize → Track & Log → Analyze & Improve. Built with a premium, dark-mode-first aesthetic, it auto-generates grocery lists directly from meal plans, and utilizes a secure authentication system powered by NextAuth v5 and Prisma.`,
+    features: [
+      'Smart Recipe Discovery: Search 1,000+ recipes filtered by nutrition, cuisine, and dietary needs',
+      'Nutrition Dashboard: Track calories and macros (protein, carbs, fat) with real-time progress rings',
+      'Weekly Meal Planner: Plan your entire week day-by-day and meal-by-meal',
+      'Auto-generated Grocery Lists: Categorized and aisle-sorted lists generated directly from meal plans',
+      'AI Insights Engine: Behavior-driven nutrition recommendations that improve as you log',
+      'Analytics & Trends: View weekly/monthly calorie trends and macro breakdowns',
+      'Secure Authentication: Built using NextAuth v5 (beta) and Prisma adapter',
+      'Custom Nutritional Goals: Set personalized daily calorie, protein, carb, and fat targets',
+    ],
+    techStack: [
+      { name: 'Next.js', icon: SiNextdotjs },
+      { name: 'React', icon: SiReact },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Prisma', icon: SiPrisma },
+      { name: 'PostgreSQL', icon: SiPostgresql },
+      { name: 'Framer Motion', icon: SiFramer },
+    ],
+    github: 'https://github.com/nidhipatil57/NutriBloom',
+    demo: null,
+    image: nutribloomImg,
+    featured: false,
+    date: '2026',
+    accentColor: '#10b981',
+  },
+  {
+    id: 'notenest',
+    title: 'NoteNest',
+    tagline: 'A modern note-taking app for developers',
+    shortDescription:
+      'A clean, organized note-taking web application built with React and Firebase for real-time syncing, tag-based organization, and instant search across all notes.',
+    fullDescription: `NoteNest is a note-taking application I built to help students and developers keep their thoughts organized. I wanted a clean, distraction-free space for study notes, code snippets, and quick ideas — all synced in real-time.
+
+Built with React for the frontend and Firebase for live database sync and authentication, this project taught me how client-side state maps to cloud databases and how to manage user sessions securely. The interface features a split-pane layout with a searchable sidebar, tag-based filtering, and a rich text editor.`,
+    features: [
+      'User authentication with Firebase Auth',
+      'Real-time note syncing with Firestore',
+      'Tag-based organization and color-coded filtering',
+      'Instant search bar across all notes',
+      'Rich text editing with formatting toolbar',
+      'Responsive design for mobile and desktop',
+    ],
+    techStack: [
+      { name: 'React', icon: SiReact },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Firebase', icon: SiFirebase },
+      { name: 'Framer Motion', icon: SiFramer },
+      { name: 'CSS Modules', icon: FaCss3Alt },
+    ],
+    github: 'https://github.com/nidhipatil57/NoteNest',
+    demo: null,
+    image: notenestImg,
+    featured: false,
+    date: '2025',
+    accentColor: '#6366f1',
+  },
+  {
     id: 'smart-tatkal-guardian',
     title: 'Smart Tatkal Guardian',
     tagline: 'Multi-agent bot detection system for IRCTC',
@@ -86,37 +152,6 @@ The system uses 5 autonomous agents working in concert: a Booking Behavior Agent
     featured: false,
     date: '2026',
     accentColor: '#22c55e',
-  },
-  {
-    id: 'notenest',
-    title: 'NoteNest',
-    tagline: 'A modern note-taking app for developers',
-    shortDescription:
-      'A clean, organized note-taking web application built with React and Firebase for real-time syncing, tag-based organization, and instant search across all notes.',
-    fullDescription: `NoteNest is a note-taking application I built to help students and developers keep their thoughts organized. I wanted a clean, distraction-free space for study notes, code snippets, and quick ideas — all synced in real-time.
-
-Built with React for the frontend and Firebase for live database sync and authentication, this project taught me how client-side state maps to cloud databases and how to manage user sessions securely. The interface features a split-pane layout with a searchable sidebar, tag-based filtering, and a rich text editor.`,
-    features: [
-      'User authentication with Firebase Auth',
-      'Real-time note syncing with Firestore',
-      'Tag-based organization and color-coded filtering',
-      'Instant search bar across all notes',
-      'Rich text editing with formatting toolbar',
-      'Responsive design for mobile and desktop',
-    ],
-    techStack: [
-      { name: 'React', icon: SiReact },
-      { name: 'TypeScript', icon: SiTypescript },
-      { name: 'Firebase', icon: SiFirebase },
-      { name: 'Framer Motion', icon: SiFramer },
-      { name: 'CSS Modules', icon: FaCss3Alt },
-    ],
-    github: 'https://github.com/nidhipatil57/NoteNest',
-    demo: null,
-    image: notenestImg,
-    featured: false,
-    date: '2025',
-    accentColor: '#6366f1',
   },
 ];
 

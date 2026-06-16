@@ -1,8 +1,9 @@
-import { FaMicrosoft, FaFigma, FaGraduationCap } from 'react-icons/fa';
+import { FaMicrosoft, FaFigma, FaGraduationCap, FaGoogle } from 'react-icons/fa';
 
 import genAiImg from '../assets/certificates/gen-ai.jpg';
 import unimergeImg from '../assets/certificates/unimerge.jpg';
 import mlImg from '../assets/certificates/machine-learning.jpg';
+import googleGenAiImg from '../assets/certificates/google-gen-ai.png';
 
 const certifications = [
   {
@@ -62,6 +63,25 @@ const certifications = [
       'User Experience Planning',
       'Responsive Layout Engineering',
       'Interactive Prototyping'
+    ]
+  },
+  {
+    id: 'google-gen-ai',
+    title: 'Introduction to Generative AI',
+    issuer: 'Google Cloud / Coursera',
+    issuerIcon: FaGoogle,
+    date: 'June 16, 2026',
+    credentialId: 'LZC9JJ35UU9F',
+    image: googleGenAiImg,
+    accentColor: '#4285F4', // Google Blue accent
+    verifyLink: 'https://coursera.org/verify/LZC9JJ35UU9F',
+    description: 'An online course authorized by Google Cloud and offered through Coursera. The course introduces the definitions of Generative AI, how it is used, and how it differs from traditional machine learning methods.',
+    skills: ['Generative AI', 'Artificial Intelligence', 'Google Cloud', 'Machine Learning'],
+    modules: [
+      'Introduction to Generative AI',
+      'Generative AI vs. Traditional ML',
+      'How Generative AI Works',
+      'Google Cloud AI Development Tools'
     ]
   }
 ];

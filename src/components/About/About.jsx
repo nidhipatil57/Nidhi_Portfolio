@@ -65,7 +65,7 @@ export default function About() {
 
               <p className={styles.aboutText}>
                 Hey! I'm Nidhi — a First Year B.Tech student studying{' '}
-                <span className={styles.aboutHighlight}>Artificial Intelligence and Data Science</span> @ VESIT.
+                <span className={styles.aboutHighlight}>Artificial Intelligence and Data Science</span>.
               </p>
 
               <p className={styles.aboutText}>
@@ -81,12 +81,6 @@ export default function About() {
                 I'm actively looking for internships and open-source opportunities to grow and learn from
                 real-world experience.
               </p>
-
-              <div className={styles.educationBadge}>
-                <div className={styles.badgeGlow} />
-                <span className={styles.badgeIcon}>🎓</span>
-                <span className={styles.badgeText}>VESIT, Mumbai</span>
-              </div>
             </div>
           </ScrollReveal>
         </div>

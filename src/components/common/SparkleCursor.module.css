@@ -1,0 +1,81 @@
+/* ==========================================================================
+   SparkleCursor.module.css — Custom cursor dot & trailing follower styles
+   ========================================================================== */
+
+.canvasOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998; /* Under the dot/ring, above all standard layouts */
+}
+
+/* Custom Pointer Dot */
+.sparkleDot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000; /* Highest layer */
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              height 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+              background-color 0.2s ease;
+  box-shadow: 0 0 8px #ffffff;
+}
+
+.sparkleDot.hovered {
+  width: 4px;
+  height: 4px;
+  background-color: var(--skill-color, #6366f1);
+  box-shadow: 0 0 12px var(--skill-color, #6366f1);
+  mix-blend-mode: normal;
+}
+
+.sparkleDot.clicked {
+  transform: translate(-50%, -50%) scale(0.6);
+}
+
+/* Custom Damping Follower Ring */
+.sparkleFollower {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
+              height 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.3s ease, 
+              background-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.sparkleFollower.hovered {
+  width: 50px;
+  height: 50px;
+  border-color: var(--skill-color, #6366f1);
+  background-color: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  box-shadow: 0 0 15px var(--skill-color-glow, rgba(99, 102, 241, 0.15));
+}
+
+.sparkleFollower.clicked {
+  transform: translate(-50%, -50%) scale(0.75);
+}
+
+/* Ensure all links and buttons hide native cursors */
+@media (min-width: 769px) {
+  :global(.hubOverlay),
+  :global(.hubOverlay) * {
+    cursor: none !important;
+  }
+}

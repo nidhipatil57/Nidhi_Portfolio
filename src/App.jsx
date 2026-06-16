@@ -15,13 +15,15 @@ import Certifications from './components/Certifications/Certifications';
 import Stats from './components/Stats/Stats';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
+import SkillHub from './components/Skills/SkillHub';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const [activeSkill, setActiveSkill] = useState(null);
 
-  // Prevent scroll during intro loader
+  // Prevent scroll during intro loader or when skill hub is open
   useEffect(() => {
-    if (loading) {
+    if (loading || activeSkill) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -29,7 +31,7 @@ export default function App() {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [loading]);
+  }, [loading, activeSkill]);
 
   return (
     <>
@@ -39,13 +41,24 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <CustomCursor />
+      <AnimatePresence>
+        {activeSkill && (
+          <SkillHub 
+            key="skill-hub" 
+            activeSkill={activeSkill} 
+            onClose={() => setActiveSkill(null)}
+            onNavigate={(skillName) => setActiveSkill(skillName)}
+          />
+        )}
+      </AnimatePresence>
+
+      {!activeSkill && <CustomCursor />}
       <AnimatedBackground />
       <Navbar />
       <main>
         <Hero />
         <About />
-        <Skills />
+        <Skills onOpenSkillHub={setActiveSkill} />
         <Journey />
         <Projects />
         <Achievements />

@@ -4,7 +4,7 @@ import ScrollReveal from '../common/ScrollReveal';
 import skills from '../../data/skills';
 import styles from './Skills.module.css';
 
-export default function Skills() {
+export default function Skills({ onOpenSkillHub }) {
   return (
     <section className={`section ${styles.skills}`} id="skills">
       <div className="container">
@@ -21,9 +21,9 @@ export default function Skills() {
 
             return (
               <ScrollReveal key={category.category} delay={catIndex * 0.1} variant="fadeUp">
-                <div 
+                <div
                   className={`${styles.categoryCard} ${styles['card' + catIndex]}`}
-                  style={{ 
+                  style={{
                     '--card-accent': currentAccent,
                     '--card-accent-glow': `${currentAccent}15`,
                     '--card-accent-hover-border': `${currentAccent}66`,
@@ -38,46 +38,57 @@ export default function Skills() {
                     '--card-accent-orb-hover-outer': `${currentAccent}33`
                   }}
                 >
-                  {/* High-fidelity grid background overlay */}
-                  <div className={styles.cardGridOverlay} />
-                  
-                  {/* Sci-fi Mono Index */}
-                  <span className={styles.cardIndex}>// 0{catIndex + 1}</span>
+                  <div>
+                    {/* High-fidelity grid background overlay */}
+                    <div className={styles.cardGridOverlay} />
 
-                  <div className={styles.categoryHeader}>
-                    <div className={styles.categoryEmoji}>
-                      {category.icon}
-                    </div>
-                    <div className={styles.categoryInfo}>
-                      <div className={styles.categoryTitleWrapper}>
-                        <h3>{category.category}</h3>
+                    {/* Sci-fi Mono Index */}
+                    <span className={styles.cardIndex}>// 0{catIndex + 1}</span>
+
+                    <div className={styles.categoryHeader}>
+                      <div className={styles.categoryEmoji}>
+                        {category.icon}
                       </div>
-                      <p>{category.description}</p>
+                      <div className={styles.categoryInfo}>
+                        <div className={styles.categoryTitleWrapper}>
+                          <h3>{category.category}</h3>
+                        </div>
+                        <p>{category.description}</p>
+                      </div>
+                    </div>
+
+                    <div className={styles.skillsList}>
+                      {category.items.map((skill, i) => (
+                        <motion.div
+                          key={skill.name}
+                          className={styles.skillChip}
+                          style={{
+                            '--skill-accent': skill.color,
+                            '--skill-accent-glow': `${skill.color}1f`,
+                            '--skill-accent-inner-glow': `${skill.color}10`,
+                          }}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: catIndex * 0.1 + i * 0.05, duration: 0.3 }}
+                          onClick={() => onOpenSkillHub && onOpenSkillHub(skill.name)}
+                          whileHover={{ y: -4, scale: 1.03 }}
+                        >
+                          <span className={styles.skillIcon} style={{ color: skill.color }}>
+                            <skill.icon />
+                          </span>
+                          {skill.name}
+                        </motion.div>
+                      ))}
                     </div>
                   </div>
 
-                  <div className={styles.skillsList}>
-                    {category.items.map((skill, i) => (
-                      <motion.div
-                        key={skill.name}
-                        className={styles.skillChip}
-                        style={{ 
-                          '--skill-accent': skill.color,
-                          '--skill-accent-glow': `${skill.color}1f`,
-                          '--skill-accent-inner-glow': `${skill.color}10`,
-                        }}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: catIndex * 0.1 + i * 0.05, duration: 0.3 }}
-                      >
-                        <span className={styles.skillIcon} style={{ color: skill.color }}>
-                          <skill.icon />
-                        </span>
-                        {skill.name}
-                      </motion.div>
-                    ))}
-                  </div>
+                  <button
+                    className={styles.hubButton}
+                    onClick={() => onOpenSkillHub && onOpenSkillHub(category.items[0].name)}
+                  >
+                    Explore my skills →
+                  </button>
                 </div>
               </ScrollReveal>
             );

@@ -1551,3 +1551,371 @@
     height: 6px;
   }
 }
+
+/* ==========================================================================
+   Light Mode Overrides for SkillHub
+   ========================================================================== */
+:global(body.light-mode) .hubOverlay {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+:global(body.light-mode) .gridOverlay {
+  background-image: 
+    linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+  opacity: 0.8;
+}
+
+:global(body.light-mode) .sidebar {
+  background: rgba(255, 255, 255, 0.85);
+  border-right-color: rgba(15, 23, 42, 0.08);
+}
+
+:global(body.light-mode) .backBtn {
+  background: rgba(15, 23, 42, 0.03);
+  border-color: rgba(15, 23, 42, 0.08);
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .backBtn:hover {
+  color: var(--text-primary);
+  border-color: var(--skill-color);
+  background: var(--skill-color-glow);
+}
+
+:global(body.light-mode) .dropdownTrigger {
+  background: rgba(15, 23, 42, 0.03);
+  border-color: rgba(15, 23, 42, 0.08);
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .dropdownTrigger:hover {
+  border-color: var(--skill-color);
+}
+
+:global(body.light-mode) .dropdownList {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+:global(body.light-mode) .dropdownItem {
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .dropdownItem:hover {
+  color: var(--text-primary);
+  background: rgba(15, 23, 42, 0.03);
+}
+
+:global(body.light-mode) .dropdownItemActive {
+  color: var(--text-primary);
+  background: var(--skill-color-glow) !important;
+}
+
+:global(body.light-mode) .navItem {
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .navItem:hover {
+  color: var(--text-primary);
+  background: rgba(15, 23, 42, 0.03);
+}
+
+:global(body.light-mode) .navItemActive {
+  color: var(--text-primary);
+  background: var(--skill-color-glow);
+}
+
+:global(body.light-mode) .sidebarFooter {
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+:global(body.light-mode) .sectionHeading {
+  color: var(--text-primary);
+  border-bottom-color: rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .glassCard {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .glassCard:hover {
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+}
+
+:global(body.light-mode) .headerTitle {
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .headerMeta strong {
+  color: var(--text-primary) !important;
+}
+
+:global(body.light-mode) .ringBg {
+  stroke: rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .profValue {
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .overviewCard {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .overviewCard:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--skill-color-glow);
+}
+
+:global(body.light-mode) .overviewCardText {
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .timelineIndicator {
+  background: #ffffff;
+}
+
+:global(body.light-mode) .timelineCard {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(15, 23, 42, 0.05);
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.02);
+}
+
+:global(body.light-mode) .timelineCardTitle {
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .timelineCardText {
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .roadmapNode {
+  border-color: rgba(15, 23, 42, 0.05);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+:global(body.light-mode) .roadmapNodeExpanded {
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.02);
+}
+
+:global(body.light-mode) .nodeHeader {
+  background: rgba(15, 23, 42, 0.01);
+}
+
+:global(body.light-mode) .nodeHeader:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+:global(body.light-mode) .nodeTitle {
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .nodeContent {
+  border-top-color: rgba(15, 23, 42, 0.03);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+:global(body.light-mode) .leafChip {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(15, 23, 42, 0.05);
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .leafChip:hover {
+  background: #ffffff;
+  border-color: var(--skill-color);
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .conceptChip {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .conceptChip:hover {
+  color: var(--text-primary);
+  background: var(--skill-color-glow);
+  border-color: var(--skill-color);
+}
+
+:global(body.light-mode) .conceptChipActive {
+  color: #fff !important;
+  background: var(--skill-color) !important;
+  border-color: var(--skill-color) !important;
+}
+
+:global(body.light-mode) .conceptDetailBox {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(15, 23, 42, 0.05);
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.02);
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .conceptDetailBox strong {
+  color: var(--text-primary) !important;
+}
+
+:global(body.light-mode) .projectCard {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(15, 23, 42, 0.05);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+}
+
+:global(body.light-mode) .projectCard:hover {
+  border-color: var(--skill-color);
+  box-shadow: 0 15px 30px rgba(15, 23, 42, 0.08);
+}
+
+:global(body.light-mode) .projectTitle {
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .projectDesc {
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .projectTechBadge {
+  background: rgba(15, 23, 42, 0.03);
+  border-color: rgba(15, 23, 42, 0.05);
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .projectInsights {
+  border-top-color: rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .projectFallbackImg {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 244, 248, 0.9) 100%);
+  color: var(--text-tertiary);
+}
+
+:global(body.light-mode) .achievementCard {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .achievementCard:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--skill-color-glow);
+}
+
+:global(body.light-mode) .achievementTitle {
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .achievementDesc {
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .statCard {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .statCard:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--skill-color-glow);
+}
+
+:global(body.light-mode) .statNumber {
+  background: linear-gradient(135deg, var(--text-primary) 30%, var(--skill-color, #6366f1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:global(body.light-mode) .statLabel {
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .progressBarTrack {
+  background-color: rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .workingCard {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .workingHeading {
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .taskItem {
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .taskCheckbox {
+  border-color: rgba(15, 23, 42, 0.1);
+  background: rgba(15, 23, 42, 0.02);
+}
+
+:global(body.light-mode) .galaxyFrame {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(15, 23, 42, 0.05);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
+}
+
+:global(body.light-mode) .centerNode {
+  background: #ffffff;
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
+:global(body.light-mode) .satelliteNode {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+:global(body.light-mode) .satelliteNode:hover {
+  color: var(--text-primary);
+  border-color: var(--skill-color);
+  box-shadow: 0 0 15px var(--skill-color-glow);
+}
+
+:global(body.light-mode) .galaxyInstruction {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(15, 23, 42, 0.08);
+  color: var(--text-secondary);
+}
+
+:global(body.light-mode) .factCard {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(15, 23, 42, 0.05);
+}
+
+:global(body.light-mode) .factCard:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--skill-color-glow);
+}
+
+:global(body.light-mode) .factText {
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .aiSummaryCard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(248, 250, 252, 0.55) 100%);
+  border-color: var(--skill-color-glow);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04), inset 0 0 15px var(--skill-color-glow);
+}
+
+:global(body.light-mode) .aiText {
+  color: var(--text-primary);
+}
+
+:global(body.light-mode) .hubContent::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.08);
+}
+
+:global(body.light-mode) .hubContent::-webkit-scrollbar-thumb:hover {
+  background: var(--skill-color);
+}
+

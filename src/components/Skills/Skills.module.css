@@ -6,8 +6,13 @@
 .skillsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
   gap: var(--space-xl);
   margin-top: var(--space-2xl);
+}
+
+.scrollRevealWrapper {
+  height: 100%;
 }
 
 /* ---------------------------------------------
@@ -25,6 +30,7 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 250px;
+  height: 100%;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
@@ -265,6 +271,7 @@
 @media (max-width: 850px) {
   .skillsGrid {
     grid-template-columns: 1fr;
+    grid-auto-rows: auto;
     max-width: 520px;
     margin-left: auto;
     margin-right: auto;
@@ -302,11 +309,19 @@
   cursor: pointer;
 }
 
+:global(body.light-mode) .hubButton {
+  border-color: var(--glass-border);
+}
+
 .categoryCard:hover .hubButton {
   border-color: var(--card-accent);
   color: #fff;
   background: var(--card-accent-orb);
   box-shadow: 0 0 15px var(--card-accent-glow);
+}
+
+:global(body.light-mode) .categoryCard:hover .hubButton {
+  color: var(--card-accent);
 }
 
 .hubButton:hover {
@@ -315,12 +330,23 @@
   box-shadow: 0 0 20px var(--card-accent) !important;
 }
 
+:global(body.light-mode) .hubButton:hover {
+  border-color: var(--text-primary) !important;
+  color: var(--text-primary) !important;
+}
+
 .hubButton:active {
   transform: scale(0.98);
   color: #fff !important;
   text-shadow: 0 0 10px #fff, 0 0 20px var(--card-accent);
   border-color: #fff !important;
   box-shadow: 0 0 25px var(--card-accent) !important;
+}
+
+:global(body.light-mode) .hubButton:active {
+  color: var(--text-primary) !important;
+  border-color: var(--text-primary) !important;
+  text-shadow: none;
 }
 
 .skillChip:active {

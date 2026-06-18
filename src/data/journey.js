@@ -22,7 +22,7 @@ const journey = [
   },
   {
     id: 3,
-    date: '2026 - 2029',
+    date: '2025 - 2029',
     title: "Vivekanand Education Society's Institute of Technology",
     description: 'Currently pursuing B.Tech in Artificial Intelligence and Data Science.',
     icon: FaLaptopCode,

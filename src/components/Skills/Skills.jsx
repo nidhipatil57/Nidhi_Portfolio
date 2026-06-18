@@ -20,7 +20,12 @@ export default function Skills({ onOpenSkillHub }) {
             const currentAccent = accentColors[catIndex];
 
             return (
-              <ScrollReveal key={category.category} delay={catIndex * 0.1} variant="fadeUp">
+              <ScrollReveal
+                key={category.category}
+                delay={catIndex * 0.1}
+                variant="fadeUp"
+                className={styles.scrollRevealWrapper}
+              >
                 <div
                   className={`${styles.categoryCard} ${styles['card' + catIndex]}`}
                   style={{

@@ -7,43 +7,41 @@ import certifications from '../../data/certifications';
 import styles from './Certifications.module.css';
 
 // Card sub-component for the main grid
-function CertificationCard({ cert, index, onClick }) {
+function CertificationCard({ cert, onClick }) {
   const Icon = cert.issuerIcon;
 
   return (
-    <ScrollReveal delay={index * 0.12} variant="fadeUp">
-      <motion.div
-        className={styles.certCard}
-        style={{ '--cert-accent': cert.accentColor }}
-        onClick={onClick}
-        whileHover={{ y: -8 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      >
-        <div className={styles.cardGlow} />
+    <motion.div
+      className={styles.certCard}
+      style={{ '--cert-accent': cert.accentColor }}
+      onClick={onClick}
+      whileHover={{ y: -8 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+    >
+      <div className={styles.cardGlow} />
 
-        {/* Certificate Mini-preview / Decor */}
-        <div className={styles.cardHeader}>
-          <div className={styles.cardImageContainer}>
-            <img src={cert.image} alt={cert.title} className={styles.cardImageMini} />
-            <div className={styles.cardImageOverlay}>
-              <span className={styles.viewBadge}>
-                <FaSearchPlus /> View Certificate
-              </span>
-            </div>
-          </div>
-          <div className={styles.logoBadge} style={{ backgroundColor: `${cert.accentColor}15` }}>
-            <Icon className={styles.logoIcon} style={{ color: cert.accentColor }} />
+      {/* Certificate Mini-preview / Decor */}
+      <div className={styles.cardHeader}>
+        <div className={styles.cardImageContainer}>
+          <img src={cert.image} alt={cert.title} className={styles.cardImageMini} />
+          <div className={styles.cardImageOverlay}>
+            <span className={styles.viewBadge}>
+              <FaSearchPlus /> View Certificate
+            </span>
           </div>
         </div>
-
-        {/* Card Details */}
-        <div className={styles.cardBody}>
-          <span className={styles.cardDate}>{cert.date}</span>
-          <h3 className={styles.cardTitle}>{cert.title}</h3>
-          <p className={styles.cardIssuer}>{cert.issuer}</p>
+        <div className={styles.logoBadge} style={{ backgroundColor: `${cert.accentColor}15` }}>
+          <Icon className={styles.logoIcon} style={{ color: cert.accentColor }} />
         </div>
-      </motion.div>
-    </ScrollReveal>
+      </div>
+
+      {/* Card Details */}
+      <div className={styles.cardBody}>
+        <span className={styles.cardDate}>{cert.date}</span>
+        <h3 className={styles.cardTitle}>{cert.title}</h3>
+        <p className={styles.cardIssuer}>{cert.issuer}</p>
+      </div>
+    </motion.div>
   );
 }
 
@@ -257,11 +255,10 @@ export default function Certifications() {
 
         {/* Certifications Grid */}
         <div className={styles.certGrid}>
-          {certifications.map((cert, i) => (
+          {certifications.map((cert) => (
             <CertificationCard
               key={cert.id}
               cert={cert}
-              index={i}
               onClick={() => setSelectedCert(cert)}
             />
           ))}

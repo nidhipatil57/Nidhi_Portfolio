@@ -12,6 +12,7 @@ const navItems = [
   { label: 'Projects', href: 'projects' },
   { label: 'Milestones', href: 'achievements' },
   { label: 'Certifications', href: 'certifications' },
+  { label: 'Hackathons', href: 'hackathonsa' },
   { label: 'Contact', href: 'contact' },
 ];
 

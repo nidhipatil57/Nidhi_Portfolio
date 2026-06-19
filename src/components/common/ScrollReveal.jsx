@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const variants = {
   fadeUp: {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 15 },
     visible: { opacity: 1, y: 0 },
   },
   fadeIn: {
@@ -10,15 +10,15 @@ const variants = {
     visible: { opacity: 1 },
   },
   scaleIn: {
-    hidden: { opacity: 0, scale: 0.9 },
+    hidden: { opacity: 0, scale: 0.96 },
     visible: { opacity: 1, scale: 1 },
   },
   slideLeft: {
-    hidden: { opacity: 0, x: -40 },
+    hidden: { opacity: 0, x: -15 },
     visible: { opacity: 1, x: 0 },
   },
   slideRight: {
-    hidden: { opacity: 0, x: 40 },
+    hidden: { opacity: 0, x: 15 },
     visible: { opacity: 1, x: 0 },
   },
 };
@@ -27,7 +27,7 @@ export default function ScrollReveal({
   children,
   variant = 'fadeUp',
   delay = 0,
-  duration = 0.6,
+  duration = 0.35,
   className = '',
   style = {},
 }) {

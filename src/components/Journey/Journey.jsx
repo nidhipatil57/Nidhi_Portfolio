@@ -42,7 +42,7 @@ export default function Journey() {
                       className={styles.milestoneDot}
                       whileInView={{ scale: [0.8, 1.15, 1] }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.08 }}
+                      transition={{ duration: 0.5, delay: index * 0.02 }}
                     >
                       {item.isCurrent ? (
                         <div className={styles.pulseDot} title="I'm here" />
@@ -55,7 +55,7 @@ export default function Journey() {
                   {/* Card Content wrapper */}
                   <ScrollReveal
                     variant="fadeUp"
-                    delay={index * 0.08}
+                    delay={index * 0.02}
                     className={styles.scrollRevealWrapper}
                   >
                     <div

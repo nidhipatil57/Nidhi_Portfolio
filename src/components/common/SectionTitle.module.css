@@ -24,7 +24,7 @@
 .subtitle {
   font-size: var(--fs-body);
   color: var(--text-secondary);
-  max-width: 560px;
+  max-width: 850px;
   margin: 0 auto;
   line-height: 1.7;
 }

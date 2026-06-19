@@ -9,15 +9,91 @@ import {
   SiReact,
   SiFirebase,
   SiFramer,
+  SiNodedotjs,
 } from 'react-icons/si';
-import { FaRobot, FaServer, FaShieldAlt, FaCss3Alt } from 'react-icons/fa';
+import { FaRobot, FaServer, FaShieldAlt, FaCss3Alt, FaEnvelope, FaChartBar, FaGoogle, FaBrain, FaEye } from 'react-icons/fa';
 
+import syrusImg from '../assets/projects/syrus.png';
+import crisissyncImg from '../assets/projects/crisissync.png';
 import nexoraImg from '../assets/projects/nexora.png';
 import nutribloomImg from '../assets/projects/nutribloom.png';
 import tatkalImg from '../assets/projects/smart-tatkal-guardian.png';
 import notenestImg from '../assets/projects/notenest.png';
+import hiremindImg from '../assets/projects/hiremind.png';
 
 const projects = [
+  {
+    id: 'syrus',
+    title: 'Syrus',
+    tagline: 'AI-Powered Employee Onboarding Platform',
+    shortDescription:
+      'A modern, AI-driven onboarding platform built at Syrus Hackathon 2026, designed to provide a seamless onboarding experience for new employees and an efficient management dashboard for HR teams.',
+    fullDescription: `Syrus is an AI-powered employee onboarding platform built for the Syrus Hackathon 2026, where our team ranked in the top 6 finalists. It is designed to bridge the gap between human resources and new hires by automating repetitive setup steps while keeping the human touch.
+
+The platform provides a Gemini-powered conversational assistant to guide employees through their initial days, dynamic role-based task checklists with tracking, real-time analytics for HR managers, a rich knowledge base of playbooks and docs, automated emails, and customizable settings featuring a timezone work-hour calculator.`,
+    features: [
+      'AI Assistant — Gemini-powered conversational onboarding guide',
+      'Dynamic Checklists — Role-based onboarding tasks with deadlines and progress tracking',
+      'HR Dashboard — Real-time employee onboarding analytics and roster management',
+      'Knowledge Base — Curated resources, playbooks, and architecture docs',
+      'Mail System — Automated onboarding and task-completion emails',
+      'Starter Tasks — Guided initial tickets for new hires',
+      'Settings — Theme, notification preferences, AI response detail, and timezone work-hour calculator',
+    ],
+    techStack: [
+      { name: 'Next.js 16', icon: SiNextdotjs },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Tailwind CSS 4', icon: SiTailwindcss },
+      { name: 'Gemini AI', icon: FaGoogle },
+      { name: 'NextAuth', icon: FaShieldAlt },
+      { name: 'Nodemailer', icon: FaEnvelope },
+      { name: 'Chart.js', icon: FaChartBar },
+      { name: 'Framer Motion', icon: SiFramer },
+    ],
+    github: 'https://github.com/CMPN-CODECELL/Syrus2026_AlgoMinds',
+    demo: null,
+    image: syrusImg,
+    featured: true,
+    date: '2026',
+    accentColor: '#eab308',
+  },
+  {
+    id: 'crisissync',
+    title: 'CrisisSync',
+    tagline: 'Real-Time Emergency Coordination & Triage Platform',
+    shortDescription:
+      'An AI-powered emergency management and response synchronization platform built for the Google Solution Challenge, purpose-built for hospitality venues with <5 min response time, <3 sec AI triage, and <200ms sync latency.',
+    fullDescription: `CrisisSync is a real-time crisis response and emergency coordination platform purpose-built for hospitality venues. It combines AI-powered incident classification, real-time multi-channel synchronization, and role-based command interfaces to transform how hotels, resorts, and event venues respond to emergencies.
+
+Built with the "Aegis Protocol" design system — a dark, atmospheric UI combining rigid technical precision with fluid depth — every pixel is engineered for high-pressure decision-making where seconds matter.
+
+The platform provides three dedicated clearance portals: Guest (Level 1) for emergency SOS reporting and live status tracking, Staff (Level 2) for tactical incident inbox with Google Maps and AI-generated action checklists, and Admin (Level 3) for full command & control with analytics dashboards, staff management, and on-demand AI briefings.
+
+Every incoming report is processed through Gemini AI to extract crisis type, 5-tier severity, tactical situation briefs, suggested actions, response roles, 4-step action checklists, and emotional state assessment. The ADI (Aggregated Danger Index) calculates a composite 0-100 urgency score factoring severity level, time elapsed, idle duration, responder count, and crisis type multipliers.`,
+    features: [
+      'Gemini AI Incident Classification Engine — Extracts crisis type, 5-tier severity, situation briefs, suggested actions, response roles, checklists, and emotional state assessment',
+      'Three Clearance Portals — Guest (SOS, tracking, history), Staff (tactical inbox, Google Maps, ADI gauge, FCM alerts), Admin (analytics, team control, venue config, AI briefings)',
+      'ADI Score System — Aggregated Danger Index (0-100) factoring severity, elapsed time, idle duration, responder count, and crisis type multipliers',
+      'Dual-Layer Real-Time Sync — Sub-second event propagation via Firebase RTDB + Firestore with <200ms sync latency',
+      'On-Demand AI Reports — Post-incident records, executive briefings, monthly analytics, shift handover docs, and hotspot analysis with prevention insights',
+      'Zero-Downtime Key Pool — Automatic API key rotation across 5-key pool on rate-limit (429) errors for 99.9% AI uptime',
+      'Performance Targets — <5 min response time, <3 sec AI triage, <200ms sync latency, 99.9% uptime',
+    ],
+    techStack: [
+      { name: 'React', icon: SiReact },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Tailwind CSS', icon: SiTailwindcss },
+      { name: 'Firebase', icon: SiFirebase },
+      { name: 'Gemini AI', icon: FaGoogle },
+      { name: 'Framer Motion', icon: SiFramer },
+    ],
+    github: 'https://github.com/krishnasahoo11156/crisissync',
+    demo: null,
+    image: crisissyncImg,
+    featured: true,
+    date: '2026',
+    accentColor: '#06b6d4',
+  },
   {
     id: 'nexora',
     title: 'Nexora',
@@ -152,6 +228,44 @@ The system uses 5 autonomous agents working in concert: a Booking Behavior Agent
     featured: false,
     date: '2026',
     accentColor: '#22c55e',
+  },
+  {
+    id: 'hiremind',
+    title: 'HireMind',
+    tagline: 'AI-Powered Explainable Hiring Intelligence Platform',
+    shortDescription:
+      'An AI-powered recruitment intelligence platform built at the Summer Hackathon 2026 that transforms hiring from resume screening to intelligent talent discovery with explainable AI, skill-gap analysis, and blind screening.',
+    fullDescription: `HireMind is an AI-powered recruitment intelligence platform designed to help recruiters, hiring managers, and organizations make faster, fairer, and more data-driven hiring decisions.
+
+Unlike traditional Applicant Tracking Systems (ATS) that simply rank candidates, HireMind provides transparent AI explanations, candidate skill-gap analysis, GitHub and LeetCode profiling, blind screening support, and recruiter feedback learning loops.
+
+Built for the Summer Hackathon 2026 Problem Statement 3 (AI-Powered Resume Screening & Candidate Ranking System), HireMind combines modern AI workflows with enterprise-grade UX and explainability.`,
+    features: [
+      'Explainable AI Ranking — Transparent reasons for each candidate\'s rank, highlighting matched skills, missing requirements, and profile impact',
+      'AI Resume Parsing — Upload PDF/DOCX resumes to extract skills, experience, projects, certifications, and profile links',
+      'Job Description Intelligence — Automatically extracts required skills, experience, education, and hiring priorities from JDs',
+      'Candidate Ranking Engine — AI Score, Match %, and Recommendation (Strong Hire / Hire / Maybe / Reject) for every candidate',
+      'GitHub Profile Analyzer — Repository count, commit frequency, top languages, open-source activity, and contribution graphs',
+      'LeetCode Analyzer — Problems solved, contest rating, global ranking, and skill indicators',
+      'Skill Gap Heatmap — Visual comparison of required vs candidate skills with Match / Partial / Missing indicators',
+      'Blind Screening Mode — Hides names, gender, email, phone, and university to reduce unconscious bias',
+      'Recruiter Feedback Loop — Override AI decisions with tracked reasons to measure AI accuracy and decision quality',
+      'Analytics Dashboard — Resumes reviewed, candidates selected, hiring funnel, time saved, and AI accuracy metrics',
+    ],
+    techStack: [
+      { name: 'React', icon: SiReact },
+      { name: 'Node.js', icon: SiNodedotjs },
+      { name: 'Python', icon: SiPython },
+      { name: 'AI/ML', icon: FaBrain },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Framer Motion', icon: SiFramer },
+    ],
+    github: '',
+    demo: null,
+    image: hiremindImg,
+    featured: false,
+    date: '2026',
+    accentColor: '#f97316',
   },
 ];
 

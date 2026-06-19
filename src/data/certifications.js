@@ -4,6 +4,7 @@ import genAiImg from '../assets/certificates/gen-ai.jpg';
 import unimergeImg from '../assets/certificates/unimerge.jpg';
 import mlImg from '../assets/certificates/machine-learning.jpg';
 import googleGenAiImg from '../assets/certificates/google-gen-ai.png';
+import microsoftAiSkillsImg from '../assets/certificates/microsoft-ai-skills.png';
 
 const certifications = [
   {
@@ -82,6 +83,25 @@ const certifications = [
       'Generative AI vs. Traditional ML',
       'How Generative AI Works',
       'Google Cloud AI Development Tools'
+    ]
+  },
+  {
+    id: 'microsoft-ai-skills-fest',
+    title: 'Microsoft AI Skills Fest 2026',
+    issuer: 'Microsoft',
+    issuerIcon: FaMicrosoft,
+    date: '2026',
+    credentialId: 'Microsoft AI Skills Challenge',
+    image: microsoftAiSkillsImg,
+    accentColor: '#00a4ef', // Microsoft blue
+    verifyLink: null,
+    description: 'Completed the Microsoft AI Skills Fest challenge, acquiring hands-on expertise in developing and deploying artificial intelligence solutions using Azure AI, Copilot, and Azure OpenAI Service.',
+    skills: ['Azure AI', 'Generative AI', 'Microsoft Copilot', 'Azure OpenAI'],
+    modules: [
+      'Empowering Productivity with Microsoft Copilot',
+      'Getting Started with Azure OpenAI Service',
+      'Developing AI Solutions on Microsoft Azure',
+      'Responsible AI Design and Implementation'
     ]
   }
 ];

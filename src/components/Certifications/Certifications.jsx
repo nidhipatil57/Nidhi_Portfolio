@@ -23,7 +23,12 @@ function CertificationCard({ cert, onClick }) {
       {/* Certificate Mini-preview / Decor */}
       <div className={styles.cardHeader}>
         <div className={styles.cardImageContainer}>
-          <img src={cert.image} alt={cert.title} className={styles.cardImageMini} />
+          <img 
+            src={cert.image} 
+            alt={cert.title} 
+            className={styles.cardImageMini} 
+            style={cert.objectFit ? { objectFit: cert.objectFit, padding: '12px' } : undefined}
+          />
           <div className={styles.cardImageOverlay}>
             <span className={styles.viewBadge}>
               <FaSearchPlus /> View Certificate

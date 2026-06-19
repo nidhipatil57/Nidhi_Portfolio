@@ -93,6 +93,7 @@ const certifications = [
     date: '2026',
     credentialId: 'Microsoft AI Skills Challenge',
     image: microsoftAiSkillsImg,
+    objectFit: 'contain',
     accentColor: '#00a4ef', // Microsoft blue
     verifyLink: null,
     description: 'Completed the Microsoft AI Skills Fest challenge, acquiring hands-on expertise in developing and deploying artificial intelligence solutions using Azure AI, Copilot, and Azure OpenAI Service.',

@@ -398,7 +398,7 @@ export const detailedSkills = {
     stats: {
       projectsBuilt: 4,
       hoursInvested: 350,
-      certifications: 2,
+      certifications: 3,
       technologiesConnected: 6,
       problemSolvingCount: 80
     },
@@ -1203,7 +1203,7 @@ export const detailedSkills = {
     stats: {
       projectsBuilt: 2,
       hoursInvested: 150,
-      certifications: 1,
+      certifications: 2,
       technologiesConnected: 5,
       problemSolvingCount: 0
     },

@@ -4,6 +4,8 @@ import genAiImg from '../assets/certificates/gen-ai.jpg';
 import unimergeImg from '../assets/certificates/unimerge.jpg';
 import mlImg from '../assets/certificates/machine-learning.jpg';
 import googleGenAiImg from '../assets/certificates/google-gen-ai.png';
+import microsoftAiSkillsImg from '../assets/certificates/microsoft-ai-skills.png';
+import geminiWorkspaceImg from '../assets/certificates/gemini-workspace.png';
 
 const certifications = [
   {
@@ -82,6 +84,46 @@ const certifications = [
       'Generative AI vs. Traditional ML',
       'How Generative AI Works',
       'Google Cloud AI Development Tools'
+    ]
+  },
+  {
+    id: 'gemini-workspace',
+    title: 'Gemini for Google Workspace',
+    issuer: 'Google Cloud | Simplilearn',
+    issuerIcon: FaGoogle,
+    date: 'June 19, 2026',
+    credentialId: '10367570',
+    image: geminiWorkspaceImg,
+    accentColor: '#1a73e8', // Google Blue/Workspace primary color
+    verifyLink: null,
+    description: 'An online course completion declaration issued by Simplilearn SkillUP in collaboration with Google Cloud. The course covers leveraging Gemini to drive productivity, create content, analyze data, and optimize collaborative workflows across Google Workspace applications.',
+    skills: ['Gemini', 'Google Workspace', 'Generative AI', 'Prompt Engineering', 'Productivity'],
+    modules: [
+      'Generative AI Essentials on Google Cloud',
+      'Prompt Design for Google Workspace',
+      'Collaboration & Content Creation in Gmail & Docs',
+      'Data Analysis & Visualization in Google Sheets',
+      'Leveraging Gemini in Google Slides & Drive'
+    ]
+  },
+  {
+    id: 'microsoft-ai-skills-fest',
+    title: 'Microsoft AI Skills Fest 2026',
+    issuer: 'Microsoft',
+    issuerIcon: FaMicrosoft,
+    date: '2026',
+    credentialId: 'Microsoft AI Skills Challenge',
+    image: microsoftAiSkillsImg,
+    objectFit: 'contain',
+    accentColor: '#00a4ef', // Microsoft blue
+    verifyLink: null,
+    description: 'Completed the Microsoft AI Skills Fest challenge, acquiring hands-on expertise in developing and deploying artificial intelligence solutions using Azure AI, Copilot, and Azure OpenAI Service.',
+    skills: ['Azure AI', 'Generative AI', 'Microsoft Copilot', 'Azure OpenAI'],
+    modules: [
+      'Empowering Productivity with Microsoft Copilot',
+      'Getting Started with Azure OpenAI Service',
+      'Developing AI Solutions on Microsoft Azure',
+      'Responsible AI Design and Implementation'
     ]
   }
 ];

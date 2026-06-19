@@ -22,7 +22,7 @@ export default function Skills({ onOpenSkillHub }) {
             return (
               <ScrollReveal
                 key={category.category}
-                delay={catIndex * 0.1}
+                delay={catIndex * 0.02}
                 variant="fadeUp"
                 className={styles.scrollRevealWrapper}
               >
@@ -75,7 +75,7 @@ export default function Skills({ onOpenSkillHub }) {
                           initial={{ opacity: 0, scale: 0.9 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
-                          transition={{ delay: catIndex * 0.1 + i * 0.05, duration: 0.3 }}
+                          transition={{ delay: catIndex * 0.02 + i * 0.01, duration: 0.2 }}
                           onClick={() => onOpenSkillHub && onOpenSkillHub(skill.name)}
                           whileHover={{ y: -4, scale: 1.03 }}
                         >

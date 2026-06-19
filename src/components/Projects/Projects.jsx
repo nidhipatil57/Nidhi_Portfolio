@@ -42,85 +42,84 @@ export default function Projects() {
 
         {/* Project Grid */}
         <div className={styles.projectsGrid}>
-          {projects.map((project, i) => (
-            <ScrollReveal key={project.id} delay={i * 0.12} variant="fadeUp">
-              <motion.div
-                className={`${styles.projectCard} ${project.featured ? styles.projectCardFeatured : ''}`}
-                onClick={() => setSelectedProject(project)}
-                whileHover={{ y: -8 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                id={`project-card-${project.id}`}
-              >
-                {/* Image */}
-                <div className={styles.cardImage}>
-                  {project.featured && (
-                    <span className={styles.featuredBadge}>⭐ Featured</span>
-                  )}
-                  <ProjectPreview
-                    image={project.image}
-                    title={project.title}
-                    accentColor={project.accentColor}
-                  />
-                  <div className={styles.cardOverlay}>
+          {projects.map((project) => (
+            <motion.div
+              key={project.id}
+              className={`${styles.projectCard} ${project.featured ? styles.projectCardFeatured : ''}`}
+              onClick={() => setSelectedProject(project)}
+              whileHover={{ y: -8 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              id={`project-card-${project.id}`}
+            >
+              {/* Image */}
+              <div className={styles.cardImage}>
+                {project.featured && (
+                  <span className={styles.featuredBadge}>⭐ Featured</span>
+                )}
+                <ProjectPreview
+                  image={project.image}
+                  title={project.title}
+                  accentColor={project.accentColor}
+                />
+                <div className={styles.cardOverlay}>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.overlayBtn}
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label="View source code"
+                  >
+                    <FaGithub />
+                  </a>
+                  {project.demo && (
                     <a
-                      href={project.github}
+                      href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.overlayBtn}
                       onClick={(e) => e.stopPropagation()}
-                      aria-label="View source code"
+                      aria-label="Live demo"
                     >
-                      <FaGithub />
+                      <FaExternalLinkAlt />
                     </a>
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.overlayBtn}
-                        onClick={(e) => e.stopPropagation()}
-                        aria-label="Live demo"
-                      >
-                        <FaExternalLinkAlt />
-                      </a>
-                    )}
-                  </div>
+                  )}
                 </div>
+              </div>
 
-                {/* Content */}
-                <div className={styles.cardContent}>
-                  <div className={styles.cardMeta}>
-                    <span className={styles.cardDate}>{project.date}</span>
-                  </div>
-                  <h3 className={styles.cardTitle}>{project.title}</h3>
-                  <p className={styles.cardTagline}>{project.tagline}</p>
-                  <p className={styles.cardDesc}>{project.shortDescription}</p>
+              {/* Content */}
+              <div className={styles.cardContent}>
+                <div className={styles.cardMeta}>
+                  <span className={styles.cardDate}>{project.date}</span>
+                </div>
+                <h3 className={styles.cardTitle}>{project.title}</h3>
+                <p className={styles.cardTagline}>{project.tagline}</p>
+                <p className={styles.cardDesc}>{project.shortDescription}</p>
 
-                  <div className={styles.techTags}>
-                    {project.techStack.slice(0, 4).map((tech) => {
-                      const Icon = tech.icon;
-                      return (
-                        <span key={tech.name} className={styles.techTag}>
-                          <Icon className={styles.techIcon} />
-                          {tech.name}
-                        </span>
-                      );
-                    })}
-                    {project.techStack.length > 4 && (
-                      <span className={styles.techTag}>
-                        +{project.techStack.length - 4}
+                <div className={styles.techTags}>
+                  {project.techStack.slice(0, 4).map((tech) => {
+                    const Icon = tech.icon;
+                    return (
+                      <span key={tech.name} className={styles.techTag}>
+                        <Icon className={styles.techIcon} />
+                        {tech.name}
                       </span>
-                    )}
-                  </div>
-
-                  <div className={styles.cardFooter}>
-                    <span className={styles.viewDetails}>
-                      View Details →
+                    );
+                  })}
+                  {project.techStack.length > 4 && (
+                    <span className={styles.techTag}>
+                      +{project.techStack.length - 4}
                     </span>
-                  </div>
+                  )}
                 </div>
-              </motion.div>
-            </ScrollReveal>
+
+                <div className={styles.cardFooter}>
+                  <span className={styles.viewDetails}>
+                    View Details →
+                  </span>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

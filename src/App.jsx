@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import AnimatedBackground from './components/common/AnimatedBackground';
 import BackToTop from './components/common/BackToTop';
@@ -12,6 +12,8 @@ import Projects from './components/Projects/Projects';
 import Journey from './components/Journey/Journey';
 import Achievements from './components/Achievements/Achievements';
 import Certifications from './components/Certifications/Certifications';
+import HackathonsTour from './components/Hackathons/HackathonsTour';
+import Hackathons from './components/Hackathons/Hackathons';
 import Stats from './components/Stats/Stats';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
@@ -20,6 +22,58 @@ import SkillHub from './components/Skills/SkillHub';
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [activeSkill, setActiveSkill] = useState(null);
+  const [isHackathonPage, setIsHackathonPage] = useState(false);
+
+  const wasOnHackathonPage = useRef(false);
+
+  useEffect(() => {
+    const checkRoute = () => {
+      const isHack = window.location.search.includes('page=hackathons');
+      if (isHack) {
+        wasOnHackathonPage.current = true;
+      }
+      // Skip intro loader only when returning FROM hackathon page
+      if (!isHack && wasOnHackathonPage.current) {
+        setLoading(false);
+      }
+      setIsHackathonPage(isHack);
+    };
+    checkRoute();
+    window.addEventListener('popstate', checkRoute);
+    return () => window.removeEventListener('popstate', checkRoute);
+  }, []);
+
+  // Initialize theme from localStorage globally
+  useEffect(() => {
+    const isLight = localStorage.getItem('theme') === 'light';
+    if (isLight) {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+  }, []);
+
+  // Scroll back to Hackathons section on exit
+  useEffect(() => {
+    if (!isHackathonPage && wasOnHackathonPage.current) {
+      setTimeout(() => {
+        const element = document.getElementById('hackathonsa');
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetY = rect.top + scrollTop - 72; // Account for navbar height
+          
+          // Instantly jump to 100px above the target to avoid long/fast scroll
+          window.scrollTo(0, Math.max(0, targetY - 100));
+          
+          // Gently smooth scroll the remaining 100px
+          setTimeout(() => {
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
+          }, 20);
+        }
+      }, 100);
+    }
+  }, [isHackathonPage]);
 
   // Prevent scroll during intro loader or when skill hub is open
   useEffect(() => {
@@ -32,6 +86,19 @@ export default function App() {
       document.body.style.overflow = '';
     };
   }, [loading, activeSkill]);
+
+  if (isHackathonPage) {
+    return (
+      <>
+        <CustomCursor />
+        <AnimatedBackground />
+        <main>
+          <Hackathons />
+        </main>
+        <BackToTop />
+      </>
+    );
+  }
 
   return (
     <>
@@ -63,6 +130,7 @@ export default function App() {
         <Projects />
         <Achievements />
         <Certifications />
+        <HackathonsTour />
         <Stats />
         <Contact />
       </main>

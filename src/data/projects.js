@@ -10,6 +10,7 @@ import {
   SiFirebase,
   SiFramer,
   SiNodedotjs,
+  SiExpress,
 } from 'react-icons/si';
 import { FaRobot, FaServer, FaShieldAlt, FaCss3Alt, FaEnvelope, FaChartBar, FaGoogle, FaBrain, FaEye } from 'react-icons/fa';
 
@@ -17,6 +18,7 @@ import syrusImg from '../assets/projects/syrus.png';
 import crisissyncImg from '../assets/projects/crisissync.png';
 import nexoraImg from '../assets/projects/nexora.png';
 import nutribloomImg from '../assets/projects/nutribloom.png';
+import novalifeImg from '../assets/projects/novalife.png';
 import tatkalImg from '../assets/projects/smart-tatkal-guardian.png';
 import notenestImg from '../assets/projects/notenest.png';
 import hiremindImg from '../assets/projects/hiremind.png';
@@ -161,6 +163,38 @@ The platform is designed around the "NutriBloom Loop" concept: Search & Discover
     featured: false,
     date: '2026',
     accentColor: '#10b981',
+  },
+  {
+    id: 'novalife',
+    title: 'NovaLife',
+    tagline: 'AI Productivity Operating System & Intelligent Life Companion',
+    shortDescription:
+      'An AI productivity companion that actively plans, prioritizes, and helps users execute before deadlines are missed. Features calendar integration, smart scheduling, and deadline prediction in a sleek glassmorphic UI.',
+    fullDescription: `NovaLife is an AI-powered Productivity Operating System designed to act as an intelligent digital Chief-of-Staff. Instead of waiting for users to manually organize their day, NovaLife continuously understands priorities, analyzes deadlines, predicts scheduling conflicts, and creates personalized execution strategies.
+
+Powered by Google's Gemini AI and deeply integrated with the Google ecosystem, NovaLife transforms scattered tasks into structured daily execution plans. Rather than asking "What should I work on next?", NovaLife already knows, continuously evaluating task urgency, estimated effort, calendar availability, and user workload to generate intelligent recommendations.`,
+    features: [
+      'AI Priority Engine — Automatically generates intelligent priority rankings by analyzing task urgency, importance, and effort',
+      'Smart Schedule Generator — Creates optimized daily plans allocating time blocks based on available calendar slots',
+      'Deadline Prediction Engine — Analyzes workload to predict potential deadline failures before they occur',
+      'Rescue Mode — Dynamically reorganizes schedules and reprioritizes work when deadlines become critical',
+      'AI Voice Assistant — Manage your productivity naturally using conversational voice commands',
+      'Google Calendar Integration — Deep integration to keep your tasks and events synchronized seamlessly',
+    ],
+    techStack: [
+      { name: 'React', icon: SiReact },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Express.js', icon: SiExpress },
+      { name: 'PostgreSQL', icon: SiPostgresql },
+      { name: 'Gemini AI', icon: FaGoogle },
+      { name: 'Framer Motion', icon: SiFramer },
+    ],
+    github: 'https://github.com/nidhipatil57/NovaLife',
+    demo: null,
+    image: novalifeImg,
+    featured: false,
+    date: '2026',
+    accentColor: '#a855f7',
   },
   {
     id: 'notenest',

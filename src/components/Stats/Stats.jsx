@@ -45,6 +45,7 @@ const FALLBACK_GITHUB_REPOS = [
   { id: 2, name: 'NoteNest', description: 'A modern note-taking app with React and Firebase', language: 'JavaScript', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/NoteNest` },
   { id: 3, name: 'weather-dashboard', description: 'Real-time weather dashboard using OpenWeather API', language: 'HTML', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/weather-dashboard` },
   { id: 4, name: 'quiz-app', description: 'Interactive quiz application with multiple categories', language: 'JavaScript', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/quiz-app` },
+  { id: 5, name: 'NovaLife', description: 'AI Productivity Operating System & Intelligent Life Companion', language: 'TypeScript', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/NovaLife` },
 ];
 
 const FALLBACK_LEETCODE_DATA = {

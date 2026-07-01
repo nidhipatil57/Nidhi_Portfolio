@@ -96,7 +96,7 @@ export default function Projects() {
 
   // Filter individual vs hackathon projects
   const individualProjects = projects.filter((p) =>
-    ['nexora', 'nutribloom', 'notenest'].includes(p.id)
+    ['nexora', 'novalife', 'nutribloom', 'notenest'].includes(p.id)
   );
   const hackathonProjects = projects.filter((p) =>
     ['syrus', 'crisissync', 'smart-tatkal-guardian', 'hiremind'].includes(p.id)

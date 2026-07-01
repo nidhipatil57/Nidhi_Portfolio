@@ -56,12 +56,11 @@ const FALLBACK_GITHUB_USER = {
 };
 
 const FALLBACK_GITHUB_REPOS = [
-  { id: 1, name: 'Nidhi_Portfolio', description: 'My personal developer portfolio built with React', language: 'JavaScript', stargazers_count: 1, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/Nidhi_Portfolio` },
-  { id: 2, name: 'Nexora', description: 'Collaborative task management and workspace platform', language: 'TypeScript', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/Nexora` },
-  { id: 3, name: 'NoteNest', description: 'A modern note-taking app with React and Firebase', language: 'TypeScript', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/NoteNest` },
-  { id: 4, name: 'NutriBloom', description: 'A nutrition intelligence platform where you track meals, plan your week, learn recipes and maintain a healthy lifestyle.', language: 'TypeScript', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/NutriBloom` },
-  { id: 5, name: 'projectSAT', description: 'An interactive web application built with HTML, CSS, and JS', language: 'HTML', stargazers_count: 0, forks_count: 1, html_url: `https://github.com/${GITHUB_USERNAME}/projectSAT` },
-  { id: 6, name: 'Smart-Tatkal-Guardian', description: 'Smart Tatkal ticket booking assistant extension', language: 'TypeScript', stargazers_count: 0, forks_count: 1, html_url: `https://github.com/${GITHUB_USERNAME}/Smart-Tatkal-Guardian` },
+  { id: 1, name: 'Nidhi_Portfolio', description: 'My personal developer portfolio built with React', language: 'JavaScript', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/Nidhi_Portfolio` },
+  { id: 2, name: 'NoteNest', description: 'A modern note-taking app with React and Firebase', language: 'JavaScript', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/NoteNest` },
+  { id: 3, name: 'weather-dashboard', description: 'Real-time weather dashboard using OpenWeather API', language: 'HTML', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/weather-dashboard` },
+  { id: 4, name: 'quiz-app', description: 'Interactive quiz application with multiple categories', language: 'JavaScript', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/quiz-app` },
+  { id: 5, name: 'NovaLife', description: 'AI Productivity Operating System & Intelligent Life Companion', language: 'TypeScript', stargazers_count: 0, forks_count: 0, html_url: `https://github.com/${GITHUB_USERNAME}/NovaLife` },
 ];
 
 // Fallback data for LeetCode

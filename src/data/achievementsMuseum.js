@@ -9,7 +9,7 @@ import syrusProjImg from '../assets/projects/syrus.png';
 import crisissyncProjImg from '../assets/projects/crisissync.png';
 import tatkalProjImg from '../assets/projects/smart-tatkal-guardian.png';
 import notenestProjImg from '../assets/projects/notenest.png';
-import hiremindProjImg from '../assets/projects/hiremind.png';
+import hiremindProjImg from '../assets/projects/hiremind.jpeg';
 
 export const stats = {
   hackathonsAttended: 8,
@@ -248,7 +248,7 @@ export const hackathonsList = [
     summary: 'Participated in the Summer Hackathon 2026 organized by SpectrumCircle, building HireMind — an AI-Powered Explainable Hiring Intelligence Platform.',
     glowColor: '#f97316', // Orange
     certificateImage: summerCert,
-    hasNoImage: true,
+    projectImage: hiremindProjImg,
     infoText: 'Built for Problem Statement 3 (AI-Powered Resume Screening & Candidate Ranking System), HireMind is designed to help recruiters, hiring managers, and organizations make faster, fairer, and more data-driven hiring decisions. Unlike traditional ATS that simply rank candidates, HireMind provides transparent AI explanations, candidate skill-gap analysis, GitHub and LeetCode profiling, blind screening support, and recruiter feedback learning loops.',
     howSolved: 'Engineered a full-stack AI recruitment intelligence platform with explainable candidate rankings, multi-source profiling, and bias mitigation features.',
     solutionHeading: 'How we built the solution',

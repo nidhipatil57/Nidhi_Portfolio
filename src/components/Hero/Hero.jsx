@@ -43,7 +43,7 @@ export default function Hero() {
 
           <motion.div className={styles.descriptionBlock} variants={itemVariants}>
             <p className={styles.descriptionPara}>
-              A First-Year <span className={styles.highlightPurple}>Artificial Intelligence & Data Science</span> student with a strong interest in software development and emerging technologies.
+              A Second-Year <span className={styles.highlightPurple}>Artificial Intelligence & Data Science</span> student with a strong interest in software development and emerging technologies.
             </p>
             <p className={styles.descriptionPara}>
               Building projects and developing practical solutions through code.

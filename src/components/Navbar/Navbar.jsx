@@ -24,10 +24,12 @@ export default function Navbar() {
 
   // Initialize theme from localStorage
   useEffect(() => {
-    const isLight = localStorage.getItem('theme') === 'light';
+    const isLight = localStorage.getItem('theme') !== 'dark';
     setIsLightMode(isLight);
     if (isLight) {
       document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
     }
   }, []);
 

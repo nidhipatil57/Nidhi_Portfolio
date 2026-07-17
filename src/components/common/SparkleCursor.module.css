@@ -3,6 +3,7 @@
    ========================================================================== */
 
 .canvasOverlay {
+  zoom: 1.11111;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,6 +15,7 @@
 
 /* Custom Pointer Dot */
 .sparkleDot {
+  zoom: 1.11111;
   position: fixed;
   width: 6px;
   height: 6px;
@@ -43,6 +45,7 @@
 
 /* Custom Damping Follower Ring */
 .sparkleFollower {
+  zoom: 1.11111;
   position: fixed;
   width: 32px;
   height: 32px;

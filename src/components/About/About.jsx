@@ -8,9 +8,9 @@ import styles from './About.module.css';
 
 const stats = [
   { icon: <FaCode />, number: 5, suffix: '+', label: 'Projects' },
-  { icon: <FaLaptopCode />, number: 3, suffix: '+', label: 'Hackathons' },
-  { icon: <FaCubes />, number: 10, suffix: '+', label: 'Technologies' },
-  { icon: <FaGithub />, number: 50, suffix: '+', label: 'Contributions' },
+  { icon: <FaLaptopCode />, number: 10, suffix: '+', label: 'Hackathons' },
+  { icon: <FaCubes />, number: 5, suffix: '+', label: 'Technologies' },
+  { icon: <FaGithub />, number: 300, suffix: '+', label: 'Contributions' },
 ];
 
 function StatCard({ icon, number, suffix, label, delay, startCounting }) {
@@ -30,16 +30,33 @@ function StatCard({ icon, number, suffix, label, delay, startCounting }) {
   );
 }
 
+function DottedGrid({ className }) {
+  return (
+    <svg className={className} width="96" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="dotted-pattern" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.5" fill="currentColor" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#dotted-pattern)" />
+    </svg>
+  );
+}
+
+
+
 export default function About() {
   const [statsRef, statsInView] = useInView({ threshold: 0.3 });
 
   return (
     <section className={`section ${styles.about}`} id="about">
+      {/* Background Dotted Grid */}
+      <DottedGrid className={`${styles.dottedGrid} ${styles.gridTopRight}`} />
+
       <div className="container">
         <SectionTitle
           label={null}
           title="About Me"
-
         />
 
         <div className={styles.aboutGrid}>
@@ -47,13 +64,25 @@ export default function About() {
           <ScrollReveal variant="slideLeft">
             <div className={styles.imageWrapper}>
               <div className={styles.imageContainer}>
+                {/* Dotted Grid behind photo - now inside the container so it scales & translates with it */}
+                <DottedGrid className={`${styles.dottedGrid} ${styles.gridBottomLeft}`} />
+
+
+
+                {/* Glowing corners on hover */}
+                <div className={`${styles.corner} ${styles.topLeft}`} />
+                <div className={`${styles.corner} ${styles.topRight}`} />
+                <div className={`${styles.corner} ${styles.bottomLeft}`} />
+                <div className={`${styles.corner} ${styles.bottomRight}`} />
+
                 <img
-                  src="/nidhi-about-profile.jpg"
+                  src="aboutme.png"
                   alt="Nidhi Patil"
                   className={styles.profileImage}
                   loading="lazy"
                 />
                 <div className={styles.imageBg} />
+
               </div>
             </div>
           </ScrollReveal>
@@ -61,26 +90,33 @@ export default function About() {
           {/* Content */}
           <ScrollReveal variant="slideRight">
             <div className={styles.aboutContent}>
-              <h3>I'm a curious student who fell in love with coding!</h3>
+
+
+              <h2 className={styles.headingTitle}>
+                Curious mind. Creative soul. Builder at{' '}
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+                  heart.
+                  <span className={styles.sparkleContainer}>
+                    <SparklesIcon className={styles.sparkleIcon} />
+                  </span>
+                </span>
+              </h2>
+
+              <h3 className={styles.aboutSubtitle}>Driven by curiosity and a passion for building impactful technology.</h3>
 
               <p className={styles.aboutText}>
-                Hey! I'm Nidhi — a First Year B.Tech student studying{' '}
-                <span className={styles.aboutHighlight}>Artificial Intelligence and Data Science</span>.
+                I'm Nidhi, a second-year B.Tech student in Artificial Intelligence and Data Science at Vivekanand Education Society's Institute of Technology (VESIT), Mumbai.
               </p>
 
               <p className={styles.aboutText}>
-                Right now, I'm focused on getting stronger with{' '}
-                <span className={styles.aboutHighlight}>Web Development</span> and{' '}
-                <span className={styles.aboutHighlight}>DSA</span> — while slowly
-                dipping my toes into <span className={styles.aboutHighlight}>Machine Learning</span>. I enjoy hackathons,
-                building projects, and honestly just figuring out how things work.
+                I'm currently strengthening my skills in Java, Data Structures & Algorithms, and Full-Stack Web Development while exploring Machine Learning. I enjoy building projects, participating in hackathons, and solving real-world problems through technology.
               </p>
 
               <p className={styles.aboutText}>
-                My goal? - To become a well-rounded developer who builds things that actually matter.
-                I'm actively looking for internships and open-source opportunities to grow and learn from
-                real-world experience.
+                My goal is to become a software engineer who builds reliable, scalable, and user-focused applications that create real-world impact.
+                I'm actively seeking internship and open-source opportunities where I can contribute, collaborate, and continue growing as a developer.
               </p>
+
             </div>
           </ScrollReveal>
         </div>
@@ -95,3 +131,23 @@ export default function About() {
     </section>
   );
 }
+
+function SparklesIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      {...props}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9.813 15.904L9 21l-.813-5.096L3 15l5.096-.813L9 9l.813 5.187L15 15l-5.187.813zM18.094 6.094L18 9l-.094-2.906L15 6l2.906-.094L18 3l.094 2.906L21 6l-2.906.094z"
+      />
+    </svg>
+  );
+}
+

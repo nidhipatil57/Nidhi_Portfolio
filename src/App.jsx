@@ -45,7 +45,7 @@ export default function App() {
 
   // Initialize theme from localStorage globally
   useEffect(() => {
-    const isLight = localStorage.getItem('theme') === 'light';
+    const isLight = localStorage.getItem('theme') !== 'dark';
     if (isLight) {
       document.body.classList.add('light-mode');
     } else {

@@ -153,6 +153,7 @@ html {
 }
 
 body {
+  zoom: 0.9;
   font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: 1.7;

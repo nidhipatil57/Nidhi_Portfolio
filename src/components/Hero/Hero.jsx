@@ -57,7 +57,7 @@ export default function Hero() {
             <button className="btn btn-primary" onClick={() => scrollTo('projects')}>
               See My Work <FaArrowRight />
             </button>
-            <a className="btn btn-secondary" href="/resume.pdf" download>
+            <a className="btn btn-secondary" href="/Nidhi_Patil_Resume.pdf" download="Nidhi_Patil_Resume.pdf">
               <FaDownload /> Resume
             </a>
           </motion.div>

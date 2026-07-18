@@ -1,42 +1,216 @@
 .skills {
   position: relative;
   overflow: hidden;
+  padding-top: var(--space-2xl) !important;
 }
 
-.skillsGrid {
+.skills :global(.container) {
+  max-width: 1420px !important;
+}
+
+.skillsHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+  gap: var(--space-sm);
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+}
+
+.headingTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.skillsDescription {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0;
+}
+
+/* ---------------------------------------------
+   HORIZONTAL TIMELINE WRAPPER & GRID
+   --------------------------------------------- */
+.timelineWrapper {
+  position: relative;
+  width: 100%;
+  margin: var(--space-lg) 0 0 0;
+  padding: 20px 0 var(--space-sm) 0;
+}
+
+.timelineLine {
+  position: absolute;
+  top: 43px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--glass-border);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+:global(body.light-mode) .timelineLine {
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.timelineGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 1fr;
-  gap: var(--space-xl);
-  margin-top: var(--space-2xl);
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 2;
 }
 
-.scrollRevealWrapper {
+.timelineColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.timelineNodeWrapper {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+  z-index: 3;
+}
+
+.timelineNode {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-full);
+  background: var(--bg-secondary);
+  border: 2px solid var(--node-accent);
+  color: var(--node-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: inset 0 0 10px var(--card-accent-orb-inner), 0 0 15px var(--node-accent-glow);
+  transition: all var(--transition-base);
+  cursor: default;
+  position: relative;
+}
+
+:global(body.light-mode) .timelineNode {
+  background: #ffffff;
+  box-shadow: inset 0 0 10px var(--card-accent-orb-inner), 0 4px 20px var(--node-accent-glow);
+}
+
+.timelineNode::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  border: 1.5px solid var(--card-accent-orb-border);
+  animation: orbRotate 8s linear infinite;
+  transition: all var(--transition-base);
+  pointer-events: none;
+}
+
+.timelineColumn:hover .timelineNode,
+.timelineNode:hover {
+  transform: scale(1.1);
+  border-color: var(--node-accent);
+  box-shadow: inset 0 0 12px var(--card-accent-orb-hover-inner), 0 0 25px var(--node-accent);
+}
+
+.timelineColumn:hover .timelineNode::before,
+.timelineNode:hover::before {
+  border-color: var(--card-accent-orb-hover-outer);
+}
+
+@keyframes orbRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.03); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.connectorLineVertical {
+  width: 2px;
+  height: 34px;
+  background: var(--card-accent);
+  opacity: 0.35;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.connectorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--card-accent);
+  box-shadow: 0 0 8px var(--card-accent);
+}
+
+.cardWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
   height: 100%;
+}
+
+.cardWrapper .scrollRevealWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------------------------------------------
    HOLOGRAPHIC GLASS CATEGORY CARD
    --------------------------------------------- */
+.scrollRevealWrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
 .categoryCard {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-xl);
+  padding: 20px 12px;
   transition: all var(--transition-slow), border-color var(--transition-base);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 250px;
+  justify-content: flex-start;
+  gap: var(--space-md);
+  min-height: 290px;
   height: 100%;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 
-/* Card Glow Aura */
 .categoryCard::after {
   content: '';
   position: absolute;
@@ -62,114 +236,43 @@
   opacity: 1;
 }
 
-/* Grid Overlay on Hover */
-.cardGridOverlay {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 18px 18px;
-  background-position: center;
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 0;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-  transition: all var(--transition-slow);
-}
-
-.categoryCard:hover .cardGridOverlay {
-  opacity: 0.35;
-  background-image: 
-    linear-gradient(var(--card-accent-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--card-accent-grid) 1px, transparent 1px);
-}
-
-/* Sci-fi index number styling */
-.cardIndex {
-  position: absolute;
-  top: var(--space-md);
-  right: var(--space-lg);
-  font-family: monospace;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--text-tertiary);
-  opacity: 0.25;
-  letter-spacing: 0.15em;
-  transition: all var(--transition-base);
-  z-index: 2;
-}
-
-.categoryCard:hover .cardIndex {
-  opacity: 0.85;
-  color: var(--card-accent);
-  text-shadow: 0 0 8px var(--card-accent);
-}
-
-/* ---------------------------------------------
-   CATEGORY CARD HEADER
-   --------------------------------------------- */
 .categoryHeader {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
+  gap: 12px;
+  margin-bottom: 16px;
   z-index: 1;
 }
 
-/* Holographic Orb Container for Emojis */
-.categoryEmoji {
-  font-size: 1.5rem;
-  width: 50px;
-  height: 50px;
+.categoryNumber {
+  font-size: 1rem;
+  font-family: monospace;
+  font-weight: 700;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md);
-  background: var(--card-accent-orb);
-  border: 1px solid var(--card-accent-orb-border);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  color: var(--card-accent);
   transition: all var(--transition-base);
   flex-shrink: 0;
-  position: relative;
-  box-shadow: inset 0 0 10px var(--card-accent-orb-inner);
 }
 
-/* Glowing ring behind the orb */
-.categoryEmoji::before {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: inherit;
-  border: 1px solid transparent;
-  transition: all var(--transition-base);
-  pointer-events: none;
+:global(body.light-mode) .categoryNumber {
+  background: rgba(15, 23, 42, 0.03);
+  border-color: rgba(15, 23, 42, 0.08);
 }
 
-.categoryCard:hover .categoryEmoji {
-  transform: scale(1.08) translateY(-2px);
-  border-color: var(--card-accent-orb-hover-border);
-  box-shadow: 0 4px 15px var(--card-accent-orb-glow), inset 0 0 15px var(--card-accent-orb-hover-inner);
+.categoryCard:hover .categoryNumber {
+  transform: scale(1.05);
+  background: var(--card-accent-glow);
+  border-color: var(--card-accent-hover-border);
 }
 
-.categoryCard:hover .categoryEmoji::before {
-  inset: -4px;
-  border-color: var(--card-accent-orb-hover-outer);
-  animation: orbRotate 3s linear infinite;
-}
-
-@keyframes orbRotate {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.03); }
-  100% { transform: rotate(360deg) scale(1); }
-}
-
-.categoryTitleWrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.categoryTitleWrapper h3 {
+.categoryInfo h3 {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -184,29 +287,36 @@
   margin: 0;
 }
 
-/* ---------------------------------------------
-   SKILL CHIPS LIST
-   --------------------------------------------- */
+/* Skill Chips List */
 .skillsList {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
   gap: var(--space-sm);
   z-index: 1;
+  width: 100%;
+  padding-left: 4px;
 }
+
+.timelineColumn:nth-child(-n+3) .skillsList {
+  padding-left: 10px;
+}
+
 
 .skillChip {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: 10px 16px;
+  padding: 6px 10px;
   background: var(--bg-tertiary);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
-  font-size: var(--fs-small);
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-secondary);
   transition: all var(--transition-base);
-  cursor: pointer;
+  cursor: default;
+  white-space: nowrap;
 }
 
 .skillChip:hover {
@@ -228,11 +338,7 @@
   transform: scale(1.1);
 }
 
-/* ---------------------------------------------
-   SKILLS HOVER MICRO-ANIMATIONS
-   --------------------------------------------- */
-
-/* Spin React Logo */
+/* Micro-animations */
 .skillChip:hover svg[class*="FaReact"] {
   animation: spinLogo 4s linear infinite;
 }
@@ -241,7 +347,6 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Wiggle Python/Java logos */
 .skillChip:hover svg[class*="FaPython"],
 .skillChip:hover svg[class*="FaJava"] {
   animation: wiggleLogo 0.5s ease-in-out;
@@ -253,7 +358,6 @@
   75% { transform: rotate(10deg); }
 }
 
-/* Pulse for ML (Brain), Cloud, Fullstack icon */
 .skillChip:hover svg[class*="TbBrain"],
 .skillChip:hover svg[class*="FaCloud"],
 .skillChip:hover svg[class*="FaLaptopCode"] {
@@ -265,31 +369,6 @@
   50% { transform: scale(1.15); filter: drop-shadow(0 0 5px var(--skill-accent)); }
 }
 
-/* ---------------------------------------------
-   RESPONSIVE DESIGN
-   --------------------------------------------- */
-@media (max-width: 850px) {
-  .skillsGrid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media (max-width: 480px) {
-  .categoryCard {
-    padding: var(--space-lg);
-    min-height: auto;
-  }
-  .skillChip {
-    padding: 8px 14px;
-    font-size: var(--fs-xs);
-  }
-}
-
-/* Creative Hub Button at the bottom of the card */
 .hubButton {
   align-self: flex-start;
   margin-top: var(--space-lg);
@@ -316,12 +395,12 @@
 .categoryCard:hover .hubButton {
   border-color: var(--card-accent);
   color: #fff;
-  background: var(--card-accent-orb);
+  background: var(--card-accent);
   box-shadow: 0 0 15px var(--card-accent-glow);
 }
 
 :global(body.light-mode) .categoryCard:hover .hubButton {
-  color: var(--card-accent);
+  color: #ffffff;
 }
 
 .hubButton:hover {
@@ -332,28 +411,163 @@
 
 :global(body.light-mode) .hubButton:hover {
   border-color: var(--text-primary) !important;
-  color: var(--text-primary) !important;
 }
 
-.hubButton:active {
-  transform: scale(0.98);
-  color: #fff !important;
-  text-shadow: 0 0 10px #fff, 0 0 20px var(--card-accent);
-  border-color: #fff !important;
-  box-shadow: 0 0 25px var(--card-accent) !important;
+/* ---------------------------------------------
+   BOTTOM BANNER
+   --------------------------------------------- */
+.bottomBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-md) var(--space-xl);
+  margin-top: var(--space-4xl);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 2;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
-:global(body.light-mode) .hubButton:active {
-  color: var(--text-primary) !important;
-  border-color: var(--text-primary) !important;
-  text-shadow: none;
+.bannerBadge {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+  flex-shrink: 0;
 }
 
-.skillChip:active {
-  transform: scale(0.96);
-  color: #fff !important;
-  text-shadow: 0 0 10px #fff, 0 0 15px var(--skill-accent);
-  border-color: var(--skill-accent) !important;
-  box-shadow: 0 0 20px var(--skill-accent-glow) !important;
+.bannerSparkle {
+  width: 20px;
+  height: 20px;
 }
 
+.bannerText {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-left: var(--space-md);
+  margin-right: auto;
+}
+
+.textAccent {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.mountainWrapper {
+  width: 140px;
+  height: 45px;
+  display: flex;
+  align-items: flex-end;
+  opacity: 0.85;
+}
+
+.mountainSvg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------------------------------------------
+   RESPONSIVE DESIGN (Vertical Fallback)
+   --------------------------------------------- */
+@media (max-width: 1024px) {
+  .skillsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+  
+  .skillsDescription {
+    max-width: 100%;
+  }
+
+  .timelineLine {
+    left: 26px;
+    right: auto;
+    top: var(--space-xl);
+    bottom: var(--space-xl);
+    width: 2px;
+    height: auto;
+    transform: none;
+  }
+  
+  .timelineGrid {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-xl);
+  }
+  
+  .timelineColumn {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    height: auto;
+    gap: var(--space-lg);
+    align-items: center;
+    width: 100%;
+  }
+  
+  .timelineNodeWrapper {
+    grid-column: 1;
+    grid-row: 1;
+    height: auto;
+    justify-content: center;
+  }
+  
+  .connectorLineVertical {
+    position: absolute;
+    left: 52px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 2px;
+    justify-content: flex-end;
+  }
+  
+  .cardWrapper {
+    grid-column: 2;
+    grid-row: 1;
+    height: auto;
+  }
+  
+  .scrollRevealWrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .bottomBanner {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-md);
+  }
+  
+  .bannerText {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+  
+  .mountainWrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .categoryCard {
+    padding: var(--space-lg);
+    min-height: auto;
+  }
+  .skillChip {
+    padding: 8px 14px;
+    font-size: var(--fs-xs);
+  }
+}

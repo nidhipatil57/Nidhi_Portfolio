@@ -3,6 +3,7 @@ import {
 } from 'react-icons/fa';
 import { VscVscode } from 'react-icons/vsc';
 import { TbBrain } from 'react-icons/tb';
+import { SiFirebase, SiSupabase, SiPostgresql } from 'react-icons/si';
 
 const skills = [
   {
@@ -33,6 +34,16 @@ const skills = [
       { name: 'Git', icon: FaGitAlt, color: '#F05032' },
       { name: 'GitHub', icon: FaGithub, color: '#e8e8f0' },
       { name: 'VS Code', icon: VscVscode, color: '#007ACC' },
+    ],
+  },
+  {
+    category: 'Databases',
+    icon: '💻',
+    description: 'Database systems and backend storage services',
+    items: [
+      { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
+      { name: 'Supabase', icon: SiSupabase, color: '#3ECF8E' },
+      { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
     ],
   },
   {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaChevronDown } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaChevronDown, FaStar } from 'react-icons/fa';
 import SectionTitle from '../common/SectionTitle';
 import ScrollReveal from '../common/ScrollReveal';
 import ProjectModal from './ProjectModal';
@@ -56,9 +56,6 @@ function ProjectCard({ project, onClick }) {
 
       {/* Content */}
       <div className={styles.cardContent}>
-        <div className={styles.cardMeta}>
-          <span className={styles.cardDate}>{project.date}</span>
-        </div>
         <h3 className={styles.cardTitle}>{project.title}</h3>
         <p className={styles.cardTagline}>{project.tagline}</p>
         <p className={styles.cardDesc}>{project.shortDescription}</p>
@@ -96,7 +93,7 @@ export default function Projects() {
 
   // Filter individual vs hackathon projects
   const individualProjects = projects.filter((p) =>
-    ['nexora', 'novalife', 'nutribloom', 'notenest'].includes(p.id)
+    ['homeverse', 'nexora', 'novalife', 'nutribloom', 'notenest'].includes(p.id)
   );
   const hackathonProjects = projects.filter((p) =>
     ['syrus', 'crisissync', 'smart-tatkal-guardian', 'hiremind'].includes(p.id)
@@ -131,15 +128,47 @@ export default function Projects() {
           subtitle="A collection of the individual projects I've built while exploring new technologies."
         />
 
-        {/* Individual Projects Grid */}
-        <div className={styles.projectsGrid}>
-          {individualProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              onClick={() => setSelectedProject(project)}
-            />
-          ))}
+        {/* Individual Projects Grouped Layout */}
+        <div className={styles.individualProjectsLayout}>
+          {/* Left Block (2/3 width) */}
+          <div className={styles.leftProjectsBlock}>
+            {individualProjects.find(p => p.id === 'homeverse') && (
+              <ProjectCard
+                project={individualProjects.find(p => p.id === 'homeverse')}
+                onClick={() => setSelectedProject(individualProjects.find(p => p.id === 'homeverse'))}
+              />
+            )}
+            <div className={styles.leftBottomGrid}>
+              {individualProjects.find(p => p.id === 'novalife') && (
+                <ProjectCard
+                  project={individualProjects.find(p => p.id === 'novalife')}
+                  onClick={() => setSelectedProject(individualProjects.find(p => p.id === 'novalife'))}
+                />
+              )}
+              {individualProjects.find(p => p.id === 'notenest') && (
+                <ProjectCard
+                  project={individualProjects.find(p => p.id === 'notenest')}
+                  onClick={() => setSelectedProject(individualProjects.find(p => p.id === 'notenest'))}
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Right Block (1/3 width) */}
+          <div className={styles.rightProjectsBlock}>
+            {individualProjects.find(p => p.id === 'nexora') && (
+              <ProjectCard
+                project={individualProjects.find(p => p.id === 'nexora')}
+                onClick={() => setSelectedProject(individualProjects.find(p => p.id === 'nexora'))}
+              />
+            )}
+            {individualProjects.find(p => p.id === 'nutribloom') && (
+              <ProjectCard
+                project={individualProjects.find(p => p.id === 'nutribloom')}
+                onClick={() => setSelectedProject(individualProjects.find(p => p.id === 'nutribloom'))}
+              />
+            )}
+          </div>
         </div>
 
         {/* Toggle Button for Hackathon Projects */}

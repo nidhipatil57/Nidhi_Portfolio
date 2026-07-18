@@ -126,8 +126,8 @@ export default function App() {
         <Hero />
         <About />
         <Skills onOpenSkillHub={setActiveSkill} />
-        <Journey />
         <Projects />
+        <Journey />
         <Achievements />
         <Certifications />
         <HackathonsTour />

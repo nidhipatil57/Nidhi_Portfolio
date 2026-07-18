@@ -21,9 +21,41 @@ import nutribloomImg from '../assets/projects/nutribloom.png';
 import novalifeImg from '../assets/projects/novalife.png';
 import tatkalImg from '../assets/projects/smart-tatkal-guardian.png';
 import notenestImg from '../assets/projects/notenest.png';
+import homeverseImg from '../assets/projects/homeverse.png';
 import hiremindImg from '../assets/projects/hiremind.png';
 
 const projects = [
+  {
+    id: 'homeverse',
+    title: 'HomeVerse',
+    tagline: 'AI-Powered Community Intelligence & Management System',
+    shortDescription:
+      'A Community OS for apartments, hostels, and gated communities that modernizes residential living. Built role-based portals for residents, security, secretaries, managers, students, and wardens with visitor management, complaints, payments, marketplace, events, room management, attendance, notices, and community engagement.',
+    fullDescription: `HomeVerse is an AI-powered community operating system designed to digitize every aspect of modern residential life, from gated societies to student hostels. It transforms offline workflows into seamless digital experiences by integrating smart gate security, automated utility billing, maintenance dispatch, and predictive resource planning.
+
+Built with a sleek, responsive dark UI featuring rich metrics dashboards and interactive tenant feeds, HomeVerse makes community living secure, transparent, and effortlessly managed.`,
+    features: [
+      'Smart Gate Security — Real-time visitor logs, digital gate pass generation, and instant resident approval workflows',
+      'Automated Billing System — Generates rent and maintenance invoices with payment gateway reconciliation logs',
+      'AI Maintenance Dispatch — Classifies resident complaints automatically and schedules staff based on urgency and skill',
+      'Predictive Analytics — Machine learning forecasts for water/electricity consumption and annual budget requirements',
+      'Resident Social Feed — Real-time announcements, feedback polls, direct messaging, and local community notices',
+    ],
+    techStack: [
+      { name: 'React', icon: SiReact },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'Tailwind CSS', icon: SiTailwindcss },
+      { name: 'Node.js', icon: SiNodedotjs },
+      { name: 'PostgreSQL', icon: SiPostgresql },
+      { name: 'Framer Motion', icon: SiFramer },
+    ],
+    github: 'https://github.com/nidhipatil57/HomeVerse',
+    demo: null,
+    image: homeverseImg,
+    featured: true,
+    date: '2026',
+    accentColor: '#3b82f6',
+  },
   {
     id: 'syrus',
     title: 'Syrus',
@@ -101,7 +133,7 @@ Every incoming report is processed through Gemini AI to extract crisis type, 5-t
     title: 'Nexora',
     tagline: 'AI-powered career guidance platform',
     shortDescription:
-      'A full-stack Next.js platform that analyzes aptitude, personality, and aspirations to deliver personalized career recommendations, skill-gap analysis, and AI mentorship.',
+      'An AI-powered Tech Career Assistant that analyzes technical potential, creates personalized learning roadmaps, and provides mentorship, strategy, interview guidance, skill-gap analysis, and career insights through a unified intelligent platform',
     fullDescription: `Nexora is an AI-powered career intelligence platform I designed and built end-to-end. It provides cognitive profiling through adaptive assessments, generates personalized 1–5–10 year career roadmaps, and offers a 24/7 AI mentor chat for resume reviews and interview prep.
 
 The platform features a premium dark-themed UI with glassmorphic cards, smooth animations, and a cinematic onboarding flow. Under the hood, it uses Next.js App Router with server components, Neon PostgreSQL for persistent storage, and Prisma ORM for type-safe queries.`,
@@ -135,7 +167,7 @@ The platform features a premium dark-themed UI with glassmorphic cards, smooth a
     title: 'NutriBloom',
     tagline: 'A closed-loop nutrition intelligence platform',
     shortDescription:
-      'A full-stack nutrition tracking and planning platform built with Next.js 16, Prisma, and NextAuth v5 that helps users discover recipes, log intake, and receive AI insights in a dark UI.',
+      'An AI-powered Nutrition Intelligence Platform that helps users discover healthy recipes, plan weekly meals, track calories, nutrition and water intake, generate smart grocery lists, and receive personalized AI-driven dietary insights through an interactive analytics dashboard.',
     fullDescription: `NutriBloom is a full-stack nutrition intelligence platform that goes far beyond simple calorie counting. It provides a closed-loop system where users can discover healthy recipes, plan their weekly meals day-by-day, log their daily food intake, and get smart AI-powered insights about their nutritional trends.
 
 The platform is designed around the "NutriBloom Loop" concept: Search & Discover → Plan & Organize → Track & Log → Analyze & Improve. Built with a premium, dark-mode-first aesthetic, it auto-generates grocery lists directly from meal plans, and utilizes a secure authentication system powered by NextAuth v5 and Prisma.`,
@@ -169,7 +201,7 @@ The platform is designed around the "NutriBloom Loop" concept: Search & Discover
     title: 'NovaLife',
     tagline: 'AI Productivity Operating System & Intelligent Life Companion',
     shortDescription:
-      'An AI productivity companion that actively plans, prioritizes, and helps users execute before deadlines are missed. Features calendar integration, smart scheduling, and deadline prediction in a sleek glassmorphic UI.',
+      'An AI-powered Productivity Operating System that acts as an intelligent digital Chief-of-Staff. Uses Gemini AI and Google Calendar integration to understand priorities, analyze deadlines, predict scheduling conflicts, and generate personalized execution plans for smarter daily productivity',
     fullDescription: `NovaLife is an AI-powered Productivity Operating System designed to act as an intelligent digital Chief-of-Staff. Instead of waiting for users to manually organize their day, NovaLife continuously understands priorities, analyzes deadlines, predicts scheduling conflicts, and creates personalized execution strategies.
 
 Powered by Google's Gemini AI and deeply integrated with the Google ecosystem, NovaLife transforms scattered tasks into structured daily execution plans. Rather than asking "What should I work on next?", NovaLife already knows, continuously evaluating task urgency, estimated effort, calendar availability, and user workload to generate intelligent recommendations.`,

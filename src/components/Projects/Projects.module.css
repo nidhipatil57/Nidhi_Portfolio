@@ -40,17 +40,18 @@
 
 .featuredBadge {
   position: absolute;
-  top: var(--space-md);
-  left: var(--space-md);
+  top: 6px;
+  left: 8px;
   background: var(--accent-gradient);
   color: #fff;
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   z-index: 2;
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.2);
 }
 
 .featuredContent {
@@ -210,7 +211,7 @@
   color: var(--text-secondary);
   line-height: 1.6;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -220,6 +221,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  margin-top: 8px;
 }
 
 .techTag {
@@ -237,6 +239,43 @@
 
 .techIcon {
   font-size: 0.85rem;
+}
+
+/* Card Footer & View Details Button */
+.cardFooter {
+  margin-top: var(--space-md);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.viewDetails {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding-bottom: 2px;
+  transition: color var(--transition-base);
+}
+
+.viewDetails::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent-gradient);
+  transition: width var(--transition-base);
+}
+
+.projectCard:hover .viewDetails {
+  color: var(--text-primary);
+}
+
+.projectCard:hover .viewDetails::after {
+  width: 100%;
 }
 
 .previewContainer {
@@ -299,10 +338,27 @@
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
   width: 100%;
-  max-width: 720px;
-  max-height: 85vh;
+  max-width: 950px;
+  max-height: 90vh;
   overflow-y: auto;
   position: relative;
+}
+
+.modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.2);
+  border-radius: var(--radius-full);
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
 }
 
 .modalClose {
@@ -332,7 +388,7 @@
 
 .modalImage {
   width: 100%;
-  height: 240px;
+  height: 380px;
   background: var(--bg-tertiary);
   display: flex;
   align-items: center;
@@ -418,6 +474,9 @@
   }
   .modal {
     max-height: 90vh;
+  }
+  .modalImage {
+    height: 200px;
   }
   .modalBody {
     padding: var(--space-lg);
@@ -565,5 +624,105 @@
 @media (max-width: 768px) {
   .hackathonBox {
     padding: var(--space-lg);
+  }
+}
+
+/* Individual Projects Grouped Layout */
+.individualProjectsLayout {
+  display: flex;
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+.leftProjectsBlock {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.rightProjectsBlock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.leftBottomGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+/* HomeVerse Featured Card Customizations */
+.projectCard[id="project-card-homeverse"] .cardImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #ffffff;
+  padding-top: 28px;
+}
+
+.projectCard[id="project-card-homeverse"] .previewImage {
+  object-fit: contain;
+  background: #ffffff;
+}
+
+/* Dotted Coming Soon Card */
+.comingSoonCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 2px dashed var(--glass-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  text-align: center;
+  transition: all var(--transition-base);
+  min-height: 290px;
+}
+
+.comingSoonCard:hover {
+  background: rgba(99, 102, 241, 0.02);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: inset 0 0 15px rgba(99, 102, 241, 0.05);
+}
+
+.comingSoonContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.comingSoonPlus {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: rgba(99, 102, 241, 0.4);
+  line-height: 1;
+}
+
+.comingSoonTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.comingSoonDesc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  max-width: 200px;
+}
+
+/* Responsive Layout Adjustments */
+@media (max-width: 1024px) {
+  .individualProjectsLayout {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .leftBottomGrid {
+    grid-template-columns: 1fr;
   }
 }

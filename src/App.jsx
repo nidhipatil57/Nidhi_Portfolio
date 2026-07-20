@@ -10,7 +10,7 @@ import About from './components/About/About';
 import Skills from './components/Skills/Skills';
 import Projects from './components/Projects/Projects';
 import Journey from './components/Journey/Journey';
-import Achievements from './components/Achievements/Achievements';
+import FullJourneyPage from './components/Journey/FullJourneyPage';
 import Certifications from './components/Certifications/Certifications';
 import HackathonsTour from './components/Hackathons/HackathonsTour';
 import Hackathons from './components/Hackathons/Hackathons';
@@ -23,20 +23,27 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [activeSkill, setActiveSkill] = useState(null);
   const [isHackathonPage, setIsHackathonPage] = useState(false);
+  const [isJourneyPage, setIsJourneyPage] = useState(false);
 
   const wasOnHackathonPage = useRef(false);
 
   useEffect(() => {
     const checkRoute = () => {
       const isHack = window.location.search.includes('page=hackathons');
+      const pathname = window.location.pathname;
+      const isJourney = pathname === '/journey' || pathname.endsWith('/journey') || window.location.search.includes('page=journey');
+
       if (isHack) {
         wasOnHackathonPage.current = true;
       }
-      // Skip intro loader only when returning FROM hackathon page
-      if (!isHack && wasOnHackathonPage.current) {
+      // Skip intro loader when directly viewing subpages
+      if (isHack || isJourney) {
+        setLoading(false);
+      } else if (wasOnHackathonPage.current) {
         setLoading(false);
       }
       setIsHackathonPage(isHack);
+      setIsJourneyPage(isJourney);
     };
     checkRoute();
     window.addEventListener('popstate', checkRoute);
@@ -45,7 +52,7 @@ export default function App() {
 
   // Initialize theme from localStorage globally
   useEffect(() => {
-    const isLight = localStorage.getItem('theme') !== 'dark';
+    const isLight = localStorage.getItem('theme') === 'light';
     if (isLight) {
       document.body.classList.add('light-mode');
     } else {
@@ -100,6 +107,28 @@ export default function App() {
     );
   }
 
+  if (isJourneyPage) {
+    return (
+      <>
+        <CustomCursor />
+        <AnimatedBackground />
+        <FullJourneyPage 
+          onBackToPortfolio={() => {
+            window.history.pushState({}, '', '/');
+            setIsJourneyPage(false);
+            setTimeout(() => {
+              const el = document.getElementById('journey');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 80);
+          }}
+        />
+        <BackToTop />
+      </>
+    );
+  }
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -127,8 +156,10 @@ export default function App() {
         <About />
         <Skills onOpenSkillHub={setActiveSkill} />
         <Projects />
-        <Journey />
-        <Achievements />
+        <Journey onNavigateToFullJourney={() => {
+          window.history.pushState({}, '', '/journey');
+          setIsJourneyPage(true);
+        }} />
         <Certifications />
         <HackathonsTour />
         <Stats />

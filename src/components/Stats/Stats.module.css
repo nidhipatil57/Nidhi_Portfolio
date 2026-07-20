@@ -1042,3 +1042,27 @@
     font-size: 0.9rem;
   }
 }
+
+/* Light Mode Overrides */
+:global(body.light-mode) .viewStatsBtn {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: var(--text-primary);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+:global(body.light-mode) .viewStatsBtn:hover {
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--text-primary);
+  box-shadow: 
+    0 15px 30px rgba(99, 102, 241, 0.08),
+    0 5px 15px rgba(244, 63, 94, 0.05);
+}
+
+:global(body.light-mode) .viewStatsBtn::before {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(244, 63, 94, 0.2));
+}
+
+:global(body.light-mode) .viewStatsBtn:hover::before {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.5), rgba(244, 63, 94, 0.5));
+}

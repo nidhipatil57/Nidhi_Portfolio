@@ -2,451 +2,439 @@
   position: relative;
 }
 
-.timelineContainer {
+.journeyContainer {
+  max-width: 1340px !important;
+}
+
+/* Horizontal Timeline Track */
+.horizontalTimelineTrack {
   position: relative;
-  width: 100%;
-  padding: 0;
-  margin-top: var(--space-2xl);
-  overflow: visible;
+  margin: var(--space-xl, 28px) auto 18px;
+  max-width: 1200px;
+  padding: 0 40px;
 }
 
-/* Horizontal track line for desktop */
-.timelineLine {
+.timelineTrackLine {
   position: absolute;
-  top: 31px; /* aligns exactly with the center of the dots (12px date + 8px gap + 11px half-dot) */
-  left: 16.6%;
-  right: 16.6%;
+  top: 13px;
+  left: 140px;
+  right: 140px;
   height: 2px;
-  background: linear-gradient(
-    to right,
-    var(--accent-primary) 0%,
-    var(--accent-primary) 50%,
-    #10b981 85%,
-    rgba(16, 185, 129, 0.1) 100%
-  );
+  background: linear-gradient(90deg, #10b981 0%, #eab308 50%, #6366f1 100%);
   z-index: 1;
+  opacity: 0.65;
 }
 
-/* Horizontal grid for milestones */
-.milestonesGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
+.timelineNodesRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: relative;
   z-index: 2;
 }
 
-.milestone {
+.timelineNodeItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  height: 100%;
+  gap: 8px;
+  flex: 1;
+  text-align: center;
 }
 
-/* Date and Dot Wrapper */
-.dotContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: var(--space-xs); /* 8px gap */
-  margin-bottom: var(--space-xl);
-  position: relative;
-  width: 100%;
-}
-
-.milestoneDate {
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  color: var(--text-tertiary);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 0;
-  transition: color var(--transition-base);
-  line-height: 1;
-}
-
-.dateActive {
-  color: #10b981 !important;
-}
-
-/* Dot situated on the timeline track */
-.milestoneDot {
-  width: 22px;
-  height: 22px;
-  border-radius: var(--radius-full);
+.nodePoint {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bg-primary, #0b0f19);
+  border: 2px solid var(--accent-primary, #6366f1);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-secondary);
-  border: 2px solid var(--accent-primary);
-  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
-  z-index: 5;
-  transition: all var(--transition-base);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.milestoneActive .milestoneDot {
-  border-color: transparent;
-  background: transparent;
-  box-shadow: none;
+.timelineNodeItem:hover .nodePoint {
+  transform: scale(1.25);
 }
 
-.stableDot {
-  width: 10px;
-  height: 10px;
-  background-color: var(--accent-primary);
+.nodeDotInner {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  box-shadow: 0 0 6px rgba(99, 102, 241, 0.5);
 }
 
-.pulseDot {
-  width: 10px;
-  height: 10px;
-  background-color: #10b981;
-  border-radius: 50%;
-  position: relative;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+.nodeLabel {
+  font-size: 0.775rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: var(--bg-tertiary);
+  padding: 3px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--glass-border);
 }
 
-.pulseDot::after {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border-radius: 50%;
-  border: 2px solid #10b981;
-  animation: pulseGlow 1.6s infinite ease-in-out;
+/* Bento Grid System */
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  margin-top: 12px;
 }
 
-@keyframes pulseGlow {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
-  }
+.cardColVesit {
+  grid-column: span 4;
 }
 
-/* Card Content Wrapper */
-.scrollRevealWrapper {
-  width: 100%;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+.cardColSyrus {
+  grid-column: span 4;
 }
 
-.milestoneContent {
-  width: 100%;
-  height: 100%;
+.cardColUnimerge {
+  grid-column: span 4;
+}
+
+/* Bento Card Base */
+.bentoCard {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  transition: all var(--transition-spring);
-  position: relative;
-  text-align: left;
+  border-radius: var(--radius-xl, 18px);
+  padding: 22px 24px;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm, 0 10px 30px rgba(0, 0, 0, 0.08));
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-/* Arrow pointer pointing UP towards the timeline dot */
-.milestoneContent::after {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--glass-border);
-  transition: border-color var(--transition-base);
-}
-
-.cardCompleted {
-  border-top: 3px solid var(--accent-primary);
-}
-
-.cardCompleted:hover {
-  background: var(--glass-bg-hover);
+.bentoCard:hover {
   border-color: var(--glass-border-hover);
-  border-top-color: var(--accent-primary);
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.08);
-  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg, 0 20px 40px rgba(0, 0, 0, 0.15)), 0 0 25px rgba(99, 102, 241, 0.12);
 }
 
-.cardActive {
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  border-top: 4px solid #10b981;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(17, 24, 39, 0.65) 100%);
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.05);
-}
-
-.cardActive:hover {
-  border-color: rgba(16, 185, 129, 0.45);
-  border-top-color: #10b981;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(17, 24, 39, 0.75) 100%);
-  box-shadow: 0 12px 35px rgba(16, 185, 129, 0.15);
-  transform: translateY(-6px);
-}
-
-/* Light mode overrides for active card */
-:global(body.light-mode) .cardActive {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(255, 255, 255, 0.9) 100%);
-  border-color: rgba(16, 185, 129, 0.2);
-  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.04);
-}
-
-:global(body.light-mode) .cardActive:hover {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(255, 255, 255, 0.95) 100%);
-  border-color: rgba(16, 185, 129, 0.35);
-  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.1);
-}
-
-.cardActive::after {
-  border-bottom-color: rgba(16, 185, 129, 0.2);
-}
-
-.cardActive:hover::after {
-  border-bottom-color: rgba(16, 185, 129, 0.45);
-}
-
-.cardCompleted:hover::after {
-  border-bottom-color: var(--glass-border-hover);
-}
-
-/* Card Header */
-.cardHeader {
+.bentoCardHeader {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  margin-bottom: var(--space-sm);
-  flex-wrap: wrap;
-  gap: var(--space-sm);
+  justify-content: space-between;
+  margin-bottom: 12px;
+  z-index: 2;
 }
 
-.badgeActive {
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.iconBadge {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+.dateTag {
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  background: var(--bg-tertiary);
+  padding: 3px 9px;
+  border-radius: 9999px;
+  border: 1px solid var(--glass-border);
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.725rem;
+  font-weight: 650;
+  border: 1px solid transparent;
+}
+
+.bentoCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2;
+}
+
+.bentoTitle {
+  font-family: var(--font-heading);
+  font-size: 1.18rem;
+  font-weight: 750;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.bentoSubTitle {
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--accent-primary, #6366f1);
+  margin-top: -3px;
+}
+
+.bentoProgram {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.bentoDesc {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Theme-Aware Card Styles */
+.vesitCard,
+.syrusCard,
+.unimergeCard {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+.campusBgGraphic {
+  position: absolute;
+  right: -40px;
+  bottom: -40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.highlightBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.775rem;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.syrusBentoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 6px 0;
+  z-index: 2;
+}
+
+.syrusTextCol {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.syrusPreviewBox {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: var(--bg-tertiary);
+  box-shadow: var(--shadow-sm);
+}
+
+.previewHeaderDots {
+  height: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 8px;
+}
+
+.dotRed, .dotYellow, .dotGreen {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+}
+
+.dotRed { background: #ef4444; }
+.dotYellow { background: #eab308; }
+.dotGreen { background: #22c55e; }
+
+.bentoPreviewImg {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  display: block;
+}
+
+.unimergeBentoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
+}
+
+.dualMediaPreview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 6px 0;
+}
+
+.miniMediaFrame {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  height: 105px;
+  background: var(--bg-tertiary);
+}
+
+.miniMediaImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.bentoCard:hover .miniMediaImg {
+  transform: scale(1.03);
+}
+
+.techPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.techPill {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--glass-border);
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+/* Bento Card Footer */
+.bentoCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 2;
+}
+
+.actionBtnsPreview {
+  display: flex;
+  gap: 10px;
+}
+
+.miniBtn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.08);
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.05em;
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.05);
-}
-
-.badgeActiveDot {
-  width: 6px;
-  height: 6px;
-  background-color: #10b981;
-  border-radius: var(--radius-full);
-  display: inline-block;
-  position: relative;
-}
-
-.badgeActiveDot::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: var(--radius-full);
-  background-color: #10b981;
-  animation: dotPulse 1.6s infinite ease-in-out;
-}
-
-@keyframes dotPulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2.6);
-    opacity: 0;
-  }
-}
-
-/* Title Wrapper & Icons */
-.titleWrapper {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-sm);
-}
-
-.iconContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-full);
-  background: var(--bg-tertiary);
-  border: 1px solid var(--glass-border);
-  color: var(--accent-primary);
-  flex-shrink: 0;
-  transition: all var(--transition-base);
-}
-
-.cardActive .iconContainer {
-  background: rgba(16, 185, 129, 0.08);
-  border-color: rgba(16, 185, 129, 0.25);
-  color: #10b981;
-}
-
-.itemIcon {
-  font-size: 16px;
-}
-
-.milestoneTitle {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0;
-  line-height: 1.4;
-}
-
-.milestoneDesc {
-  font-size: var(--fs-small);
-  color: var(--text-secondary);
-  line-height: 1.6;
-  flex-grow: 1;
-}
-
-.milestoneGrades {
-  font-size: var(--fs-xs);
-  color: var(--text-tertiary);
-  margin-top: var(--space-xs);
+  font-size: 0.8rem;
   font-weight: 500;
+  color: var(--text-secondary, #cbd5e1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* ==========================================================================
-   RESPONSIVE DESIGN - Vertical stacked timeline on tablet & mobile
-   ========================================================================== */
-@media (max-width: 991px) {
-  .timelineLine {
-    left: 10%;
-    right: 10%;
+.clickHint {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--accent-primary, #6366f1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.bentoCard:hover .clickHint {
+  transform: translateX(4px);
+}
+
+/* CTA Wrapper */
+.ctaWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2xl, 40px);
+}
+
+.viewFullBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 36px;
+  border-radius: 9999px;
+  background: var(--accent-gradient, linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%));
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 650;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.35);
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.viewFullBtn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 35px rgba(99, 102, 241, 0.5);
+  color: #ffffff;
+}
+
+.arrowIcon {
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.viewFullBtn:hover .arrowIcon {
+  transform: translateX(4px);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .cardColVesit,
+  .cardColSyrus,
+  .cardColUnimerge {
+    grid-column: span 12;
+  }
+
+  .syrusBentoContent {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 768px) {
-  .timelineContainer {
-    padding: var(--space-lg) 0;
+@media (max-width: 640px) {
+  .bentoGrid {
+    gap: 16px;
   }
 
-  /* Transition line to vertical */
-  .timelineLine {
-    left: 22px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    height: 100%;
-    margin-left: -1px;
-    background: linear-gradient(
-      to bottom,
-      var(--accent-primary) 0%,
-      var(--accent-primary) 60%,
-      #10b981 85%,
-      rgba(16, 185, 129, 0) 100%
-    );
+  .dualMediaPreview {
+    grid-template-columns: 1fr;
   }
 
-  .milestonesGrid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2xl);
+  .miniMediaFrame {
+    height: 130px;
   }
 
-  .milestone {
-    flex-direction: row;
-    align-items: flex-start;
-    padding-left: 60px;
-    width: 100%;
-  }
-
-  .dotContainer {
-    position: absolute;
-    left: 22px;
-    top: 22px;
-    margin-left: -11px;
-    width: auto;
-    height: auto;
-    margin-bottom: 0;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Date is moved inside or floating */
-  .milestoneDate {
-    position: absolute;
-    top: -24px;
-    left: 12px;
-    white-space: nowrap;
-  }
-
-  .milestoneDot {
-    margin-top: 0;
-  }
-
-  /* Left-pointing arrow for stacked vertical timeline card */
-  .milestoneContent::after {
-    top: 20px;
-    left: -8px;
-    transform: none;
-    border-left: none !important;
-    border-right: 8px solid var(--glass-border) !important;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-  }
-
-  .cardCompleted {
-    border-top: 1px solid var(--glass-border);
-    border-left: 3px solid var(--accent-primary);
-  }
-
-  .cardCompleted:hover {
-    border-top-color: var(--glass-border-hover);
-    border-left-color: var(--accent-primary);
-    transform: translateY(-3px);
-  }
-
-  .cardActive {
-    border-top: 1px solid rgba(16, 185, 129, 0.2);
-    border-left: 4px solid #10b981;
-  }
-
-  .cardActive:hover {
-    border-top-color: rgba(16, 185, 129, 0.45);
-    border-left-color: #10b981;
-    transform: translateY(-4px);
-  }
-
-  .cardActive::after {
-    border-bottom-color: transparent !important;
-    border-right-color: rgba(16, 185, 129, 0.2) !important;
-  }
-
-  .cardActive:hover::after {
-    border-bottom-color: transparent !important;
-    border-right-color: rgba(16, 185, 129, 0.45) !important;
-  }
-
-  .cardCompleted:hover::after {
-    border-bottom-color: transparent !important;
-    border-right-color: var(--glass-border-hover) !important;
+  .bentoCard {
+    padding: 18px;
   }
 }

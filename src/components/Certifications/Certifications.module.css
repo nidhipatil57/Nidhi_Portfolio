@@ -8,12 +8,34 @@
   padding-top: var(--space-2xl);
 }
 
+.certifications :global(.container) {
+  max-width: 1450px;
+}
+
 /* Grid layout */
 .certGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-xl);
   margin-top: var(--space-2xl);
+}
+
+@media (min-width: 550px) {
+  .certGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 850px) {
+  .certGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .certGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* ---------------------------------------------
@@ -190,10 +212,7 @@
    --------------------------------------------- */
 .modalOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background: rgba(7, 10, 18, 0.82);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -559,10 +578,7 @@
    --------------------------------------------- */
 .fullscreenOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background: rgba(5, 7, 12, 0.95);
   z-index: calc(var(--z-modal) + 10);
   display: flex;

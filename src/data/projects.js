@@ -62,7 +62,7 @@ Built with a sleek, responsive dark UI featuring rich metrics dashboards and int
     tagline: 'AI-Powered Employee Onboarding Platform',
     shortDescription:
       'A modern, AI-driven onboarding platform built at Syrus Hackathon 2026, designed to provide a seamless onboarding experience for new employees and an efficient management dashboard for HR teams.',
-    fullDescription: `Syrus is an AI-powered employee onboarding platform built for the Syrus Hackathon 2026, where our team ranked in the top 6 finalists. It is designed to bridge the gap between human resources and new hires by automating repetitive setup steps while keeping the human touch.
+    fullDescription: `An AI-powered employee onboarding platform built for the Syrus Hackathon 2026, where our team ranked in the top 6 finalists. It is designed to bridge the gap between human resources and new hires by automating repetitive setup steps while keeping the human touch.
 
 The platform provides a Gemini-powered conversational assistant to guide employees through their initial days, dynamic role-based task checklists with tracking, real-time analytics for HR managers, a rich knowledge base of playbooks and docs, automated emails, and customizable settings featuring a timezone work-hour calculator.`,
     features: [
@@ -234,7 +234,7 @@ Powered by Google's Gemini AI and deeply integrated with the Google ecosystem, N
     tagline: 'A modern note-taking app for developers',
     shortDescription:
       'A clean, organized note-taking web application built with React and Firebase for real-time syncing, tag-based organization, and instant search across all notes.',
-    fullDescription: `NoteNest is a note-taking application I built to help students and developers keep their thoughts organized. I wanted a clean, distraction-free space for study notes, code snippets, and quick ideas — all synced in real-time.
+    fullDescription: `A note-taking application built to help students and developers keep their thoughts organized. I wanted a clean, distraction-free space for study notes, code snippets, and quick ideas — all synced in real-time.
 
 Built with React for the frontend and Firebase for live database sync and authentication, this project taught me how client-side state maps to cloud databases and how to manage user sessions securely. The interface features a split-pane layout with a searchable sidebar, tag-based filtering, and a rich text editor.`,
     features: [

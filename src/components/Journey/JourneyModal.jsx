@@ -11,7 +11,8 @@ import {
   FaCheckCircle,
   FaAward,
   FaFileAlt,
-  FaSearchPlus
+  FaSearchPlus,
+  FaCode
 } from 'react-icons/fa';
 import styles from './JourneyModal.module.css';
 
@@ -99,7 +100,6 @@ export default function JourneyModal({ item, onClose }) {
                       style={{ '--cert-accent': item.accentColor }}
                       onClick={() => setActiveImage({ src: item.projectImage, alt: item.title })}
                     >
-                      <span className={styles.mediaTag}>Project Preview</span>
                       <img src={item.projectImage} alt={item.title} className={styles.mediaImg} />
                       <div className={styles.holoBorderHighlight} />
                       <div className={styles.zoomIndicator}>
@@ -109,12 +109,16 @@ export default function JourneyModal({ item, onClose }) {
                   )}
                   {item.certificateImage && (
                     <div 
-                      className={styles.mediaCard}
+                      className={`${styles.mediaCard} ${styles.certificateCard}`}
                       style={{ '--cert-accent': item.accentColor }}
                       onClick={() => setActiveImage({ src: item.certificateImage, alt: `${item.title} Certificate` })}
                     >
                       <span className={styles.mediaTag}>Official Certificate</span>
-                      <img src={item.certificateImage} alt={`${item.title} Certificate`} className={styles.mediaImg} />
+                      <img 
+                        src={item.certificateImage} 
+                        alt={`${item.title} Certificate`} 
+                        className={`${styles.mediaImg} ${styles.certificateImg}`} 
+                      />
                       <div className={styles.holoBorderHighlight} />
                       <div className={styles.zoomIndicator}>
                         <FaSearchPlus /> Click to expand
@@ -165,6 +169,48 @@ export default function JourneyModal({ item, onClose }) {
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {/* How It Works & Architecture Section */}
+            {((item.features && item.features.length > 0 && JSON.stringify(item.features) !== JSON.stringify(item.achievements)) || (item.working && item.working.length > 0)) && (
+              <div className={styles.sectionBlock}>
+                <h3 className={styles.sectionHeading}>
+                  <FaCode className={styles.headingIcon} style={{ color: item.accentColor }} />
+                  Technical Architecture
+                </h3>
+                
+                <div className={styles.detailsGrid}>
+                  {item.features && item.features.length > 0 && JSON.stringify(item.features) !== JSON.stringify(item.achievements) && (
+                    <div className={styles.detailsCol}>
+                      <h4 className={styles.detailsSubheading}>Key Features</h4>
+                      <ul className={styles.achievementsList}>
+                        {item.features.map((feat, idx) => (
+                          <li key={idx} className={styles.achievementItem}>
+                            <span className={styles.bulletDot} style={{ background: item.accentColor }} />
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {item.working && item.working.length > 0 && (
+                    <div className={styles.detailsCol}>
+                      <h4 className={styles.detailsSubheading}>System Execution Flow</h4>
+                      <ol className={styles.workingList}>
+                        {item.working.map((step, idx) => (
+                          <li key={idx} className={styles.workingItem}>
+                            <span className={styles.stepNumber} style={{ borderColor: `${item.accentColor}35`, color: item.accentColor }}>
+                              {idx + 1}
+                            </span>
+                            <span className={styles.stepText}>{step}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
 

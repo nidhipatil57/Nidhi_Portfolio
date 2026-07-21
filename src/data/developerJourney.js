@@ -55,6 +55,22 @@ export const bentoJourneyCards = [
       'Starter Tasks — Guided initial tickets for new hires',
       'Settings — Theme, notification preferences, AI response detail, and timezone work-hour calculator'
     ],
+    features: [
+      'AI Assistant — Gemini-powered conversational onboarding guide',
+      'Dynamic Checklists — Role-based onboarding tasks with deadlines and progress tracking',
+      'HR Dashboard — Real-time employee onboarding onboarding analytics and roster management',
+      'Knowledge Base — Curated resources, playbooks, and architecture docs',
+      'Mail System — Automated onboarding and task-completion emails',
+      'Starter Tasks — Guided initial tickets for new hires',
+      'Settings — Theme, notification preferences, AI response detail, and timezone work-hour calculator'
+    ],
+    working: [
+      'New hire signs in to Syrus via NextAuth',
+      'Gemini-powered AI assistant initiates conversational guide',
+      'User follows role-specific dynamic checklists with tracked progress',
+      'Automated email notifications trigger upon task completion',
+      'HR managers monitor employee rosters and metrics via analytics dashboard'
+    ],
     github: 'https://github.com/CMPN-CODECELL/Syrus2026_AlgoMinds',
     accentColor: '#eab308',
   },
@@ -77,6 +93,20 @@ export const bentoJourneyCards = [
       'Instant search bar across all notes',
       'Rich text editing with formatting toolbar',
       'Responsive design for mobile and desktop'
+    ],
+    features: [
+      'User authentication with Firebase Auth',
+      'Real-time note syncing with Firestore',
+      'Tag-based organization and color-coded filtering',
+      'Instant search bar across all notes',
+      'Rich text editing with formatting toolbar',
+      'Responsive design for mobile and desktop'
+    ],
+    working: [
+      'User logs in and accesses NoteNest dashboard',
+      'Create study note in markdown with real-time Firestore sync',
+      'AI parses notes to generate spaced-repetition flashcards and interactive mind maps',
+      'Practice quizzes test user knowledge and track strengths/weaknesses over time'
     ],
     github: 'https://github.com/nidhipatil57/NoteNest',
     accentColor: '#6366f1',
@@ -103,6 +133,11 @@ export const fullDeveloperJourney = [
       'Specialized in AI, Data Structures, and Software Development',
       'Active developer in college tech ecosystem & hackathons'
     ],
+    features: [
+      'Secured 10.0 SGPA in Semester 1',
+      'Specialized in AI, Data Structures, and Software Development',
+      'Active developer in college tech ecosystem & hackathons'
+    ],
     technologies: ['Java', 'Data Structures', 'Python', 'C++', 'SQL', 'Algorithms'],
     accentColor: '#10b981',
     github: '',
@@ -120,12 +155,14 @@ export const fullDeveloperJourney = [
     shortDescription: 'Completed hands-on labs on Google Cloud Compute Engine, Vertex AI, App Engine, and Serverless architectures.',
     fullDescription: 'Participated in the Google Cloud Study Jam program. Completed intense hands-on lab tracks configuring cloud compute instances, serverless functions, Pub/Sub messaging queues, Vertex AI models, and database pipelines on Google Cloud Platform.',
     role: 'Cloud Participant',
-    duration: '1 Month Hands-On Track',
+    duration: '1 Month Track',
     achievements: [
       'Completed official Google Cloud labs for Compute & GenAI APIs',
       'Mastered serverless deployment on Google Cloud Run & Vertex AI',
       'Awarded Google Cloud Certificate and official Goodies/Swag'
     ],
+    features: ['Cloud deployment labs', 'Generative AI & Vertex AI APIs', 'Serverless architectures', 'No-code AppSheet setup'],
+    working: ['Access Google Cloud labs console', 'Deploy compute engine and cloud run services', 'Implement Vertex AI pipeline integrations', 'Pass official lab verification checks'],
     technologies: ['Google Cloud Platform', 'Vertex AI', 'App Engine', 'Pub/Sub', 'Compute Engine'],
     certificateImage: googleCloudCert,
     additionalImage: googleCloudGifts,
@@ -150,6 +187,21 @@ export const fullDeveloperJourney = [
       'Engineered competitor layout parser and LLM citation matcher',
       'Designed synthetic AI search simulator with live API tracking'
     ],
+    features: [
+      'Competitor Structure Scraping — Automatically extracts heading levels, tags, and word counts from rival URLs',
+      'Synthetic AI Search Simulation — Direct API integration to fetch and monitor target LLM search responses',
+      'Format Detection Engine — Classifies AI answers into structural layouts (paragraphs, steps, bullets)',
+      'Layout Match Comparison — Compares target site\'s structural density against the AI\'s preferred format',
+      'GEO Recommendation Engine — Outputs layout adjustments'
+    ],
+    working: [
+      'Input Details — User provides target website URL and search query',
+      'Scrape Competitor Structure — Extracts structural statistics from top competitor pages',
+      'AI Query Execution — Queries the LLM search simulator to obtain the AI response',
+      'Format & Layout Extraction — Identifies formatting patterns in the AI response',
+      'GEO Gap Analysis — Contrasts competitor content layouts against the AI response structures',
+      'Generate Visibility Report — Outputs structural recommendations to optimize content for AI citations'
+    ],
     technologies: ['Python', 'React', 'Tailwind CSS', 'OpenAI APIs', 'Web Scraping'],
     certificateImage: hackAIThonCert,
     accentColor: '#ec4899',
@@ -173,33 +225,11 @@ export const fullDeveloperJourney = [
       'Built real-time stock consumption deduction algorithm',
       'Designed low-stock procurement alert dashboard'
     ],
+    features: ['Real-time component stock control', 'Automatic stock deduction logic', 'Procurement alert triggers', 'Excel-based inventory import/export'],
+    working: ['PCB production log triggers deduction', 'Stock checks are processed against live inventory', 'Low-stock alert is generated if quantity < 20%', 'Reorder recommendation lists are generated'],
     technologies: ['React', 'JavaScript', 'CSS Modules', 'Node.js'],
     accentColor: '#f43f5e',
     github: '',
-    demo: ''
-  },
-  {
-    id: 'smart-tatkal-guardian',
-    type: 'hackathon',
-    year: '2026',
-    date: 'February 2026',
-    title: 'Far Away Hackathon 2026',
-    subtitle: 'Smart Tatkal Guardian — Multi-Agent Honeypot System',
-    statusBadge: 'Participant',
-    badgeType: 'hackathon',
-    shortDescription: 'Developed an autonomous 5-agent honeypot system to trap and blacklist automated Tatkal ticket hoarding bots.',
-    fullDescription: 'Developed Smart Tatkal Guardian at Far Away Hackathon 2026. Built an autonomous multi-agent honeypot system that analyzes speed and fingerprint metrics, silently trapping high-probability ticket hoarding bots in fake transaction loops to ensure fair IRCTC Tatkal ticket booking for genuine human travelers.',
-    role: 'Real-Time Systems & UI Lead',
-    duration: '36 Hours',
-    achievements: [
-      'Designed honeypot isolation architecture for bot requests',
-      'Integrated WebSocket real-time analytics dashboard',
-      'Boosted simulated human booking success rate from 23% to 94%'
-    ],
-    technologies: ['TypeScript', 'Python', 'React', 'WebSockets', 'Machine Learning'],
-    projectImage: tatkalProjImg,
-    accentColor: '#6366f1',
-    github: 'https://github.com/nidhipatil57/Smart-Tatkal-Guardian',
     demo: ''
   },
   {
@@ -223,6 +253,22 @@ export const fullDeveloperJourney = [
       'Mail System — Automated onboarding and task-completion emails',
       'Starter Tasks — Guided initial tickets for new hires',
       'Settings — Theme, notification preferences, AI response detail, and timezone work-hour calculator'
+    ],
+    features: [
+      'AI Assistant — Gemini-powered conversational onboarding guide',
+      'Dynamic Checklists — Role-based onboarding tasks with deadlines and progress tracking',
+      'HR Dashboard — Real-time employee onboarding analytics and roster management',
+      'Knowledge Base — Curated resources, playbooks, and architecture docs',
+      'Mail System — Automated onboarding and task-completion emails',
+      'Starter Tasks — Guided initial tickets for new hires',
+      'Settings — Theme, notification preferences, AI response detail, and timezone work-hour calculator'
+    ],
+    working: [
+      'New hire signs in to Syrus via NextAuth',
+      'Gemini-powered AI assistant initiates conversational guide',
+      'User follows role-specific dynamic checklists with tracked progress',
+      'Automated email notifications trigger upon task completion',
+      'HR managers monitor employee rosters and metrics via analytics dashboard'
     ],
     technologies: ['Next.js 16', 'TypeScript', 'Tailwind CSS 4', 'Gemini AI', 'NextAuth', 'Nodemailer', 'Chart.js', 'Framer Motion'],
     projectImage: syrusProjImg,
@@ -249,6 +295,20 @@ export const fullDeveloperJourney = [
       'Built complete product solo from concept, Figma designs, to full deployment',
       'Implemented active recall flashcards & interactive mind maps'
     ],
+    features: [
+      'User authentication with Firebase Auth',
+      'Real-time note syncing with Firestore',
+      'Tag-based organization and color-coded filtering',
+      'Instant search bar across all notes',
+      'Rich text editing with formatting toolbar',
+      'Responsive design for mobile and desktop'
+    ],
+    working: [
+      'User logs in and accesses NoteNest dashboard',
+      'Create study note in markdown with real-time Firestore sync',
+      'AI parses notes to generate spaced-repetition flashcards and interactive mind maps',
+      'Practice quizzes test user knowledge and track strengths/weaknesses over time'
+    ],
     technologies: ['React', 'TypeScript', 'Framer Motion', 'Figma', 'CSS Modules'],
     projectImage: notenestProjImg,
     certificateImage: unimergeCert,
@@ -274,10 +334,64 @@ export const fullDeveloperJourney = [
       'Built sub-200ms multi-channel synchronization using Firebase RTDB',
       'Designed 3 role-based clearance portals for high-pressure emergency response'
     ],
+    features: [
+      'Gemini AI Incident Classification — Extracts crisis type, situation briefs, and severity in <3 sec',
+      'Three Clearance Portals — Guest (SOS, tracking), Staff (tactical inbox, ADI gauge), Admin (analytics, team control)',
+      'ADI Score System — Composite 0-100 urgency metric factoring severity and responder count',
+      'Dual-Layer Real-Time Sync — Firebase RTDB + Firestore for sub-second event propagation',
+      'On-Demand AI Reports — Post-incident records, executive briefings, and hotspot analysis',
+      'Zero-Downtime Key Pool — Automatic 5-key API rotation on rate-limit errors for 99.9% AI uptime'
+    ],
+    working: [
+      'Guest reports emergency SOS via Level 1 clearance portal',
+      'Gemini AI classifies incident — extracts severity, briefs, and checklists in <3 sec',
+      'Firebase dual-layer sync propagates event to Staff and Admin dashboards in <200ms',
+      'Staff responds using Level 2 tactical interface with Google Maps and AI-generated checklists',
+      'Admin monitors via Level 3 command dashboard with ADI scores, heatmaps, and live analytics',
+      'AI generates post-incident reports, shift handovers, and hotspot analysis on-demand'
+    ],
     technologies: ['React', 'Firebase', 'Gemini AI', 'Google Maps API', 'TypeScript', 'Tailwind CSS'],
     projectImage: crisissyncProjImg,
     accentColor: '#06b6d4',
     github: 'https://github.com/krishnasahoo11156/crisissync',
+    demo: ''
+  },
+  {
+    id: 'smart-tatkal-guardian',
+    type: 'hackathon',
+    year: '2026',
+    date: 'February 2026',
+    title: 'Far Away Hackathon 2026',
+    subtitle: 'Smart Tatkal Guardian — Multi-Agent Honeypot System',
+    statusBadge: 'Participant',
+    badgeType: 'hackathon',
+    shortDescription: 'Developed an autonomous 5-agent honeypot system to trap and blacklist automated Tatkal ticket hoarding bots.',
+    fullDescription: 'Developed Smart Tatkal Guardian at Far Away Hackathon 2026. Built an autonomous multi-agent honeypot system that analyzes speed and fingerprint metrics, silently trapping high-probability ticket hoarding bots in fake transaction loops to ensure fair IRCTC Tatkal ticket booking for genuine human travelers.',
+    role: 'Real-Time Systems & UI Lead',
+    duration: '36 Hours',
+    achievements: [
+      'Designed honeypot isolation architecture for bot requests',
+      'Integrated WebSocket real-time analytics dashboard',
+      'Boosted simulated human booking success rate from 23% to 94%'
+    ],
+    features: [
+      'Booking Behavior Agent — Analyzes speed, location, and device fingerprints per request',
+      'Bot Probability Scorer — Assigns 0–100 score using weighted behavioral rules',
+      'Honeypot Agent — Shows fake ticket slots to suspected bots to isolate them',
+      'Blacklist Manager — Tracks confirmed bot IDs across sessions',
+      'Fairness Monitor — Tracks genuine vs bot booking ratio in real-time'
+    ],
+    working: [
+      'Score Booking Request — Assigns a 0-100 bot probability score based on real-time behavior',
+      'Isolate Suspected Bots — Automatically routes high-probability requests to virtual fake ticket slots',
+      'Trap with Fake Confirmation — Wait for bots to complete transaction loops',
+      'Permanent Blacklist — Logs and blocks the bot credentials permanently after 3 fake attempts',
+      'Fast-Track Humans — Routes verified human users to real slots, boosting success rates to 94%'
+    ],
+    technologies: ['TypeScript', 'Python', 'React', 'WebSockets', 'Machine Learning'],
+    projectImage: tatkalProjImg,
+    accentColor: '#6366f1',
+    github: 'https://github.com/nidhipatil57/Smart-Tatkal-Guardian',
     demo: ''
   },
   {
@@ -297,6 +411,23 @@ export const fullDeveloperJourney = [
       'Built Explainable AI candidate ranking engine with transparent scoring',
       'Implemented Skill-Gap Heatmaps & Blind Screening mode for recruiter bias mitigation',
       'Analyzed GitHub & LeetCode candidate profiles for holistic talent discovery'
+    ],
+    features: [
+      'Explainable AI Ranking — Transparent reasoning for each candidate rank',
+      'AI Resume Parsing — PDF/DOCX extraction of skills, experience, and profiles',
+      'GitHub & LeetCode Profiling — Multi-source candidate evaluation',
+      'Skill Gap Heatmap — Visual match/partial/missing skill comparison',
+      'Blind Screening Mode — Bias-free evaluation hiding personal identifiers',
+      'Recruiter Feedback Loop — AI accuracy tracking and decision quality metrics',
+      'Analytics Dashboard — Hiring funnel, time saved, and screening efficiency'
+    ],
+    working: [
+      'Recruiter uploads Job Description and candidate resumes',
+      'AI parses resumes and extracts structured data with profile links',
+      'Ranking engine scores candidates with explainable attribution',
+      'GitHub and LeetCode profiles are analyzed for additional signal',
+      'Skill gap heatmap highlights matches, partials, and missing skills',
+      'Blind screening mode enables bias-free candidate evaluation'
     ],
     technologies: ['React', 'Node.js', 'Python', 'AI/ML', 'TypeScript', 'Framer Motion'],
     projectImage: hiremindProjImg,

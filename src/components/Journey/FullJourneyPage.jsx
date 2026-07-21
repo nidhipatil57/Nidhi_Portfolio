@@ -97,7 +97,7 @@ export default function FullJourneyPage({ onBackToPortfolio }) {
                 <span className={styles.statLbl}>Major Milestones</span>
               </div>
               <div className={styles.statPill}>
-                <span className={styles.statVal}>8</span>
+                <span className={styles.statVal}>10</span>
                 <span className={styles.statLbl}>Hackathons Attended</span>
               </div>
               <div className={styles.statPill}>

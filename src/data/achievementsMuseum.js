@@ -9,7 +9,7 @@ import syrusProjImg from '../assets/projects/syrus.png';
 import crisissyncProjImg from '../assets/projects/crisissync.png';
 import tatkalProjImg from '../assets/projects/smart-tatkal-guardian.png';
 import notenestProjImg from '../assets/projects/notenest.png';
-import hiremindProjImg from '../assets/projects/hiremind.jpeg';
+import hiremindProjImg from '../assets/projects/hiremind.png';
 
 export const stats = {
   hackathonsAttended: 8,
